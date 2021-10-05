@@ -1,5 +1,7 @@
 package range_sum_query_immutable
 
+//describe: https://leetcode.com/problems/range-sum-query-immutable/
+
 type NumArray struct {
 	nums []int
 }

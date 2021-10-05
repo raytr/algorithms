@@ -6,26 +6,24 @@ import (
 	"strconv"
 )
 
-//Problem: given an array A of distinct numbers, generate all subsets of A.
-//Example: A = [1,2,3]
-//Subsets = [[], [1] , [2] , [1,2] , [3] , [1,3] , [2,3] , [1,2,3]]
+//Problem: https://leetcode.com/problems/subsets/?fbclid=IwAR36lGWQEjXiAGh8ZNw0qrl5BrXlQdAxjyBchgdG1s9O7EA86Rp6vktJCxw
 
 func main() {
-	fmt.Println(getSubSet([]int{1, 2, 3}))
+	fmt.Println(subsets([]int{1, 2, 3}))
 }
 
-func getSubSet(arr []int) [][]int {
+func subsets(nums []int) [][]int {
 
 	//create bit mask
-	bitMarks := getBitMaskOfLength(arr)
+	bitMarks := getBitMaskOfLength(nums)
 
 	output := [][]int{}
 	for _, bitMark := range bitMarks {
 		element := []int{}
-		for i := 0; i < len(arr); i++ {
+		for i := 0; i < len(nums); i++ {
 			b := getBit(bitMark, i)
 			if b == 1 {
-				element = append(element, arr[i])
+				element = append(element, nums[i])
 			}
 		}
 		output = append(output, element)
@@ -34,9 +32,9 @@ func getSubSet(arr []int) [][]int {
 	return output
 }
 
-func getBitMaskOfLength(arr []int) []uint64 {
+func getBitMaskOfLength(nums []int) []uint64 {
 	bitMasks := []uint64{}
-	for i := 0; i < int(math.Pow(2, float64(len(arr)))); i++ {
+	for i := 0; i < int(math.Pow(2, float64(len(nums)))); i++ {
 		bit := decimal2Binary(i)
 		bitMasks = append(bitMasks, bit)
 	}
@@ -55,7 +53,5 @@ func decimal2Binary(decimal int) uint64 {
 }
 
 func getBit(x uint64, pos int) uint64 {
-	a := x >> pos
-	b := a & 1
-	return b
+	return x >> pos & 1
 }

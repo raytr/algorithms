@@ -1,12 +1,15 @@
 package main
 
+//problem: https://leetcode.com/problems/sort-array-by-parity-ii/
+
 import "fmt"
 
 func main() {
-	//fmt.Println(sortArrayByParityII([]int{888,505,627,846}))
-	//fmt.Println(sortArrayByParityII([]int{3,1,4,2}))
-	//fmt.Println(sortArrayByParityII([]int{3,0,4,0,2,1,3,1,3,4}))
-	//fmt.Println(sortArrayByParityII([]int{648,831,560,986,192,424,997,829,897,843}))
+	fmt.Println(sortArrayByParityII([]int{888, 505, 627, 846}))
+	fmt.Println(sortArrayByParityII([]int{3, 1, 4, 2}))
+	fmt.Println(sortArrayByParityII([]int{4, 2, 5, 7}))
+	fmt.Println(sortArrayByParityII([]int{3, 0, 4, 0, 2, 1, 3, 1, 3, 4}))
+	fmt.Println(sortArrayByParityII([]int{648, 831, 560, 986, 192, 424, 997, 829, 897, 843}))
 	fmt.Println(sortArrayByParityII([]int{0, 3, 4, 0, 2, 1, 3, 1, 3, 4}))
 }
 

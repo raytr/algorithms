@@ -1,5 +1,7 @@
 package run_sum_of_1day_array
 
+//problem: https://leetcode.com/problems/running-sum-of-1d-array/
+
 func runningSum(nums []int) []int {
 
 	// first about edge cache
