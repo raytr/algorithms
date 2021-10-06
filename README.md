@@ -8,21 +8,13 @@ ARRAY:
  - sort-array-by-parity-ii
 
 LINKED LIST:
- - reverse-linked-list/ solve by 2 way: recursion and iterative
+ - reverse-linked-list
  - middle-of-the-linked-list
-   linked-list-cycle/
-   linked-list-cycle-ii/ (hint: read my above blog post)
+ - linked-list-cycle
+ - linked-list-cycle-ii
  - happy-number
 
 BIT MANIPULATION:
-
-
-
-
-
-
-
-
-number-of-1-bits/
-power-of-two/
-subsets/
+ - number-of-1-bits
+ - power-of-two
+ - subsets

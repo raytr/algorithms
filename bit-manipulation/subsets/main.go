@@ -14,11 +14,15 @@ func main() {
 
 func subsets(nums []int) [][]int {
 
-	//create bit mask
-	bitMarks := getBitMaskOfLength(nums)
+	//create bit mask of index
+	bitMasks := []uint64{}
+	for i := 0; i < int(math.Pow(2, float64(len(nums)))); i++ {
+		bit := decimal2Binary(i)
+		bitMasks = append(bitMasks, bit)
+	}
 
 	output := [][]int{}
-	for _, bitMark := range bitMarks {
+	for _, bitMark := range bitMasks {
 		element := []int{}
 		for i := 0; i < len(nums); i++ {
 			b := getBit(bitMark, i)
@@ -32,15 +36,6 @@ func subsets(nums []int) [][]int {
 	return output
 }
 
-func getBitMaskOfLength(nums []int) []uint64 {
-	bitMasks := []uint64{}
-	for i := 0; i < int(math.Pow(2, float64(len(nums)))); i++ {
-		bit := decimal2Binary(i)
-		bitMasks = append(bitMasks, bit)
-	}
-	return bitMasks
-}
-
 func decimal2Binary(decimal int) uint64 {
 	bitStr := ""
 	for decimal > 0 {
@@ -48,7 +43,7 @@ func decimal2Binary(decimal int) uint64 {
 		bitStr = strconv.Itoa(remainder) + bitStr
 		decimal = decimal / 2
 	}
-	binary, _ := strconv.ParseUint(bitStr, 0, 64)
+	binary, _ := strconv.ParseUint(bitStr, 2, 64)
 	return binary
 }
 
