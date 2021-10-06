@@ -6,6 +6,7 @@ type NumArray struct {
 	nums []int
 }
 
+//Complexity: O(n)
 func Constructor(nums []int) NumArray {
 	numArray := NumArray{nums: []int{}}
 	numArray.nums = append(numArray.nums, nums[0])

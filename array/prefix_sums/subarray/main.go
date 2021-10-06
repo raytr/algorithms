@@ -16,6 +16,7 @@ func main() {
 	fmt.Println(naive([]int{5, -1, 3, 2, 9, 4}, 5))
 }
 
+//Complexity: O(n)
 func naive(nums []int, s int) int {
 	count := 0
 	prefixSums := []int{}

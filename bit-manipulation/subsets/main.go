@@ -12,8 +12,8 @@ func main() {
 	fmt.Println(subsets([]int{1, 2, 3}))
 }
 
+//Complexity: O(n^2)
 func subsets(nums []int) [][]int {
-
 	//create bit mask of index
 	bitMasks := []uint64{}
 	for i := 0; i < int(math.Pow(2, float64(len(nums)))); i++ {

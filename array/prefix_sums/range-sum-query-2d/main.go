@@ -30,6 +30,7 @@ func main() {
 	fmt.Println(numMatrix3.SumRegion(0, 1, 0, 1))
 }
 
+//Complexity: O(n^2)
 func Constructor(matrix [][]int) NumMatrix {
 	numMatrix := NumMatrix{matrix: [][]int{}}
 

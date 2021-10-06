@@ -8,6 +8,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
+//Complexity: O(n)
 func middleNode(head *ListNode) *ListNode {
 	fast := head
 	slow := head

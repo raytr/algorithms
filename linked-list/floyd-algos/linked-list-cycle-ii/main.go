@@ -8,6 +8,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
+//Complexity: O(n)
 func hasCycle(head *ListNode) bool {
 	fast := head
 	slow := head

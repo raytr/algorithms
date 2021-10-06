@@ -10,8 +10,8 @@ func main() {
 	fmt.Println(isHappy(2))
 }
 
+//Complexity: O(n^2)
 func isHappy(n int) bool {
-
 	arr := separateToDigits(n)
 	sumResults := make(map[int]struct{})
 

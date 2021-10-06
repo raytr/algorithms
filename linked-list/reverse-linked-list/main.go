@@ -8,6 +8,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
+//Complexity: O(n)
 func reverseList(head *ListNode) *ListNode {
 	cur := head
 	var prev *ListNode
