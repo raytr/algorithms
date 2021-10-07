@@ -9,19 +9,19 @@ type NumMatrix struct {
 }
 
 func main() {
-	//input := [][]int{
-	//	{3,0,1,4,2},
-	//	{5,6,3,2,1},
-	//	{1,2,0,1,5},
-	//	{4,1,0,1,7},
-	//	{1,3,0,0,5},
-	//}
-	//numMatrix := Constructor(input)
-	//fmt.Println(numMatrix.SumRegion(2, 1, 4, 3))
-	//
-	//input2 := [][]int{{1}}
-	//numMatrix2 := Constructor(input2)
-	//fmt.Println(numMatrix2.SumRegion(0,0,0,0))
+	input := [][]int{
+		{3, 0, 1, 4, 2},
+		{5, 6, 3, 2, 1},
+		{1, 2, 0, 1, 5},
+		{4, 1, 0, 1, 7},
+		{1, 3, 0, 0, 5},
+	}
+	numMatrix := Constructor(input)
+	fmt.Println(numMatrix.SumRegion(2, 1, 4, 3))
+
+	input2 := [][]int{{1}}
+	numMatrix2 := Constructor(input2)
+	fmt.Println(numMatrix2.SumRegion(0, 0, 0, 0))
 
 	input3 := [][]int{{-4, -5}}
 	numMatrix3 := Constructor(input3)
