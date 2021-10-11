@@ -1,7 +1,7 @@
 LESSON1:
 
 ARRAY:
- - [running-sum-of-1d-array] (#https://github.com/raytr/algorithms/tree/master/array/prefix_sums/run_sum_of_1day_array)
+ - [running-sum-of-1d-array] (/array/prefix_sums/run_sum_of_1day_array)
  - range-sum-query-immutable 
  - range-sum-query-2d-immutable
  - move-zeroes
