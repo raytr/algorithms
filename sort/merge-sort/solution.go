@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package merge_sort
 
 //problem: https://leetcode.com/problems/sort-list/
 
@@ -9,97 +7,63 @@ type ListNode struct {
 	Next *ListNode
 }
 
-var input1 = &ListNode{
-	Val: 4,
-	Next: &ListNode{
-		Val: 2,
-		Next: &ListNode{
-			Val: 1,
-			Next: &ListNode{
-				Val: 3,
-			},
-		},
-	},
-}
-
-func main() {
-	result := sortList(input1)
-	fmt.Println(result)
-}
-
 func sortList(head *ListNode) *ListNode {
 	// when the linked list just has 1 node
-	if head.Next == nil {
+	if head == nil || head.Next == nil {
 		return head
 	}
 
 	//merge sort
 	//at first, we find the middle node by floyd algorithm
 	midNode := getTheMiddleNode(head)
-
 	if midNode == nil {
 		return head
 	}
 
-	right := midNode.Next
+	right := midNode
+	left := head
+	for {
+		if left.Next == midNode {
+			left.Next = nil
+			break
+		}
+		left = left.Next
+	}
+	left = head
+
 	right = sortList(right)
-	midNode.Next = nil
-	left := sortList(head)
-	return merge2SortedLinkedList(left, right)
+	left = sortList(head)
+	result := mergeTwoLists(left, right)
+	return result
 }
 
 func getTheMiddleNode(head *ListNode) *ListNode {
-	if head.Next == nil || head.Next.Next == nil {
-		return head
-	}
-
 	fast := head
 	slow := head
-	for {
+
+	for fast != nil && fast.Next != nil {
 		fast = fast.Next.Next
-
-		if fast != nil && fast.Next != nil {
-			slow = slow.Next
-			continue
-		}
-
-		return slow
+		slow = slow.Next
 	}
+	return slow
 }
 
-func merge2SortedLinkedList(left, right *ListNode) *ListNode {
-
-	newLL := new(ListNode)
-
-	for left != nil && right != nil {
-		if left.Val <= right.Val {
-			newLL = &ListNode{
-				Val: left.Val,
-			}
-			left = left.Next
-		} else {
-			newLL = &ListNode{
-				Val: right.Val,
-			}
-			right = right.Next
-		}
-		newLL = newLL.Next
+func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
+	if l1 == nil {
+		return l2
+	}
+	if l2 == nil {
+		return l1
 	}
 
-	//create node by the rest of l or r linked list
-	for left != nil {
-		newLL = &ListNode{
-			Val: left.Val,
-		}
-		left = left.Next
-		newLL = newLL.Next
+	result := new(ListNode)
+	if l1.Val <= l2.Val {
+		result.Val = l1.Val
+		result.Next = mergeTwoLists(l1.Next, l2)
+	} else {
+		result.Val = l2.Val
+		result.Next = mergeTwoLists(l1, l2.Next)
 	}
-	for right != nil {
-		newLL = &ListNode{
-			Val: right.Val,
-		}
-		right = right.Next
-		newLL = newLL.Next
-	}
-	return newLL
+
+	return result
 }
