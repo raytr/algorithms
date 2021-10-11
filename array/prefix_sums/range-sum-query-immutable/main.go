@@ -11,7 +11,8 @@ func Constructor(nums []int) NumArray {
 	numArray := NumArray{nums: []int{}}
 	numArray.nums = append(numArray.nums, nums[0])
 	for i := 1; i < len(nums); i++ {
-		numArray.nums = append(numArray.nums, nums[i]+numArray.nums[i-1])
+		prefixSum := nums[i] + numArray.nums[i-1]
+		numArray.nums = append(numArray.nums, prefixSum)
 	}
 	return numArray
 }
