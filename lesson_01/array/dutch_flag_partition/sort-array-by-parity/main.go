@@ -5,7 +5,8 @@ package main
 import "fmt"
 
 func main() {
-	//fmt.Println(sortArrayByParity([]int{3, 1, 2, 4}))
+	fmt.Println(sortArrayByParity([]int{3, 1, 2, 4}))
+	fmt.Println(sortArrayByParity([]int{104, 80, 149, 65}))
 	fmt.Println(sortArrayByParity([]int{}))
 }
 func sortArrayByParity(nums []int) []int {

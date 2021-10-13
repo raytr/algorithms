@@ -7,6 +7,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
+//complexity: O[n * logn]
 func sortList(head *ListNode) *ListNode {
 	// when the linked list just has 1 node
 	if head == nil || head.Next == nil {
