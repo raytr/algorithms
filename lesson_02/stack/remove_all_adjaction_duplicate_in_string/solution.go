@@ -3,10 +3,6 @@ package main
 
 //problem: https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
 
-func main() {
-	removeDuplicates("aABbbaca")
-}
-
 func removeDuplicates(s string) string {
 	stack := make([]int32, 0, len(s))
 	for _, c := range s {
