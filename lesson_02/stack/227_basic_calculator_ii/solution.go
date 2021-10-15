@@ -1,5 +1,4 @@
-//package basic_calculator_ii
-package main
+package basic_calculator_ii
 
 import (
 	"fmt"
@@ -9,7 +8,11 @@ import (
 // can s empty
 // how about length of string
 // what is your expectation about complexity
-// create stack
+// what result if 44+1 =>
+
+//
+// s1: remove all space and push
+// s2: separage number: " 42 +1 " => [42,+,1]
 // we will separate 2 group is [*, /] and [+, =]
 // loop s 2 time, 1 for [*, /] , 1 for [+, -]
 // if c != * | / | + | - => push => stack
@@ -18,35 +21,44 @@ import (
 // after all we have result
 // complexity : O(2 length of s)
 
-func main() {
-	//fmt.Println(calculate("3+2*2"))
-	//fmt.Println(calculate(" 3/2 "))
-	//fmt.Println(calculate(" 3+5 / 2 "))
-	fmt.Println(calculate("42"))
-	//fmt.Println(calculate("0"))
-}
+//calculate("3+2*2")
+//calculate(" 3/2 ")
+//calculate(" 3+5 / 2 ")
+//calculate("42")
+//calculate("0")
+//calculate("1+1+1")
 
 func calculate(s string) int {
 
 	arr := make([]string, 0, len(s))
 	temp := ""
 
-	for i, c := range s {
+	for _, c := range s {
 		if string(c) == " " {
 			continue
 		}
+		arr = append(arr, temp+string(c))
+	}
+
+	stack := make([]string, 0, len(arr))
+
+	for i, c := range arr {
 		if string(c) == "+" || string(c) == "-" || string(c) == "*" || string(c) == "/" {
-			arr = append(arr, temp)
-			temp = ""
-			arr = append(arr, string(c))
-		} else if i == len(s)-1 {
-			arr = append(arr, temp+string(c))
+			if temp != "" {
+				stack = append(stack, temp)
+				temp = ""
+			}
+			stack = append(stack, c)
+		} else if i == len(arr)-1 {
+			stack = append(stack, temp+c)
 		} else {
-			temp += string(c)
+			temp += c
 		}
 	}
 
-	stack := make([]string, 0, len(s))
+	arr = stack
+	stack = make([]string, 0, len(arr))
+
 	//first loop for *|/
 	for i := 0; i < len(arr); i++ {
 		if len(stack) == 0 {
@@ -81,7 +93,7 @@ func calculate(s string) int {
 			num1, _ := strconv.Atoi(stack[len(stack)-1])
 			num2, _ := strconv.Atoi(arr[i+1])
 			result := num1 + num2
-			stack = stack[0 : i-1]
+			stack = stack[0 : len(stack)-1]
 			stack = append(stack, fmt.Sprintf("%v", result))
 			i++
 			isCal = true
@@ -89,7 +101,7 @@ func calculate(s string) int {
 			num1, _ := strconv.Atoi(stack[len(stack)-1])
 			num2, _ := strconv.Atoi(arr[i+1])
 			result := num1 - num2
-			stack = arr[0 : i-1]
+			stack = arr[0 : len(stack)-1]
 			stack = append(stack, fmt.Sprintf("%v", result))
 			i++
 			isCal = true
