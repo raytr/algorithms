@@ -4,11 +4,13 @@ package main
 import "fmt"
 
 func main() {
-	//fmt.Println(subarraysDivByKByBruteForce([]int{4,5,0,-2,-3,1}, 5))
-	fmt.Println(subarraysDivByKByBruteForce([]int{-5}, 5))
+	fmt.Println(subarraysDivByK([]int{4, 5, 0, -2, -3, 1}, 5))
+	fmt.Println(subarraysDivByK([]int{-5}, 5))
+	fmt.Println(subarraysDivByK([]int{-1, 2, 9}, 2))
+	fmt.Println(subarraysDivByK([]int{2, -2, 2, -4}, 6))
 }
 
-// problem: https://leetcode.com/problems/subsets/?fbclid=IwAR36lGWQEjXiAGh8ZNw0qrl5BrXlQdAxjyBchgdG1s9O7EA86Rp6vktJCxw
+// problem: https://leetcode.com/problems/subarray-sums-divisible-by-k/
 
 //complexity : O(n*2)
 func subarraysDivByKByBruteForce(nums []int, k int) int {
@@ -34,40 +36,51 @@ func subarraysDivByKByBruteForce(nums []int, k int) int {
 }
 
 /*
-	loop over the array, go check which number can mod k == 0 => if has => count++
-	calculate prefix sum: prifixSum[i] = prefixSum[i-1]+sums[i]
+	 A % K = B % K
+	=> A - B
+	If a % k = x and b % k = x => (a - b) % k == 0
 
-	have a map to store all prefix sums that checked
+	If we have:  a b c =>  ab,  bc,  ac = 3 results.
+	=> formula: (f - 1) * f / 2
+	F is frequency, the time this number % k == x
 
-	check all prefix sum,
-		if prefix sum % k == 0 => if has => count++
-		else if prefix sum exist in map => add to map
-		else
+
+	index:            0 ,     1 ,      2,        3,      4,      5        6
+	Mod               2       1        2         3       2       1        2
+
+	Freq[2] = 		  1                2                 3                 4
+	Subarray  =       0                1                 2                 3
+
+	Freq[1] =                  1                                  2
+	Subarray =               0                                    1
+
+	Freq[3] =                                        1
+	Subarray =                                     0
+
 */
 func subarraysDivByK(nums []int, k int) int {
-	count := 0
-	for _, n := range nums {
-		if n%k == 0 {
-			count++
-		}
-	}
-
-	//4,9,9,7,4,5
-
-	//calculate prefix sum
 	prefixSums := make([]int, 0, len(nums))
 	prefixSums = append(prefixSums, nums[0])
 	for i := 1; i < len(nums); i++ {
-		prefixSums = append(prefixSums, prefixSums[i-1], nums[i])
+		prefixSums = append(prefixSums, prefixSums[i-1]+nums[i])
 	}
 
-	for i := 1; i < len(nums); i++ {
-		if prefixSums[i]%k == 0 {
-			count++
-		} else {
+	freq := make(map[int]int)
+	for _, pfs := range prefixSums {
+		remainder := getRemainder(pfs, k)
+		freq[remainder]++
+	}
 
+	count := freq[0]
+	for _, v := range freq {
+		if v > 0 {
+			count = count + (v-1)*v/2
 		}
 	}
 
 	return count
+}
+
+func getRemainder(a, k int) int {
+	return (a%k + k) % k
 }
