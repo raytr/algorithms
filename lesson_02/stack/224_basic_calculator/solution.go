@@ -1,7 +1,10 @@
 //package basic_calculator
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func main() {
 	fmt.Println(calculate("1 + 1"))
@@ -24,25 +27,48 @@ func calculate(s string) int {
 	arr := make([]string, 0, len(s))
 	tempNum := ""
 	for _, c := range s {
-		if string(c) == " " {
+		if string(c) == " " || string(c) == "(" || string(c) == ")" {
+			if tempNum != "" {
+				arr = append(arr, tempNum)
+				tempNum = ""
+			}
 			continue
-		}
-		if string(c) == "(" || string(c) == ")" || string(c) == "+" || string(c) == "-" {
-			arr = append(arr, tempNum)
+		} else if string(c) == "+" || string(c) == "-" {
+			if tempNum != "" {
+				arr = append(arr, tempNum)
+				tempNum = ""
+			}
 			arr = append(arr, string(c))
-			tempNum = ""
 		} else {
 			tempNum += string(c)
 		}
 	}
+	if tempNum != "" {
+		arr = append(arr, tempNum)
+		tempNum = ""
+	}
 
-}
-
-func calculateBrackets(s []string) int {
-	for _, c := range s {
-		stackInBrackets := []string{}
-		if c == "(" {
-
+	var stack []string
+	for i := 0; i < len(arr); i++ {
+		lastElementInStack := len(stack) - 1
+		if arr[i] == "+" {
+			num1, _ := strconv.Atoi(stack[lastElementInStack])
+			num2, _ := strconv.Atoi(arr[i+1])
+			sum := num1 + num2
+			stack = stack[:lastElementInStack]
+			stack = append(stack, strconv.Itoa(sum))
+			i++
+		} else if arr[i] == "-" {
+			num1, _ := strconv.Atoi(stack[lastElementInStack])
+			num2, _ := strconv.Atoi(arr[i+1])
+			sum := num1 - num2
+			stack = stack[:lastElementInStack]
+			stack = append(stack, strconv.Itoa(sum))
+			i++
+		} else {
+			stack = append(stack, arr[i])
 		}
 	}
+	result, _ := strconv.Atoi(stack[0])
+	return result
 }
