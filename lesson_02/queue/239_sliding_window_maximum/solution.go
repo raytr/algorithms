@@ -24,45 +24,26 @@ func main() {
 	fmt.Println(maxSlidingWindow([]int{1, 3, 1, 2, 0, 5}, 3))
 }
 func maxSlidingWindow(nums []int, k int) []int {
+	var qIdx, qVal, maxElement []int
+	for i := 0; i < len(nums); i++ {
 
-	if k == 1 {
-		return nums
-	}
+		//check i-k is contained in qIdx => yes: remove | no: do nothing
+		if i >= k && i-k == qIdx[0] {
+			qIdx = qIdx[1:]
+			qVal = qVal[1:]
+		}
 
-	maxElement := []int{}
-	qIdx := make([]int, 0, k)
-	qVal := make([]int, 0, k)
-	qIdx = append(qIdx, 0)
-	qVal = append(qVal, nums[0])
-	maxElement = make([]int, 0, k)
+		//remove all element smaller than or equal nums[i]
+		for len(qVal) > 0 && nums[i] > qVal[len(qVal)-1] {
+			qIdx = qIdx[:len(qIdx)-1]
+			qVal = qVal[:len(qVal)-1]
+		}
 
-	for i := 1; i < len(nums); i++ {
-		if i < k-1 {
-			if nums[i] > qVal[0] {
-				qIdx = append([]int{}, i)
-				qVal = append([]int{}, nums[i])
-			} else {
-				qIdx = append(qIdx, i)
-				qVal = append(qVal, nums[i])
-			}
-		} else {
-			//remove all element smaller than or equal nums[i]
-
-			for len(qVal) > 0 && nums[i] > qVal[len(qVal)-1] {
-				qIdx = qIdx[:len(qIdx)-1]
-				qVal = qVal[:len(qVal)-1]
-			}
-
-			//add nums[i] to queue
-			qIdx = append(qIdx, i)
-			qVal = append(qVal, nums[i])
+		//add nums[i] to queue
+		qIdx = append(qIdx, i)
+		qVal = append(qVal, nums[i])
+		if i >= k-1 {
 			maxElement = append(maxElement, qVal[0])
-
-			//check i-k is contained in qIdx => yes: remove | no: do nothing
-			if i-k == qIdx[0] {
-				qIdx = qIdx[1:]
-				qVal = qVal[1:]
-			}
 		}
 	}
 
