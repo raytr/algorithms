@@ -7,9 +7,10 @@ import (
 )
 
 func main() {
-	fmt.Println(calculate("1 + 1"))
-	fmt.Println(calculate(" 2-1 + 2 "))
-	fmt.Println(calculate("(1+(4+5+2)-3)+(6+8)"))
+	//fmt.Println(calculate("1 + 1"))
+	//fmt.Println(calculate(" 2-1 + 2 "))
+	fmt.Println(calculate("-2+ 1"))
+	//fmt.Println(calculate("(1+(4+5+2)-3)+(6+8)"))
 }
 
 //problem: leetcode.com/problems/basic-calculator/?fbclid=IwAR1vwWv1xF8E3CyWuOZE12O5V-cnQKdxWn9qSyYfmBz1m6DEhHaZC81r9oA
@@ -24,7 +25,7 @@ func main() {
 */
 
 func calculate(s string) int {
-	arr := make([]string, 0, len(s))
+	arr := []string{"0"}
 	tempNum := ""
 	for _, c := range s {
 		if string(c) == " " || string(c) == "(" || string(c) == ")" {

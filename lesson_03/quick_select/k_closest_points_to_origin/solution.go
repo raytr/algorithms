@@ -3,7 +3,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/raytr/algorithms/lesson_02/quick_select/k_smallest_element_in_an_array"
+	"github.com/raytr/algorithms/lesson_03/quick_select/k_smallest_element_in_an_array"
 )
 
 func main() {
