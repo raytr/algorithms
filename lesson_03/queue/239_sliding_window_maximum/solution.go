@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package sliding_window_maximum
 
 // use the dequeue to maintain index of all element of sliding window
 // iterate over array from left to right
@@ -20,9 +18,6 @@ import "fmt"
 	complexity: O(n)
 */
 
-func main() {
-	fmt.Println(maxSlidingWindow([]int{1, 3, 1, 2, 0, 5}, 3))
-}
 func maxSlidingWindow(nums []int, k int) []int {
 	var qIdx, qVal, maxElement []int
 	for i := 0; i < len(nums); i++ {
