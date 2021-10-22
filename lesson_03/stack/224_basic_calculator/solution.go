@@ -1,75 +1,79 @@
-//package basic_calculator
-package main
+package basic_calculator
 
 import (
-	"fmt"
 	"strconv"
 )
-
-func main() {
-	//fmt.Println(calculate("1 + 1"))
-	//fmt.Println(calculate(" 2-1 + 2 "))
-	fmt.Println(calculate("-2+ 1"))
-	//fmt.Println(calculate("(1+(4+5+2)-3)+(6+8)"))
-}
 
 //problem: leetcode.com/problems/basic-calculator/?fbclid=IwAR1vwWv1xF8E3CyWuOZE12O5V-cnQKdxWn9qSyYfmBz1m6DEhHaZC81r9oA
 
 /*
-	use loop to remove space and get number and operator. Ex "  1+1 " => ["1","+","1"]; "43+1" => ["43","+","1"]
-	define a function calculateIn to calculate: ["1","+","1"] = 2
+	with this problem, we always want to calculate from of value of pair of inmost "()" to outmost "()"
+	ex: (1+(2-1)) => first calculate the sum of pair of inmost () is: 2-1. After that: outmost "()" is 1+1
+	so, we need to reverse to solve this problem.
+	loop from right to left => remove space and check is digit and reformat it. Push all in to a stack
+	if meet "(" => mean is finish inmost (). So, we need find ")" from right to left in stack and calculate it, after each
+		iterate, remote the last element in stack
 
-	loop from lefrt to right over s. If meet ( => create a new stack to store number and overrator, see ) will finish the stack
-	=> 1 - (1+2) => newStack have ["1","+","2"] and call calculateIn function to get result => remove pair of ()
-	in the end, we will has a stack has only 1 element => result
+	the result will is stack[0]
 */
 
 func calculate(s string) int {
-	arr := []string{"0"}
 	tempNum := ""
-	for _, c := range s {
-		if string(c) == " " || string(c) == "(" || string(c) == ")" {
+	stack := make([]string, 0, len(s))
+	for i := len(s) - 1; i >= 0; i-- {
+		if num, err := strconv.Atoi(string(s[i])); err == nil {
 			if tempNum != "" {
-				arr = append(arr, tempNum)
-				tempNum = ""
+				tempNum = strconv.Itoa(num) + tempNum
+			} else {
+				tempNum = strconv.Itoa(num)
 			}
-			continue
-		} else if string(c) == "+" || string(c) == "-" {
-			if tempNum != "" {
-				arr = append(arr, tempNum)
-				tempNum = ""
-			}
-			arr = append(arr, string(c))
 		} else {
-			tempNum += string(c)
+			if tempNum != "" {
+				stack = append(stack, tempNum)
+				tempNum = ""
+			}
+			if string(s[i]) == " " {
+				continue
+			} else if string(s[i]) == "(" {
+				res := 0
+				res, stack = evalueteExpr(stack)
+				stack = append([]string{}, stack[:len(stack)-1]...)
+				stack = append(stack, strconv.Itoa(res))
+			} else {
+				stack = append(stack, string(s[i]))
+			}
 		}
 	}
 	if tempNum != "" {
-		arr = append(arr, tempNum)
+		stack = append(stack, tempNum)
 		tempNum = ""
 	}
 
-	var stack []string
-	for i := 0; i < len(arr); i++ {
-		lastElementInStack := len(stack) - 1
-		if arr[i] == "+" {
-			num1, _ := strconv.Atoi(stack[lastElementInStack])
-			num2, _ := strconv.Atoi(arr[i+1])
-			sum := num1 + num2
-			stack = stack[:lastElementInStack]
-			stack = append(stack, strconv.Itoa(sum))
-			i++
-		} else if arr[i] == "-" {
-			num1, _ := strconv.Atoi(stack[lastElementInStack])
-			num2, _ := strconv.Atoi(arr[i+1])
-			sum := num1 - num2
-			stack = stack[:lastElementInStack]
-			stack = append(stack, strconv.Itoa(sum))
-			i++
+	result, _ := evalueteExpr(stack)
+	return result
+}
+
+func evalueteExpr(stack []string) (int, []string) {
+	temp := ""
+	if stack[len(stack)-1] == "-" {
+		temp = "-" + stack[len(stack)-2]
+		stack = stack[:len(stack)-2]
+	} else {
+		temp = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+	}
+
+	result, _ := strconv.Atoi(temp)
+	for len(stack) > 0 && stack[len(stack)-1] != ")" {
+		sign := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		nextNum, _ := strconv.Atoi(stack[len(stack)-1])
+		stack = stack[:len(stack)-1]
+		if sign == "+" {
+			result += nextNum
 		} else {
-			stack = append(stack, arr[i])
+			result -= nextNum
 		}
 	}
-	result, _ := strconv.Atoi(stack[0])
-	return result
+	return result, stack
 }
