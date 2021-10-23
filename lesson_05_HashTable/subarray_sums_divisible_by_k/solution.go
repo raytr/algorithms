@@ -12,29 +12,6 @@ func main() {
 
 // problem: https://leetcode.com/problems/subarray-sums-divisible-by-k/
 
-//complexity : O(n*2)
-func subarraysDivByKByBruteForce(nums []int, k int) int {
-	if len(nums) == 1 && nums[0]%k == 0 {
-		return 1
-	}
-
-	count := 0
-	for i := 0; i < len(nums)-1; i++ {
-		if nums[i]%k == 0 {
-			count++
-		}
-		sum := 0
-		for j := i + 1; j < len(nums); j++ {
-			sum += nums[j]
-			a := nums[i] + sum
-			if a%k == 0 {
-				count++
-			}
-		}
-	}
-	return count
-}
-
 /*
 	 A % K = B % K
 	=> A - B
