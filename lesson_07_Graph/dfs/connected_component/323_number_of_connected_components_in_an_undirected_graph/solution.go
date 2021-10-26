@@ -41,16 +41,16 @@ func countComponents(n int, edges [][]int) int {
 		if visited[i] == false {
 			count++
 		}
-		dfs(adjList, i, count, visited)
+		dfs(adjList, i, visited)
 	}
 	return count
 }
 
-func dfs(adjList map[int][]int, curNode, count int, visited map[int]bool) {
+func dfs(adjList map[int][]int, curNode int, visited map[int]bool) {
 	for _, n := range adjList[curNode] {
 		if !visited[n] {
 			visited[n] = true
-			dfs(adjList, n, count, visited)
+			dfs(adjList, n, visited)
 		}
 	}
 }
