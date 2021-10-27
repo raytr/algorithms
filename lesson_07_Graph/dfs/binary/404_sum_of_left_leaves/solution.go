@@ -19,21 +19,22 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+var sum = 0
+
 func sumOfLeftLeaves(root *TreeNode) int {
-	sum := 0
-	sum = dfs(root, false, sum)
+	sum = 0
+	dfs(root, false)
 	return sum
 }
 
-func dfs(node *TreeNode, isLeft bool, sum int) int {
+func dfs(node *TreeNode, isLeft bool) {
 	if node.Left == nil && node.Right == nil && isLeft {
-		return sum + node.Val
+		sum += node.Val
 	}
 	if node.Left != nil {
-		sum = dfs(node.Left, true, sum)
+		dfs(node.Left, true)
 	}
 	if node.Right != nil {
-		sum = dfs(node.Right, false, sum)
+		dfs(node.Right, false)
 	}
-	return sum
 }

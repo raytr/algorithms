@@ -23,9 +23,12 @@ func main() {
 
 	complexity: O(n)
 */
+var count = 0
+var visited = make(map[int]bool)
+var roomMap = make(map[int][]int)
 
 func canVisitAllRooms(rooms [][]int) bool {
-	roomMap := make(map[int][]int)
+
 	for i := 0; i < len(rooms); i++ {
 		roomMap[i] = make([]int, 0, len(rooms))
 		for j := 0; j < len(rooms[i]); j++ {
@@ -33,13 +36,11 @@ func canVisitAllRooms(rooms [][]int) bool {
 		}
 	}
 
-	count := 0
-	visited := make(map[int]bool)
 	for i := 0; i < len(rooms); i++ {
 		if !visited[i] {
 			count++
 		}
-		dfs(roomMap, i, visited)
+		dfs(i)
 	}
 	if count > 1 {
 		return false
@@ -47,11 +48,11 @@ func canVisitAllRooms(rooms [][]int) bool {
 	return true
 }
 
-func dfs(roomMap map[int][]int, currentRoom int, visited map[int]bool) {
+func dfs(currentRoom int) {
 	for _, r := range roomMap[currentRoom] {
 		if !visited[r] {
 			visited[r] = true
-			dfs(roomMap, r, visited)
+			dfs(r)
 		}
 	}
 }
