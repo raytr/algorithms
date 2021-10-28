@@ -14,6 +14,8 @@ func main() {
 	//fmt.Println(kClosest([][]int{{10, -2}, {2, -2}, {10, 10}, {9, 4}, {-8, 1}}, 4))
 	fmt.Println(kClosest([][]int{{3, 3}, {5, -1}, {-2, 4}}, 2))
 }
+
+//problem: https://leetcode.com/problems/k-closest-points-to-origin/
 func kClosest(points [][]int, k int) [][]int {
 	// first change points array to distance square array and store in a map
 	pointMap := make(map[int][][]int)

@@ -1,5 +1,7 @@
 package max_sum_array
 
+//problem: https://leetcode.com/problems/maximum-subarray/
+
 func maxSubArray(nums []int) int {
 
 	if len(nums) == 1 {

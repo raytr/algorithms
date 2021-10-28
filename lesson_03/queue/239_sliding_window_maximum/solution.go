@@ -15,6 +15,7 @@ package sliding_window_maximum
 	 -3 check index 3 in qIndex: => yes: remove |  No : continue
 	5 > -3 => remove queue, push 5 => check idex 2 in queue => yes: remove | no : continue
 
+	problem: https://leetcode.com/problems/sliding-window-maximum/
 	complexity: O(n)
 */
 

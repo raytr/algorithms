@@ -4,7 +4,7 @@ import (
 	"strconv"
 )
 
-//problem: leetcode.com/problems/basic-calculator/?fbclid=IwAR1vwWv1xF8E3CyWuOZE12O5V-cnQKdxWn9qSyYfmBz1m6DEhHaZC81r9oA
+//problem: https://leetcode.com/problems/basic-calculator/
 
 /*
 	with this problem, we always want to calculate from of value of pair of inmost "()" to outmost "()"

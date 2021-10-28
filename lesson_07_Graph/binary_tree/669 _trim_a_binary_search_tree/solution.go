@@ -6,7 +6,7 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-/*
+/* Problem: https://leetcode.com/problems/trim-a-binary-search-tree/
   with each node
 
 	if node.Val == nil => return nil

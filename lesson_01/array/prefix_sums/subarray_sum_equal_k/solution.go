@@ -8,6 +8,8 @@ package main
 //=> result = 2
 //There are 2 subarray_sum_equal_k sum == 5: [5], [3,2]
 
+//problem: https://leetcode.com/problems/subarray-sum-equals-k/
+
 //Complexity: O(n)
 func subarraySum(nums []int, s int) int {
 	count := 0

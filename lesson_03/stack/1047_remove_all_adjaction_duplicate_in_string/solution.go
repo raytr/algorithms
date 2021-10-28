@@ -1,4 +1,4 @@
-//package remove_all_adjaction_duplicate_in_string
+//package 1047_remove_all_adjaction_duplicate_in_string
 package main
 
 //problem: https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
