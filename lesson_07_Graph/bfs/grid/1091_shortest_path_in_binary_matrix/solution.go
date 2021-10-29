@@ -1,7 +1,4 @@
-//package shortest_path_in_binary_matrix
-package main
-
-import "fmt"
+package shortest_path_in_binary_matrix
 
 /*
 problem: https://leetcode.com/problems/shortest-path-in-binary-matrix/
@@ -34,11 +31,6 @@ while !queue.IsEmpty{
 var dr = []int{0, 1, 0, -1, -1, 1, 1, -1}
 var dc = []int{1, 0, -1, 0, -1, 1, -1, 1}
 
-func main() {
-	fmt.Println(shortestPathBinaryMatrix([][]int{{0, 0, 0}, {1, 1, 0}, {1, 1, 0}}))
-	fmt.Println(shortestPathBinaryMatrix([][]int{{1, 0}, {0, 1}}))
-}
-
 func shortestPathBinaryMatrix(grid [][]int) int {
 	maxR := len(grid) - 1
 	maxC := len(grid[0]) - 1
@@ -50,21 +42,23 @@ func shortestPathBinaryMatrix(grid [][]int) int {
 	}
 
 	q := [][]int{{0, 0}}
-	count := 0
+	dis := 0
 	visited := make([][]bool, len(grid))
 	for i := 0; i < len(grid); i++ {
 		visited[i] = make([]bool, len(grid[i]))
 	}
 
 	for len(q) > 0 {
-		count++
 		for _, node := range q {
 			for k := 0; k < 8; k++ {
 				i := node[0] + dr[k]
 				j := node[1] + dc[k]
 
 				if i == maxR && j == maxC {
-					return count + 1
+					//+2 because :
+					//+ 1 for edge (this step just route search and distance not increase yet.
+					//+ 1 because this problem return node (= edge + 1)
+					return dis + 2
 				}
 				if i >= 0 && i <= maxR && j >= 0 && j <= maxC && !visited[i][j] && grid[i][j] == 0 {
 					visited[i][j] = true
@@ -72,6 +66,7 @@ func shortestPathBinaryMatrix(grid [][]int) int {
 				}
 			}
 		}
+		dis++
 		q = q[1:]
 	}
 	return -1
