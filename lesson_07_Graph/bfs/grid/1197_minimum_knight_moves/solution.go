@@ -1,7 +1,5 @@
 package minimum_knight_moves
 
-import "fmt"
-
 /*
 problem: https://leetcode.com/problems/minimum-knight-moves/
 create the knightMovement:
@@ -34,27 +32,36 @@ var dr = []int{2, 1, -2, 1, -2, -1, 2, -1}
 var dc = []int{1, 2, 1, -2, -1, -2, -1, 2}
 
 func minKnightMoves(x int, y int) int {
+	if x == 0 && y == 0 {
+		return 0
+	}
 	queue := [][]int{{0, 0}}
-	dis := 0
-	visited := make(map[string]bool)
-
+	dis := make([][]int, 601)
+	for i := 0; i < 601; i++ {
+		dis[i] = make([]int, 601)
+	}
+	visited := make([][]bool, 601)
+	for i := 0; i < 601; i++ {
+		visited[i] = make([]bool, 601)
+	}
+	visited[300][300] = true
+	dis[300][300] = 0
 	for len(queue) > 0 {
-		for _, node := range queue {
-			for k := 0; k < 8; k++ {
-				i := node[0] + dr[k]
-				j := node[1] + dc[k]
-				if i == x && j == y {
-					return dis + 1
-				}
-				key := fmt.Sprintf("%v,%v", i, j)
-				if i >= -300 && i <= 300 && j >= -300 && j <= 300 && !visited[key] {
-					visited[key] = true
-					queue = append(queue, []int{i, j})
-				}
-			}
-			queue = queue[1:]
+		u := queue[0][0]
+		v := queue[0][1]
+		queue = queue[1:]
+		if u == x && v == y {
+			return dis[u+300][v+300]
 		}
-		dis++
+		for k := 0; k < 8; k++ {
+			i := u + dr[k]
+			j := v + dc[k]
+			if i >= -300 && i <= 300 && j >= -300 && j <= 300 && !visited[i+300][j+300] {
+				dis[i+300][j+300] = dis[u+300][v+300] + 1
+				visited[i+300][j+300] = true
+				queue = append(queue, []int{i, j})
+			}
+		}
 	}
 	return -1
 }
