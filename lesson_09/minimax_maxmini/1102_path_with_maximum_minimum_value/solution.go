@@ -6,43 +6,61 @@ problem: https://leetcode.com/problems/path-with-maximum-minimum-value/
 if a candidate is not satisfied => all of bigger candidates are also not satisfied
 if a candidate is satisfied => no need to check any smaller candidates
 
-source <= des => max = source
-source >= des => max = des
-
 build dr := [1, 0 , -1, 0]
 build dc := [0, 1 , 0, -1]
 
-maxScore = 0
-score = source[0,0] = 5
-selectedDis := 0
-dfs
-	while lo <= hi {
-		mid = lo + (hi-lo)/2
-		if (canDFS(mid)) {
-			res = mid
-			lo = mid + 1
-		} else {
-			hi = mid - 1
-	}
 
 
-}
-
+Lo = 0; hi = 200; M = 100
+in part 1: Meet 5 => mid can not is score because score is min in path
+			=> return false => hi = mid - 1 (because mid should be smaller)
+..............
+Hi = 4; Lo = 0; M = 2
+	Meet 1 => mid satisfied because mid can be score => res = mid,  lo = mid + 1 (try to find smaller mid)
 
 */
 
 var visited [][]bool
 var dr = []int{1, 0, -1, 0}
-var dc = []int{0, 1, 0, -1}
 
 func maximumMinimumPath(grid [][]int) int {
-	visited = make([][]bool, len(grid))
-	for i := 0; i < len(grid); i++ {
-		visited[i] = make([]bool, len(grid[i]))
-	}
+	lo, hi := 0, 10
+	res := 0
 
+	// t t t f f f
+	for lo <= hi {
+		visited = make([][]bool, len(grid))
+		for i := 0; i < len(grid); i++ {
+			visited[i] = make([]bool, len(grid[i]))
+		}
+		mid := lo + (hi-lo)/2
+		if canDFS(grid, mid, 0, 0) {
+			res = mid
+			lo = mid + 1
+		} else {
+			hi = mid - 1
+		}
+	}
+	return res
 }
 
-func canDFS(mid int) bool {
+var dc = []int{0, 1, 0, -1}
 
+func canDFS(grid [][]int, mid, u, v int) bool {
+	if u == len(grid)-1 && v == len(grid[0])-1 {
+		if grid[u][v] <= mid {
+			return true
+		}
+		return true
+	}
+	for k := 0; k < 4; k++ {
+		i := u + dr[k]
+		j := v + dc[k]
+		if i >= 0 && i < len(grid) && j >= 0 && j < len(grid[i]) && !visited[i][j] && mid <= grid[i][j] {
+			if canDFS(grid, mid, i, j) {
+				return true
+			}
+		}
+	}
+	return false
 }
