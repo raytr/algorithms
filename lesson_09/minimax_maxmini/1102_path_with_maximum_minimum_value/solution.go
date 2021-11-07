@@ -22,21 +22,26 @@ Hi = 4; Lo = 0; M = 2
 
 var visited [][]bool
 var dr = []int{1, 0, -1, 0}
+var dc = []int{0, 1, 0, -1}
 
 func maximumMinimumPath(grid [][]int) int {
-	lo, hi := 0, 10
+	lo, hi := 0, int(10e9)
 	res := 0
 
-	// t t t f f f
 	for lo <= hi {
-		visited = make([][]bool, len(grid))
+		visited = make([][]bool, len(grid)+1)
 		for i := 0; i < len(grid); i++ {
-			visited[i] = make([]bool, len(grid[i]))
+			visited[i] = make([]bool, len(grid[i])+1)
 		}
+		visited[0][0] = true
 		mid := lo + (hi-lo)/2
-		if canDFS(grid, mid, 0, 0) {
-			res = mid
-			lo = mid + 1
+		if mid <= grid[0][0] {
+			if canDFS(grid, mid, 0, 0) {
+				res = mid
+				lo = mid + 1
+			} else {
+				hi = mid - 1
+			}
 		} else {
 			hi = mid - 1
 		}
@@ -44,13 +49,9 @@ func maximumMinimumPath(grid [][]int) int {
 	return res
 }
 
-var dc = []int{0, 1, 0, -1}
-
 func canDFS(grid [][]int, mid, u, v int) bool {
+	visited[u][v] = true
 	if u == len(grid)-1 && v == len(grid[0])-1 {
-		if grid[u][v] <= mid {
-			return true
-		}
 		return true
 	}
 	for k := 0; k < 4; k++ {
