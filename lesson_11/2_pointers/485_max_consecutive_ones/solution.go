@@ -13,8 +13,8 @@ func findMaxConsecutiveOnes(nums []int) int {
 	   complexity is O(n)
 	*/
 	n := len(nums)
-	max := 0
-	for i := 0; i < n; i++ {
+	max, i := 0, 0
+	for i < n {
 		if nums[i] == 1 {
 			j := i
 			for j+1 < n && nums[j+1] == 1 {
@@ -22,10 +22,12 @@ func findMaxConsecutiveOnes(nums []int) int {
 			}
 			if i != j {
 				max = Max(max, j-i+1)
+				i = j
 			} else {
 				max = Max(max, 1)
 			}
 		}
+		i++
 	}
 	return max
 }
