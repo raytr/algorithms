@@ -21,25 +21,70 @@ package minimum_window_substring
 */
 
 func minWindow(s string, t string) string {
-	slow, min := 0, len(s)-1
-	minSubArray := s
-	tMap := initTMap(t)
+	/*
+		   we have 2 pointers: fast & slow
+		   we have 2 map: tMap & freqMap[string]index
 
-	for fast := 0; fast < len(s); fast++ {
-		if _, exist := tMap[string(s[fast])]; !exist {
-			if slow == fast {
-				slow++
-				continue
+			have 2 freqMap: tFreqMp and freqMp
+			create freqMp via tArray
+
+
+		   while f < len(s)
+				update freqMap
+		      while satisfied
+					if satisfied => update min
+					decreaseMap
+					slow--
+				fast++
+
+
+	*/
+
+	min, fast, slow := len(s)+1, 0, 0
+	minSubArrIdx := []int{0, 0}
+	//build tFreqMap
+	tFreqMap := initTMap(t)
+	freqMap := make(map[string]int)
+
+	for fast < len(s) {
+		// update freq Map
+		updateFreqMap(tFreqMap, freqMap, string(s[fast]), true)
+
+		for isSastified(tFreqMap, freqMap) {
+			if fast-slow+1 < min {
+				min = fast - slow + 1
+				minSubArrIdx = []int{slow, fast + 1}
 			}
+			updateFreqMap(tFreqMap, freqMap, string(s[slow]), false)
+			slow++
+		}
+		fast++
+	}
+	return s[minSubArrIdx[0]:minSubArrIdx[1]]
+}
+
+func isSastified(tMap, freqMap map[string]int) bool {
+	for k, v := range tMap {
+		if freqMap[k] < v {
+			return false
+		}
+	}
+	return true
+}
+
+func updateFreqMap(tMap, freqMap map[string]int, key string, increase bool) map[string]int {
+	if _, exist := tMap[key]; exist {
+		if increase {
+			freqMap[key]++
 		} else {
-			delete(tMap, string(s[fast]))
-			if len(tMap) == 0 {
-				min = Min(min, fast-slow+1)
-				minSubArray = s[slow : fast+1]
+			if freqMap[key] == 1 {
+				delete(freqMap, key)
+			} else {
+				freqMap[key]--
 			}
 		}
 	}
-	return minSubArray
+	return freqMap
 }
 
 func initTMap(t string) map[string]int {
@@ -48,11 +93,4 @@ func initTMap(t string) map[string]int {
 		tMap[string(c)]++
 	}
 	return tMap
-}
-
-func Min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
 }

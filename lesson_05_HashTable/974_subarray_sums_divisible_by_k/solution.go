@@ -1,4 +1,4 @@
-//package subarray_sums_divisible_by_k
+//package 974_subarray_sums_divisible_by_k
 package main
 
 import "fmt"
