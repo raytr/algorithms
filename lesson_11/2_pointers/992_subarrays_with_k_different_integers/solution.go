@@ -3,92 +3,55 @@ package subarrays_with_k_different_integers
 /*
 	problem: https://leetcode.com/problems/subarrays-with-k-different-integers
 
-	2 pointers: f & s at index 1,0
+		    to use 2 pointers, this problem should be convert to :
+				subarray with exact k = subarray <= k - subarray <= k - 1
 
-    f increase
-		while len(freqMap) == k && s > f
-			count++
-			s++
-			decreaseMap
+			=> we have 2 algos are: find 2 subarray has unique number <= k & K-1
+
+	count1 = subarraysWithMaxKDistictNums(num, k)
+	count2 = subarraysWithMaxKDistictNums(num, k-1)
+	return count1 - count2
 
 
+	function subarraysWithMaxKDistictNums
+		count := 0
+		so, we have 2 pointers: f & s at index 0
+				move f pointer from head to the end of array
+				freqM[nums[f]]++
+				while len(freqM) == K
+					n = f - s + 1
+					count += n*(n+1)/2
+		return count
 
-    complexity: O(logn)
+
+complexity: O(logn)
 */
 
-//func subarraysWithKDistinct(nums []int, k int) int {
-//	s, f := 1, 1
-//	freqMap := make(map[int]int)
-//	freqMap[nums[0]]++
-//	count := 0
-//	for f < len(nums) {
-//		freqMap[nums[f]]++
-//		if len(freqMap) == k {
-//			count++
-//		} else if len(freqMap) > k {
-//			// 1 2 1 2 3
-//			//s++
-//			for s < f-1 { //because not sastisfied condition at f
-//				count += f - 1 - s
-//				s++
-//			}
-//			count++ //for f, s==f-1
-//			s++
-//		}
-//		f++
-//	}
-//
-//	return count
-//}
-
 func subarraysWithKDistinct(nums []int, k int) int {
-	/*
-			2 pointers: f & s at index 0
-		    freqMap = map[int]int
+	count1 := subarraysWithMaxKDistictNums(nums, k)
+	count2 := subarraysWithMaxKDistictNums(nums, k-1)
+	return count1 - count2
+}
 
-		    f move as posible, with each step, add subarray to res
-		        while len(freqMap) < k => map[f]++, f++ (find satisfied case)
-				while len(freqMap) == k => count++; map[f]++; f++
-		        f--; delete map[f] (because cur f is not satisfied)
-		        while len(freqMap) == k => count++; descreaseMap; s++
-
-		    f++
-
-		    complexity: O(logn)
-	*/
-
-	/*
-		sastified =>
-	*/
-
-	s, f := 0, 0
-	freqMap := make(map[int]int)
-	//freqMap[nums[0]]++
-	count := 0
+func subarraysWithMaxKDistictNums(nums []int, k int) int {
+	count, s, f := 0, 0, 0
+	freqM := make(map[int]int)
 	for f < len(nums) {
-		for len(freqMap) < k {
-			freqMap[nums[f]]++
-			f++
-		}
-		//descreaseMap(freqMap, nums[f])
-		for len(freqMap) == k {
-			count++
-			freqMap[nums[f]]++
-			f++
-		}
-
-		//because cur f is not satisfied
-		f--
-
-		for len(freqMap) == k {
-			count++
-			//count += f - s + 1
-			descreaseMap(freqMap, nums[s])
-			s++
+		freqM[nums[f]]++
+		if len(freqM) == k {
+			n := f - s + 1
+			a := n * (n + 1) / 2
+			if s != 0 {
+				a /= 2
+			}
+			count += a
+			for len(freqM) == k {
+				descreaseMap(freqM, nums[s])
+				s++
+			}
 		}
 		f++
 	}
-
 	return count
 }
 

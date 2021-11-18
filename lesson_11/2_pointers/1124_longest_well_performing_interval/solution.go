@@ -1,32 +1,25 @@
-//package _124_longest_well_performing_interval
-package main
-
-import "fmt"
-
-func main() {
-	//fmt.Println(longestWPI([]int{9, 9, 6, 0, 6, 6, 9}))
-	//fmt.Println(longestWPI([]int{6,6,6}))
-	fmt.Println(longestWPI([]int{6, 9, 9}))
-	//fmt.Println(longestWPI([]int{6, 6, 6, 9, 9, 6, 6}))
-	//fmt.Println(longestWPI([]int{6,6,9,9,9,9,6,6}))
-}
+package longest_well_performing_interval
 
 /*
 
 	    revert array with 1 with hour > 8 and -1 for ortherwise
 
         iterate all of the hours to calculate prefixsum
-        iterate all of prefixSums with while i
-			if prxSum[i] > 0 => max++
-			else if prxSum[i] == idxMap[prxSum[i]-1]
-					=> m := i - prxSum[i] == idxMap[prxSum[i]-1]; find Max
-					(for case that all of element prxSum subarray are negative number)
-			else => idxMap[prxSum[i]-1] = i
 
+		if last prefix sum > 0 => return all of array
+		else {
+			iterate all of prefixSums with while i
+				if prxSum[i] > 0 => max++
+				else if prxSum[i] == idxMap[prxSum[i]-1]
+						=> m := i - prxSum[i] == idxMap[prxSum[i]-1]; find Max
+						(for case that all of element prxSum subarray are negative number)
+				else => idxMap[prxSum[i]-1] = i
+		}
 
         return max
 
-        complexity: O(n)
+        time complexity: O(n)
+		space complexity: O(1)
 */
 
 func longestWPI(hours []int) int {
@@ -45,16 +38,16 @@ func longestWPI(hours []int) int {
 
 	max := 0
 	idxMap := make(map[int]int)
+
+	if hours[len(hours)-1] > 0 {
+		return len(hours)
+	}
+
 	for i := 0; i < len(hours); i++ {
-
-		// for sub arr has possitivew number
-		if hours[i] > 0 {
-			max++
-		}
-
-		// for sub arr just has negative number
-		if _, exist := idxMap[hours[i]-1]; exist {
-			count := i - (idxMap[hours[i]-1])
+		if hours[i] == 1 {
+			max = Max(max, i+1)
+		} else if _, exist := idxMap[hours[i]]; exist {
+			count := i - (idxMap[hours[i]]) - 1
 			max = Max(max, count)
 		} else {
 			idxMap[hours[i]] = i
