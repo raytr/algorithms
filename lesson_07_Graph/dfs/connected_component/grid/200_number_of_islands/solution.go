@@ -20,7 +20,9 @@ var visited = make([][]bool, 0)
 	if visit[i+j] == false && grid is land (grid[i][j] == 1 => dfs
 	in the end => return count
 
-	complexity: O(n^2)
+	bfs complexity: 1 note visited 1 time ; 1 edge visited at most 2 time
+
+	complexity: O(len of grid)
 */
 
 func numIslands(grid [][]byte) int {

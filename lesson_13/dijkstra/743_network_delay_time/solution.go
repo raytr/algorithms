@@ -5,31 +5,15 @@ import (
 	"math"
 )
 
-//func main() {
-//	//fmt.Println(networkDelayTime([][]int{{2, 1, 1}, {2, 3, 1}, {3, 4, 1}}, 4, 2))
-//	//fmt.Println(networkDelayTime([][]int{{1, 2, 1}}, 2, 2))
-//	//fmt.Println(networkDelayTime([][]int{{1, 2, 1}, {2, 1, 3}}, 2, 2))
-//	//fmt.Println(networkDelayTime([][]int{{1, 2, 1}, {2, 3, 2}, {1, 3, 4}}, 3, 1))
-//	//fmt.Println(networkDelayTime([][]int{{1,2,1},{2,3,7},{1,3,4},{2,1,2}}, 3, 1))
-//	fmt.Println  (networkDelayTime([][]int{{1,2,1},{2,3,7},{1,3,4},{2,1,2}}, 4, 1))
-//}
-
 /*
 	problem: https://leetcode.com/problems/network-delay-time/
 */
 
 func networkDelayTime(times [][]int, n int, k int) int {
 	adjM := buildAdjs(times, n)
-	if adjM == nil {
-		return -1
-	}
+	visitedMap := make(map[int]bool)
+	visitedMap[k] = true
 	max := 0
-
-	//init visited
-	visited := make([][]bool, (n+1)*(n+1))
-	for i := 1; i <= n+1; i++ {
-		visited[i] = make([]bool, n+1) // 4 because we start from 1
-	}
 
 	//init queue
 	priorityQ := initHeap()
@@ -48,24 +32,17 @@ func networkDelayTime(times [][]int, n int, k int) int {
 		for _, pair := range adjM[u] {
 			v := pair[0]
 			w := pair[1]
-			if !visited[u][v] {
-				if d[v] > d[u]+w {
-					d[v] = d[u] + w
-				}
+			visitedMap[v] = true
+			if d[v] > d[u]+w {
+				d[v] = d[u] + w
 				heap.Push(priorityQ, []int{v, d[v]})
-				visited[u][v] = true
 			}
 		}
 	}
-	if len(visited) < n {
-		return -1
-	}
 
 	//check all of nodes was visted
-	for _, t := range times {
-		if !visited[t[0]][t[1]] {
-			return -1
-		}
+	if len(visitedMap) < n {
+		return -1
 	}
 
 	for _, v := range d {
@@ -77,19 +54,13 @@ func networkDelayTime(times [][]int, n int, k int) int {
 
 func buildAdjs(time [][]int, n int) map[int][][]int {
 	adjM := make(map[int][][]int)
-	nodeVisited := make(map[int]bool)
 	for _, t := range time {
-		nodeVisited[t[0]] = true
-		nodeVisited[t[1]] = true
 		if _, exist := adjM[t[0]]; !exist {
 			adjM[t[0]] = make([][]int, 0)
 		}
 		adjM[t[0]] = append(adjM[t[0]], []int{t[1], t[2]})
 	}
 
-	if len(nodeVisited) < n {
-		return nil
-	}
 	return adjM
 }
 
