@@ -2,7 +2,7 @@ package largest_component_size_by_common_factor
 
 /*
 
-	problem: https://leetcode.com/problems/largest-component-size-by-common-factor/
+	problem: https://leetcode952.com/problems/largest-component-size-by-common-factor/
 
 
         union find sulution:
@@ -26,15 +26,13 @@ type DisjointSet struct {
 
 func largestComponentSize(nums []int) int {
 	uniqueMap := make(map[int]bool)
-	factorOf := make(map[int][]int)
+	//factorOf := make(map[int][]int)
 	for _, num := range nums {
 		m := getFactor(num)
 		for k, _ := range m {
 			uniqueMap[k] = true
-			factorOf[num] = append(factorOf[num], k)
 		}
 		uniqueMap[num] = true
-		factorOf[num] = append(factorOf[num], num)
 	}
 
 	//build union findD
@@ -45,10 +43,12 @@ func largestComponentSize(nums []int) int {
 	}
 
 	// merge all factors if a to each other
-	for _, v := range factorOf {
-		for _, n := range v {
-
-		}
+	arr := make([]int, 0, len(uniqueMap))
+	for num, _ := range uniqueMap {
+		arr = append(arr, num)
+	}
+	for i := 0; i < len(arr)-1; i++ {
+		djs.union(arr[i], arr[i+1])
 	}
 
 	// find the root with max frequently
