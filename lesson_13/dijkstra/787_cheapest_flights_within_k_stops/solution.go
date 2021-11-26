@@ -13,31 +13,27 @@ import (
          adjM[1] = [[2,0]]
 
         build the priorityQueue is a min heap
-        newCostMap is a map with key neatest node and value is cost
+        betterWayMap is a map with key neatest node and value is array [cost, stop]
 
         while with stop condition is queue is empty
             node = heap.pop
 			cur = heap[0]
 			cost = heap[1]
 			stop = heap[2]
-            for next range adjMap[u]
-				v = next[0]
-				vCost = next[1]
-                if  stop > 0
-                    queue.push(v, cost + nCost, k-1)
-
+			if  stop > 0
+				for next range adjMap[u]
+					v = next[0]
+					vCost = next[1]
+					if uCost > vCost+w => update betterWayMap with better cost, update better stop => queue.push(v, cost + nCost, k-1)
+					else uStop < vStop => update betterWayMap with better stop => => queue.push(v, cost + nCost, k-1)
 
 	complexity:
 		n is number of node
 		m is number of edge
-
-
-
 */
 
 func findCheapestPrice(n int, flights [][]int, src int, dst int, k int) int {
 	adjMap := make(map[int][][]int)
-	count := 0
 	for _, flight := range flights {
 		if _, exist := adjMap[flight[0]]; !exist {
 			adjMap[flight[0]] = make([][]int, 0, len(flights))
@@ -45,11 +41,11 @@ func findCheapestPrice(n int, flights [][]int, src int, dst int, k int) int {
 		adjMap[flight[0]] = append(adjMap[flight[0]], []int{flight[1], flight[2]})
 	}
 
-	newCostMap := make(map[int]int)
-	for i := 1; i <= n; i++ {
-		newCostMap[i] = math.MaxInt32
+	newBetterWayMap := make(map[int][]int) // get better way via 2 things: cost and stop
+	for i := 0; i < n; i++ {
+		newBetterWayMap[i] = []int{math.MaxInt32, 0}
 	}
-	newCostMap[src] = 0
+	newBetterWayMap[src] = []int{0, k + 1}
 
 	//minHeap based on cost of distance from source
 	minHeap := initHeap()
@@ -57,18 +53,22 @@ func findCheapestPrice(n int, flights [][]int, src int, dst int, k int) int {
 
 	for minHeap.Len() > 0 {
 		node := heap.Pop(minHeap).([]int) //O(nLogn)
-		cur := node[0]
-		curCost := node[1]
-		stop := node[2]
-		count++
-		if cur == dst {
-			return curCost
+		u, uCost, uStop := node[0], node[1], node[2]
+		if u == dst {
+			return uCost
 		}
-		if stop > 0 {
-			for _, next := range adjMap[cur] { //O(mLogn)
-				v := next[0]
-				vCost := next[1]
-				heap.Push(minHeap, []int{v, vCost + curCost, stop - 1})
+		if uStop > 0 {
+			for _, next := range adjMap[u] {
+				v, vCost := next[0], next[1]
+				vStop := uStop - 1
+				position := newBetterWayMap[v]
+				if position[0] > uCost+vCost { //check to get better cost
+					newBetterWayMap[v][0] = uCost + vCost
+					newBetterWayMap[v][1] = vStop
+					heap.Push(minHeap, []int{v, vCost + uCost, uStop - 1})
+				} else if newBetterWayMap[v][1] < vStop { //check to get better stop
+					heap.Push(minHeap, []int{v, vCost + uCost, uStop - 1})
+				}
 			}
 		}
 	}
