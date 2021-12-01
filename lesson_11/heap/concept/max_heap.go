@@ -1,6 +1,14 @@
 package heap_concept
 
+import "container/heap"
+
 type MaxHeap []int
+
+func initMaxHeap(nums []int) *MaxHeap {
+	h := MaxHeap(nums)
+	heap.Init(&h)
+	return &h
+}
 
 func (h MaxHeap) Len() int           { return len(h) }
 func (h MaxHeap) Less(i, j int) bool { return h[i] > h[j] }
@@ -13,13 +21,9 @@ func (h *MaxHeap) Push(x interface{}) {
 }
 
 func (h *MaxHeap) Pop() interface{} {
-	root := (*h)[0]
-
-	n := len(*h)
-	lastElement := (*h)[n-1]
-	(*h)[0] = lastElement
-	*h = (*h)[:n-1]
-	//heapify(heap, 0)
-
-	return root
+	old := *h
+	n := len(old)
+	x := old[n-1]
+	*h = old[0 : n-1]
+	return x
 }

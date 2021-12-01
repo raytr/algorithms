@@ -2,6 +2,7 @@ package heap_concept
 
 import (
 	"container/heap"
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -11,12 +12,12 @@ func TestMinHeap(t *testing.T) {
 	assert.Equal(t, 2, heap.Pop(h).(int))
 	heap.Push(h, 3)
 	assert.Equal(t, 3, heap.Pop(h).(int))
-}
 
-func initMinHeap(nums []int) *MinHeap {
-	h := MinHeap(nums)
-	heap.Init(&h)
-	return &h
+	arr := make([]int, 0, 6)
+	for h.Len() > 0 {
+		arr = append(arr, heap.Pop(h).(int))
+	}
+	fmt.Println(arr)
 }
 
 func TestMaxHeap(t *testing.T) {
@@ -24,10 +25,4 @@ func TestMaxHeap(t *testing.T) {
 	assert.Equal(t, 17, heap.Pop(h).(int))
 	heap.Push(h, 3)
 	assert.Equal(t, 11, heap.Pop(h).(int))
-}
-
-func initMaxHeap(nums []int) *MaxHeap {
-	h := MaxHeap(nums)
-	heap.Init(&h)
-	return &h
 }

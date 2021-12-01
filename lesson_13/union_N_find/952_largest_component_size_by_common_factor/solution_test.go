@@ -6,6 +6,6 @@ import (
 )
 
 func TestSolution(t *testing.T) {
-	//assert.Equal(t, 4, largestComponentSize([]int{4,6,15,35}))
+	assert.Equal(t, 4, largestComponentSize([]int{4, 6, 15, 35}))
 	assert.Equal(t, 2, largestComponentSize([]int{20, 50, 9, 63}))
 }

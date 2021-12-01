@@ -1,6 +1,14 @@
 package heap_concept
 
+import "container/heap"
+
 type MinHeap []int
+
+func initMinHeap(nums []int) *MinHeap {
+	h := MinHeap(nums)
+	heap.Init(&h)
+	return &h
+}
 
 func (h MinHeap) Len() int           { return len(h) }
 func (h MinHeap) Less(i, j int) bool { return h[i] < h[j] }

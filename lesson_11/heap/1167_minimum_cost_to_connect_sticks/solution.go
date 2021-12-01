@@ -1,38 +1,32 @@
 package minimum_cost_to_connect_sticks
 
-import "container/heap"
+import (
+	"container/heap"
+)
 
 /*
 	problem: https://leetcode.com/problems/minimum-cost-to-connect-sticks/
-
-	push sticks to heap
-
-
 */
-type IntHeap []int
 
 func connectSticks(sticks []int) int {
-	if len(sticks) == 1 {
-		return 0
-	}
-
-	//init heap
-	h := IntHeap(sticks)
-	heap.Init(&h)
-
-	totalRes := make([]int, 0, len(sticks)-1)
-	sum := h.Pop().(int)
-	for i := 1; i < len(sticks); i++ {
-		val := h.Pop().(int)
-		sum += val
-		totalRes = append(totalRes, sum)
-	}
-
-	sum = 0
-	for _, r := range totalRes {
-		sum += r
+	h := InitHeaps(sticks)
+	sum := 0
+	for h.Len() > 1 {
+		a := heap.Pop(h).(int)
+		b := heap.Pop(h).(int)
+		sum += a + b
+		heap.Push(h, a+b)
 	}
 	return sum
+}
+
+//----------------- Min Heaps -----------------------
+type IntHeap []int
+
+func InitHeaps(sticks []int) *IntHeap {
+	h := IntHeap(sticks)
+	heap.Init(&h)
+	return &h
 }
 
 func (h IntHeap) Len() int           { return len(h) }

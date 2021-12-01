@@ -21,66 +21,37 @@ package largest_component_size_by_common_factor
 
 type DisjointSet struct {
 	size         int
-	rank, parent map[int]int
+	rank, parent []int
 }
 
 func largestComponentSize(nums []int) int {
-	uniqueMap := make(map[int]bool)
-	//factorOf := make(map[int][]int)
-	for _, num := range nums {
-		m := getFactor(num)
-		for k, _ := range m {
-			uniqueMap[k] = true
-		}
-		uniqueMap[num] = true
-	}
-
-	//build union findD
-	djs := initDisjointSet(uniqueMap)
-	uniqueNumArr := make([]int, 0, len(uniqueMap))
-	for k, _ := range uniqueMap {
-		uniqueNumArr = append(uniqueNumArr, k)
-	}
-
-	// merge all factors if a to each other
-	arr := make([]int, 0, len(uniqueMap))
-	for num, _ := range uniqueMap {
-		arr = append(arr, num)
-	}
-	for i := 0; i < len(arr)-1; i++ {
-		djs.union(arr[i], arr[i+1])
-	}
-
-	// find the root with max frequently
-	rootCounts := make(map[int]int)
+	//find max
+	max := 0
 	for _, n := range nums {
-		rootCounts[djs.find(n)]++
+		max = Max(max, n)
 	}
+	//build union findD
+	djs := initDisjointSet(max)
 
-	maxCount := make([]int, 2, 2) // idx 0th is root, idx 1th is freq
-	for k, v := range rootCounts {
-		if v > maxCount[1] {
-			maxCount = []int{k, v}
+	//we iterate through each number. For each number , we iterate from 2 to sqrt(num) to find all factor
+	for _, num := range nums {
+		for factor := 2; factor*factor <= num; factor++ {
+			if num%factor == 0 {
+				// for each factor of num, we union it
+				djs.union(num, factor)
+				djs.union(num, num/factor)
+			}
 		}
 	}
 
-	return maxCount[1]
-}
-
-func getFactor(num int) map[int]bool {
-	primeMap := make(map[int]bool)
-	for i := 2; i*i <= num; i++ {
-		for num%i == 0 {
-			primeMap[i] = true
-			num /= i
-		}
+	maxCount := 0
+	rootCount := make(map[int]int)
+	for _, num := range nums {
+		root := djs.find(num)
+		rootCount[root]++
+		maxCount = Max(maxCount, rootCount[root])
 	}
-
-	if num != 1 {
-		primeMap[num] = true
-	}
-
-	return primeMap
+	return maxCount
 }
 
 func (this *DisjointSet) union(x, y int) {
@@ -108,19 +79,23 @@ func (this *DisjointSet) find(x int) int {
 	}
 }
 
-func initDisjointSet(uniqueMap map[int]bool) DisjointSet {
-	n := len(uniqueMap)
+func initDisjointSet(n int) DisjointSet {
 	djs := DisjointSet{
 		size:   n,
-		parent: make(map[int]int),
-		rank:   make(map[int]int),
+		parent: make([]int, n+1, n+1),
+		rank:   make([]int, n+1, n+1),
 	}
 
-	for k, _ := range uniqueMap {
-		djs.parent[k] = k
-		djs.rank[k] = 0
+	for i := 1; i <= n; i++ {
+		djs.parent[i] = i
 	}
 
 	return djs
+}
 
+func Max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
