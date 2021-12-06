@@ -1,1 +1,5 @@
-package _584_min_cost_cto_connect_all_points
+package min_cost_cto_connect_all_points
+
+/*
+	problem: https://leetcode.com/problems/min-cost-to-connect-all-points
+*/

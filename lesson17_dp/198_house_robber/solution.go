@@ -1,1 +1,5 @@
-package _98_house_robber
+package house_robber
+
+/*
+	problem: https://leetcode.com/problems/house-robber/
+*/

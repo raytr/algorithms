@@ -1,1 +1,5 @@
-package _76_implement_magic_dictionary
+package implement_magic_dictionary
+
+/*
+	problem: https://leetcode.com/problems/implement-magic-dictionary
+*/
