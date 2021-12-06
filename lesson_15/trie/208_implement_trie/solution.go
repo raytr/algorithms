@@ -64,10 +64,7 @@ func (this *Trie) Search(word string) bool {
 		}
 		cur = cur.children[c-'a']
 	}
-	if cur.end == true {
-		return true
-	}
-	return false
+	return cur.end
 }
 
 func (this *Trie) StartsWith(prefix string) bool {
