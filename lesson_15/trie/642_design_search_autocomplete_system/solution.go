@@ -9,15 +9,49 @@ import (
 
 /*
 	problem: https://leetcode.com/problems/design-search-autocomplete-system/
+
+	func Input()
+		if c == '#' {
+			cur.Insert(curInputed, 1)
+			curInputed = ""
+			return res
+		} else {
+			curInputed += string(c)
+		}
+
+		//search in trie
+		for char := range curInputed
+
+
 */
 
 func main() {
-	autocompleteSystem := Constructor([]string{"i love you", "island", "iroman", "i love leetcode"}, []int{5, 3, 2, 2})
-	fmt.Println(autocompleteSystem.Input('i'))
-	fmt.Println(autocompleteSystem.Input(' '))
-	fmt.Println(autocompleteSystem.Input('l'))
+	//autocompleteSystem := Constructor([]string{"i love you", "island", "iroman", "i love leetcode"}, []int{5, 3, 2, 2})
+	//fmt.Println(autocompleteSystem.Input('i'))
+	//fmt.Println(autocompleteSystem.Input(' '))
+	//fmt.Println(autocompleteSystem.Input('a'))
+	//fmt.Println(autocompleteSystem.Input('#'))
+
+	autocompleteSystem := Constructor([]string{"abc", "abbc", "a"}, []int{3, 3, 3})
+	fmt.Println(autocompleteSystem.Input('b'))
+	fmt.Println(autocompleteSystem.Input('c'))
 	fmt.Println(autocompleteSystem.Input('#'))
+	fmt.Println(autocompleteSystem.Input('b'))
+	fmt.Println(autocompleteSystem.Input('c'))
+	fmt.Println(autocompleteSystem.Input('#'))
+	fmt.Println(autocompleteSystem.Input('a'))
+	fmt.Println(autocompleteSystem.Input('b'))
+	fmt.Println(autocompleteSystem.Input('c'))
+	fmt.Println(autocompleteSystem.Input('#'))
+	fmt.Println(autocompleteSystem.Input('a'))
+	fmt.Println(autocompleteSystem.Input('b'))
+	fmt.Println(autocompleteSystem.Input('c'))
+	fmt.Println(autocompleteSystem.Input('#'))
+
 }
+
+//["AutocompleteSystem","input","input","input","input","input","input","input","input","input","input","input","input","input","input"]
+//[[["abc","abbc","a"],[3,3,3]],["b"],["c"],["#"],["b"],["c"],["#"],["a"],["b"],["c"],["#"],["a"],["b"],["c"],["#"]]
 
 type AutocompleteSystem struct {
 	children    []*AutocompleteSystem
@@ -29,13 +63,14 @@ type WordFreq struct {
 	freq int
 }
 
-var inputed string
-
+var curInputed string
+var isExist bool // detect if the previous letter doesn't exist => return [] too
 func Constructor(sentences []string, times []int) AutocompleteSystem {
 	/*
 	   build trie, with each node, we add wordFreqMap follow sentences and time
 	*/
-	inputed = ""
+	curInputed = ""
+	isExist = true
 	node := NewNode()
 	for i := 0; i < len(sentences); i++ {
 		node.Insert(sentences[i], times[i])
@@ -44,61 +79,75 @@ func Constructor(sentences []string, times []int) AutocompleteSystem {
 }
 
 func (this *AutocompleteSystem) Input(c byte) []string {
+	res := make([]string, 0, 3)
+
 	//store c
 	cur := this
 	if c == '#' {
-		cur.Insert(inputed, 1)
+		cur.Insert(curInputed, 1)
+		curInputed = ""
+		isExist = true
+		return res
 	} else {
-		inputed += string(c)
+		curInputed += string(c)
+		if !isExist {
+			return []string{}
+		}
 	}
 
-	res := make([]string, 0, 3)
+	//find the node
+	for _, char := range curInputed {
+		idx := getIndex(char)
 
-	for _, char := range inputed {
-		idx := int32(0)
-		if char == ' ' {
-			idx = 27
-		} else {
-			idx = char - 'a'
+		// find in trie
+		if cur.children[idx] == nil {
+			isExist = false
+			return []string{}
 		}
 
-		if cur.children[idx] == nil {
+		if char == rune(c) {
+			//add to res
+			minHeap := initHeap()
+			for k, v := range cur.children[idx].wordFreqMap {
+				heap.Push(minHeap, WordFreq{k, v})
+			}
+
+			for i := 0; i < 3; i++ {
+				if minHeap.Len() == 0 {
+					break
+				}
+				a := heap.Pop(minHeap).(WordFreq).word
+				res = append(res, a)
+			}
 			break
 		}
-
-		minHeap := initHeap()
-		for k, v := range cur.children[idx].wordFreqMap {
-			heap.Push(minHeap, WordFreq{k, v})
-			if minHeap.Len() > 3 {
-				heap.Pop(minHeap)
-			}
-		}
-
-		for minHeap.Len() > 0 {
-			res = append(res, heap.Pop(minHeap).(WordFreq).word)
-		}
+		cur = cur.children[idx]
 	}
+
 	return res
+}
+
+func getIndex(c int32) int {
+	if c == 32 {
+		return 26
+	} else {
+		return int(c - 'a')
+	}
 }
 
 func NewNode() *AutocompleteSystem {
 	return &AutocompleteSystem{
-		children:    make([]*AutocompleteSystem, 28, 28),
+		children:    make([]*AutocompleteSystem, 27, 27),
 		wordFreqMap: make(map[string]int),
 	}
 }
 
 func (this *AutocompleteSystem) Insert(word string, time int) { //time = 0 mean this word exist in trie and just +1
 	cur := this
-	idx := int32(0)
-	if word == " " {
-		idx = 27
-	}
 
 	for _, c := range word {
-		if c != ' ' {
-			idx = c - 'a'
-		}
+		idx := getIndex(c)
+
 		if cur.children[idx] == nil {
 			cur.children[idx] = NewNode()
 		}
@@ -134,7 +183,7 @@ func (h MinHeap) Less(i, j int) bool {
 		}
 		return false
 	}
-	if h[i].freq < h[j].freq {
+	if h[i].freq > h[j].freq {
 		return true
 	}
 	return false
