@@ -6,108 +6,72 @@ import (
 	"math"
 )
 
-type Edge struct {
-	Src    string
-	Des    string
-	Weight float64
-}
-
-type Graph struct {
-	Nodes []string
-	Edges []Edge
-}
-
 func main() {
+	//n is number of nodes
+	n := 7
+	//[src, dest, weight]
+	edges := [][]int{{1, 2, 2}, {1, 3, 5}, {2, 3, 6}, {2, 4, 1}, {2, 5, 3}, {4, 5, 4}, {3, 6, 8}, {5, 7, 9}, {6, 7, 7}}
+	// start from
+	src := 1
 
-	g := Graph{
-		Nodes: []string{"a", "b", "c", "d", "e", "f", "g"},
+	bestWeightTable := Dijkstra(n, edges, src)
+
+	for k, v := range bestWeightTable {
+		fmt.Println(fmt.Sprintf("the shortest path from %v to %v is %v", src, k, v))
 	}
-	g.AddEdge("a", "b", 2)
-	g.AddEdge("a", "c", 5)
-	g.AddEdge("b", "c", 6)
-	g.AddEdge("b", "d", 1)
-	g.AddEdge("b", "e", 3)
-	g.AddEdge("d", "e", 4)
-	g.AddEdge("c", "f", 8)
-	g.AddEdge("e", "g", 9)
-	g.AddEdge("f", "g", 7)
-
-	adjs := g.BuildAdjs()
-
-	fmt.Println(g.dijkstra("a"))
 }
 
-//	priority_queue<ii, vector<ii>, greater<ii>> q;
-//// min heap, each element in heap is a pair (d[v], v)
-//int d[N+1];
-//for(int i = 1; i <= N; i++) d[i] = INT_MAX;
-//d[Source] = 0; // u != source => d[u] = oo => no need add u to Q
-//q.push(ii(0, Source));
-//// adj[u] = { (v1, w1), (v2, w2), … }
-//while (q.empty() == false) {
-//int u = q.top().second; // add u to S
-//q.pop(); // n times => O(n*logn)
-//for(auto pair: adj[u]) { // all v in adj[u]
-//int v = pair.first; // node
-//int w = pair.second; // weight
-//if (d[v] > d[u] + w) {
-//d[v] = d[u] + w;
-//prev[v] = u;
-//q.push(ii(d[v], v)); // O(logn * m)
-//}
-//}
-//}
-
-func (g *Graph) dijkstra(startNode string) string {
-	// init heap
-	propertiesQueue := initHeap(g)
+func Dijkstra(n int, edges [][]int, src int) map[int]int {
+	adjs := BuildAdjs(n, edges)
+	// init min heap and push source with weight is 0 to it
+	minHeap := initHeap()
+	heap.Push(minHeap, []int{1, 0})
 
 	//init d
-	d := make(map[string]float64)
-	for _, n := range g.Nodes {
-		d[n] = math.Inf(1)
+	d := make(map[int]int)
+	for i := 1; i <= n; i++ {
+		d[i] = math.MaxInt32
 	}
-	d[startNode] = 0
+	d[src] = 0
 
-	for propertiesQueue.Len() > 0 {
-		node := heap.Pop(propertiesQueue).(Edge)
-		for _, v := range g.Adjs[node.Src] {
-			if d[v.Des] > d[v.Src]+v.Weight {
-				d[v.Des] = d[v.R]
+	for minHeap.Len() > 0 {
+		node := heap.Pop(minHeap).([]int)
+		u := node[0]
+		for _, next := range adjs[u] {
+			v, vCost := next[0], next[1]
+			if d[v] > d[u]+vCost {
+				d[v] = d[u] + vCost
+				heap.Push(minHeap, []int{v, d[v]})
 			}
 		}
 	}
 
-	return ""
+	return d
 }
 
-func (g *Graph) AddEdge(s, d string, w float64) {
-	edge := Edge{
-		Src:    s,
-		Des:    d,
-		Weight: w,
+func BuildAdjs(n int, edges [][]int) map[int][][]int {
+	adjs := make(map[int][][]int)
+	for i := 1; i <= n; i++ {
+		adjs[i] = make([][]int, 0, n-1)
 	}
-
-	g.Edges = append(g.Edges, edge)
-}
-
-func (g *Graph) BuildAdjs() map[string][]Edge {
-	adjs = make(map[string][]Edge)
-	for _, edge := range g.Edges {
-		g.Adjs[edge.Src] = append(g.Adjs[edge.Src], edge)
+	for _, edge := range edges {
+		adjs[edge[0]] = append(adjs[edge[0]], []int{edge[1], edge[2]})
 	}
 	return adjs
 }
 
 //------------------ min heap----------------
-type MinHeap []Edge
+
+//--- heap ---
+
+type MinHeap [][]int
 
 func (h MinHeap) Len() int           { return len(h) }
-func (h MinHeap) Less(i, j int) bool { return h[i].Weight < h[j].Weight }
+func (h MinHeap) Less(i, j int) bool { return h[i][1] < h[j][1] }
 func (h MinHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
 
-func initHeap(g *Graph) *MinHeap {
-	h := MinHeap(g.Edges)
+func initHeap() *MinHeap {
+	h := MinHeap{}
 	heap.Init(&h)
 	return &h
 }
@@ -115,7 +79,7 @@ func initHeap(g *Graph) *MinHeap {
 func (h *MinHeap) Push(x interface{}) {
 	// Push and Pop use pointer receivers because they modify the slice's length,
 	// not just its contents.
-	*h = append(*h, x.(Edge))
+	*h = append(*h, x.([]int))
 }
 
 func (h *MinHeap) Pop() interface{} {
