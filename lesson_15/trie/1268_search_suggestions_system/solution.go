@@ -37,6 +37,7 @@ func suggestedProducts(products []string, searchWord string) [][]string {
 	}
 
 	res := make([][]string, 0, len(searchWord))
+	//search het
 	for i, w := range searchWord {
 		res = append(res, []string{})
 		if trie.startWith(string(w)) {

@@ -4,7 +4,7 @@ package longest_increasing_subsequence
 	problem: https://leetcode.com/problems/longest-increasing-subsequence/
 
 	   state:
-	       f[i]  ~ the lengeh of lengest increase sequence that ended at i
+	       f[i]  ~ the lengh of lengest increase sequence that ended at i
 	   relation between problem and its subproblems
 	       f[i] = f[j]+1 with A[j] is sequence i > j and A[i]>A[j] and ended at i
 
