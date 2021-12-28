@@ -1,11 +1,11 @@
-package main
+package reverse_linked_list
 
 import (
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
-func ReverseLinkedListTest(t *testing.T) {
+func TestSolution(t *testing.T) {
 
 	testcase1 := &ListNode{
 		Val: 1,
