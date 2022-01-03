@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b581f297-0a83-4d2d-b200-2c3d4e5c0390" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/solution.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testcase_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../run_sum_of_1day_array/run_sum_of_1day_array_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../subarray_sum_equal_k/testcase_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../linked-list/reverse-linked-list/reverse_linked_list_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../search/bynary_search/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../search/bynary_search/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../search/depth_first_search/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../search/depth_first_search/deep_first_search.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../search/depth_first_search/depth_first_search_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../search/depth_first_search/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../sort/bubble-sort/bubble-sort.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../sort/bubble-sort/bubble_sort_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../sort/merge-sort/solution.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../sort/quick-sort/solution.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../sort/selection-sort/selection_sort_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../sort/selection-sort/solution.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../range-sum-query-immutable/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../range-sum-query-immutable/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../run_sum_of_1day_array/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../run_sum_of_1day_array/solution.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../subarray/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../subarray_sum_equal_k/solution.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../linked-list/reverse-linked-list/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../../linked-list/reverse-linked-list/solution.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+  </component>
+  <component name="ProjectId" id="1zLfK3dwkFDqmN9EKRoql4EWzKt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+</project>
