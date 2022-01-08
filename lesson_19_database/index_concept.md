@@ -1,4 +1,4 @@
-﻿**What is Database index ? How is it implemented under the hood?**
+﻿What is Database index ? How is it implemented under the hood?
 
 A database index is a data structure  that improve the speed of data retrieval operations on a database table.
 
@@ -28,33 +28,52 @@ Compare B+Tree and B-Tree ?
 
 Why use B+Tree to index, not BST/AVL/Red-Black Tree?
 
-- D
+- B+Tree are self-balance, BST are not self-balance => BST can lead be a very tall tree
+- B+Trees are much shorter than other balanced binary tree structures like AVL => 
+- If we want to retrieve a range of entries in order by key, B+Trees is much efficient than AVL, BST or Hash Table, because each node contained tons of keys with sorted
 
 What is B+Tree indexes’s disadvantage?
 
-- D
+- More complex than Hash indexes
+- For equality query, Hash Indexes much faster O(n) on average, B+Tree O(logN)
 
 Given B+Tree index  (C1, C2, C3), can B+Tree support query on C2 ?
 
-- D
+No, because B+Trees just support leftmost prefix
 
 Compare B+Tree Index and Hash Index ?
 
-- D
+- Match part of first column => ex: column **Name** => find name is “Ngh” => B+Tree support all name has Name start with “Ngh”
+- ` `Support match range of value (>=, >, <=, <)
 
-**What happens to index when database machine crashes?**
+What happens to index when database machine crashes?
 
-- D
+DBMS uses an Data Structure to write on disk called write-ahead log WAL
+
+- Append-only file which every B+Tree modification must be written before it can be apply
+- Append-only => fast
+
+When database come back after crash, this logs is readed to restone B+Trees
 
 What diff between clustered index and non\_clustered index ?
 
-- D
-
-**Should we index boolean column ?**
-
-- D
+- Clustered index: the index that define the order that data is stored on disk
+  - When creating table, if you don’t have specific primary key, DBMS often create its own hidden row primary key
+  - Just has only one clustered index
 
 
 
 
-10/2018
+- Non-Cluster Index: the index does not sort the physical cata’s order
+  - Non-clustered index only has pointer to the data
+  - Can have multiple non-clustered indexes.
+
+Should we index boolean column ?
+
+No, because selectivity is too small
+
+Selectivity = number of distinct indexed value / number of rows in table
+
+
+
+
