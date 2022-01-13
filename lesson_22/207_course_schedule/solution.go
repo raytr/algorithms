@@ -9,24 +9,58 @@ package course_schedule
         => if our graph has infinity loop => return false
         => otherwise => return true
 
-    use DFS and keep track all edges by 2D array
-    if meet visited that has value is true => return false
+	dfsIsCycle to find the node that adjList[node].len == 0 => delete this node on djs list and in visited
+	if meet a node has vited[node] == true => false
 
-    return true
+	otherwise => return true
+
 */
 
-var viseted [][]bool
+//var viseted []bool
+
+//func canFinish(numCourses int, prerequisites [][]int) bool {
+//
+//	adjList := buildAdjs(numCourses, prerequisites)
+//	viseted = make([]bool, numCourses, numCourses)
+//
+//	for i := 0; i < numCourses; i++ {
+//		if dfsIsCycle(adjList, i) {
+//			return false
+//		}
+//	}
+//	return true
+//}
+//
+//func dfsIsCycle(adjs map[int][]int, curNode int) bool {
+//	viseted[curNode] = true
+//	if len(adjs[curNode]) == 0 {
+//		return false
+//	}
+//	for _, node := range adjs[curNode] {
+//		if viseted[node] {
+//			return true
+//		}
+//		if !dfsIsCycle(adjs, node) {
+//			delete(adjs, node)
+//			viseted[node] = false
+//		}
+//	}
+//	return false
+//}
+
+var viseted []bool
 
 func canFinish(numCourses int, prerequisites [][]int) bool {
 
+	//viseted = make([]bool, numCourses, numCourses)
 	adjList := buildAdjs(numCourses, prerequisites)
 
 	for i := 0; i < numCourses; i++ {
 		//renew visited
-		viseted = make([][]bool, numCourses, numCourses)
-		for i := 0; i < numCourses; i++ {
-			viseted[i] = make([]bool, numCourses, numCourses)
-		}
+		viseted = make([]bool, numCourses, numCourses)
+		//for i := 0; i < numCourses; i++ {
+		//	viseted[i] = make([]bool, numCourses, numCourses)
+		//}
 		if !dfs(adjList, i) {
 			return false
 		}
@@ -35,20 +69,20 @@ func canFinish(numCourses int, prerequisites [][]int) bool {
 }
 
 func dfs(adjs map[int][]int, curNode int) bool {
+	viseted[curNode] = true
 	for _, n := range adjs[curNode] {
-		if !viseted[curNode][n] {
-			viseted[curNode][n] = true
+		if !viseted[n] {
+			viseted[n] = true
 			if !dfs(adjs, n) {
 				return false
 			}
-			viseted[curNode][n] = false //to refresh result, we just check 1 round to find cycle
+			viseted[n] = false //to refresh result, we just check 1 round to find cycle
 		} else {
 			return false
 		}
 	}
 	return true
 }
-
 func buildAdjs(numCourses int, prerequisites [][]int) map[int][]int {
 	adjs := make(map[int][]int)
 	for i := 0; i < numCourses; i++ {
@@ -59,3 +93,14 @@ func buildAdjs(numCourses int, prerequisites [][]int) map[int][]int {
 	}
 	return adjs
 }
+
+//func buildAdjs(numCourses int, prerequisites [][]int) map[int][]int {
+//	adjs := make(map[int][]int)
+//	for i := 0; i < numCourses; i++ {
+//		adjs[i] = make([]int, 0, len(prerequisites))
+//	}
+//	for _, req := range prerequisites {
+//		adjs[req[0]] = append(adjs[req[0]], req[1])
+//	}
+//	return adjs
+//}
