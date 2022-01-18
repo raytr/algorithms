@@ -1,21 +1,24 @@
-//package k_closest_points_to_origin
-package main
+package k_closest_points_to_origin
 
 import (
-	"fmt"
-	"github.com/raytr/algorithms/lesson_03_sorting_queue_stack/quick_select/k_smallest_element_in_an_array"
+	"github.com/raytr/algorithms/lesson_03_sorting_queue_stack_quick_select/quick_select/k_smallest_element_in_an_array"
 )
 
-func main() {
-	//[[6,10],[-3,3],[-2,5],[0,2]]
-	//fmt.Println(kClosest([][]int{{6, 10}, {-3, 3}, {-2, 5}, {0, 2}}, 3))
-	//[[]]
-	//	fmt.Println(kClosest([][]int{{-2,10},{-4, -8},{10, 7},{-4,-7}}, 3))
-	//fmt.Println(kClosest([][]int{{10, -2}, {2, -2}, {10, 10}, {9, 4}, {-8, 1}}, 4))
-	fmt.Println(kClosest([][]int{{3, 3}, {5, -1}, {-2, 4}}, 2))
-}
+//func main() {
+//	//[[6,10],[-3,3],[-2,5],[0,2]]
+//	//fmt.Println(kClosest([][]int{{6, 10}, {-3, 3}, {-2, 5}, {0, 2}}, 3))
+//	//[[]]
+//	//	fmt.Println(kClosest([][]int{{-2,10},{-4, -8},{10, 7},{-4,-7}}, 3))
+//	//fmt.Println(kClosest([][]int{{10, -2}, {2, -2}, {10, 10}, {9, 4}, {-8, 1}}, 4))
+//	fmt.Println(kClosest([][]int{{3, 3}, {5, -1}, {-2, 4}}, 2))
+//}
 
-//problem: https://leetcode.com/problems/k-closest-points-to-origin/
+/*
+
+	problem: https://leetcode.com/problems/k-closest-points-to-origin/
+
+*/
+
 func kClosest(points [][]int, k int) [][]int {
 	// first change points array to distance square array and store in a map
 	pointMap := make(map[int][][]int)

@@ -1,8 +1,7 @@
-package main
+package linked_list_cycle
 
 //problem: https://leetcode.com/problems/linked-list-cycle/
 
-//Definition for singly-linked list.
 type ListNode struct {
 	Val  int
 	Next *ListNode

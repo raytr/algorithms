@@ -15,6 +15,20 @@ func main() {
 }
 
 func sortArrayByParityII(nums []int) []int {
+	evenPointer, oddPointer, n := 0, 1, len(nums)
+	for evenPointer < n && oddPointer < n {
+		if nums[evenPointer]%2 == 0 {
+			evenPointer += 2
+		} else if nums[oddPointer]%2 == 1 {
+			oddPointer += 2
+		} else {
+			nums[evenPointer], nums[oddPointer] = nums[oddPointer], nums[evenPointer]
+		}
+	}
+	return nums
+}
+
+func sortArrayByParityIIBoundary(nums []int) []int {
 	boundary := 0
 	remainder := 0
 	i := 0
