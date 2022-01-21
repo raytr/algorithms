@@ -27,7 +27,7 @@ type Node struct {
 	Children []*Node
 }
 
-func levelOrder(root *Node) [][]int {
+func levelOrder1(root *Node) [][]int {
 	result := [][]int{}
 	if root == nil {
 		return result
@@ -44,6 +44,28 @@ func levelOrder(root *Node) [][]int {
 		result = append(result, level)
 	}
 	return result
+}
+
+func levelOrder(root *Node) [][]int {
+	queue := []*Node{root}
+	res := [][]int{}
+	if root == nil {
+		return res
+	}
+
+	for len(queue) > 0 {
+		level := []int{}
+		for _, curNode := range queue {
+			// pop node
+			queue := queue[1:]
+
+			level = append(level, curNode.Val)
+			// add node to queue
+			queue = append(queue, curNode.Children...)
+		}
+		res = append(res, level)
+	}
+	return res
 }
 
 //q1 := []int{1,2,3,4}
