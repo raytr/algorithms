@@ -3,7 +3,7 @@ package climbing_stairs
 /*
 	problem: https://leetcode.com/problems/climbing-stairs/
 
-	   to climb to the top has n step, step[n] = step[n-1] + 1
+	   to climb to the top has n steps, step[n] = step[n-1] + 1
 
 	   step[1] = 1
 	   step[2] = 2

@@ -1,7 +1,7 @@
 package k_closest_points_to_origin
 
 import (
-	"github.com/raytr/algorithms/lesson_03_sorting_queue_stack_quick_select/quick_select/k_smallest_element_in_an_array"
+	"github.com/raytr/algorithms/sorting_queue_stack_quick_select/quick_select/k_smallest_element_in_an_array"
 )
 
 //func main() {
