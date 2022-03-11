@@ -16,15 +16,15 @@ package best_time_to_buy_and_sell_stock
 */
 
 func maxProfit(prices []int) int {
-	minP, max := prices[0], 0
+	minP, maxProfit := prices[0], 0
 
 	for i := 1; i < len(prices); i++ {
 		sellPrice := prices[i]
 		minP = getMin(minP, sellPrice)
-		max = getMax(max, sellPrice-minP)
+		maxProfit = getMax(maxProfit, sellPrice-minP)
 	}
 
-	return max
+	return maxProfit
 }
 
 func getMax(a, b int) int {
