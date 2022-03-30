@@ -5,8 +5,8 @@ package continuous_subarray_sum
 
 	- convert to prefix sum by formula: prefixSum[i] = (prefixSum[i-1] + nums[i]) % k
 	- create a map : prefixSumMap with key = mod, value = frequently of mod
-	- if freq > 2 or freq == 2 && prefixSum[i-1] != nums[i]
-	because freq == 2 && prefixSum[i-1] == nums[i] happens when just has 1 number mod k == 0
+	- if practice > 2 or practice == 2 && prefixSum[i-1] != nums[i]
+	because practice == 2 && prefixSum[i-1] == nums[i] happens when just has 1 number mod k == 0
 	=> subarray has only 1 element
 
 	complexity: O(n)

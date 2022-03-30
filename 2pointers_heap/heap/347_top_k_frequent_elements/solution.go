@@ -7,12 +7,12 @@ import (
 /*
 	problem: https://leetcode.com/problems/top-k-frequent-elements
 
-	freqMap map[num]freq
+	freqMap map[num]practice
 	iterate nums => freqMap => O(n)
-	iterate to revert freqMap => freqHeap (val, freq) => n*logn
+	iterate to revert freqMap => freqHeap (val, practice) => n*logn
 
 	for freqHeap.len()	> k
-		pop() => k biggest freq  => (n - k)*logn
+		pop() => k biggest practice  => (n - k)*logn
 
 	for k
 		add val to array => k*logn

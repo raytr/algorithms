@@ -47,7 +47,7 @@ func minWindow(s string, t string) string {
 	uniqueTMap = len(freqMap)
 
 	for fast < len(s) {
-		// update freq Map
+		// update practice Map
 		updateFreqMap(freqMap, string(s[fast]), true)
 
 		for isSastified() {
