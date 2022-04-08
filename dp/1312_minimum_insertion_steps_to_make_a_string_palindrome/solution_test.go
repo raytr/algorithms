@@ -14,7 +14,7 @@ func TestSolution(t *testing.T) {
 		{"zzazz", "zzazz", 0},
 		{"mbadm", "mbadm", 2},
 		{"leetcode", "leetcode", 5},
-		{"tldjbqjdogipebqsohdypcxjqkrqltpgviqtqz", "tldjbqjdogipebqsohdypcxjqkrqltpgviqtqz", 5},
+		{"tldjbqjdogipebqsohdypcxjqkrqltpgviqtqz", "tldjbqjdogipebqsohdypcxjqkrqltpgviqtqz", 25},
 	}
 
 	for _, tt := range tests {
