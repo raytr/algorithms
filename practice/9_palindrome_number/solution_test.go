@@ -11,11 +11,11 @@ func TestSolution(t *testing.T) {
 		input int
 		exp   bool
 	}{
-		{"121", 121, true},
-		{"1221", 1221, true},
-		{"0", 0, true},
-		{"-121", -121, false},
-		{"10", 10, false},
+		{"case: 121", 121, true},
+		{"case: 1221", 1221, true},
+		{"case: 0", 0, true},
+		{"case: -121", -121, false},
+		{"case: 10", 10, false},
 	}
 
 	for _, tt := range tests {
