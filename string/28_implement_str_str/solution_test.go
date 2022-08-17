@@ -1,11 +1,12 @@
 package implement_str_str
 
 import (
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
-func TestName(t *testing.T) {
+func TestStrStr(t *testing.T) {
 	tests := []struct {
 		haystack    string
 		needle      string
@@ -13,7 +14,7 @@ func TestName(t *testing.T) {
 	}{
 		{"mississippi", "issip", 4},
 		{"aaaa", "aaaaa", -1},
-		{"", "", 0},
+		{"a", "a", 0},
 	}
 
 	for _, tt := range tests {

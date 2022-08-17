@@ -9,7 +9,7 @@ package implement_str_str
        what is minimum of length of haystack
 
    iterate each character from haystack,
-       if cur charcterr equal the first character from needle => check from this with needle
+       if cur character equal the first character from needle => check from this with needle
            needleI = 0
            allMatch = true
            j = i
@@ -28,8 +28,9 @@ package implement_str_str
 
 
 */
-//
+
 func strStr(haystack string, needle string) int {
+	//len(needle)+1: because we need to check the first position
 	for i := 0; i < len(haystack)-len(needle)+1; i++ {
 		j := 0
 		for ; j < len(needle); j++ {
