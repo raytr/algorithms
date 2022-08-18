@@ -10,19 +10,19 @@ func main() {
 	fmt.Println(sortArrayByParity([]int{}))
 }
 func sortArrayByParity(nums []int) []int {
+	n := len(nums)
+
 	boundary := 0
-	for i := 0; i < len(nums); i++ {
+	for i := 0; i < n; i++ {
 		if nums[i]%2 == 0 {
-			nums[boundary], nums[i] = nums[i], nums[boundary]
-			boundary++
+			nums[i], nums[boundary] = nums[boundary], nums[i]
 		}
 	}
 
-	boundary = len(nums) - 1
-	for i := len(nums) - 1; i >= 0; i-- {
-		if nums[i]%2 != 0 {
-			nums[boundary], nums[i] = nums[i], nums[boundary]
-			boundary--
+	boundary = n - 1
+	for i := n - 1; i >= 0; i-- {
+		if nums[i]%2 == 1 {
+			nums[i], nums[boundary] = nums[boundary], nums[i]
 		}
 	}
 
