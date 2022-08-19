@@ -1,8 +1,9 @@
 package add_two_numbers
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 var l11 = &ListNode{
@@ -96,6 +97,6 @@ var expectation2 = &ListNode{
 }
 
 func TestSolution(t *testing.T) {
-	//assert.Equal(t, expectation1, addTwoNumbers(l11,l12))
-	assert.Equal(t, expectation2, addTwoNumbers(l21, l22))
+	assert.Equal(t, expectation1, addTwoNumbers(l11, l12))
+	//assert.Equal(t, expectation2, addTwoNumbers(l21, l22))
 }

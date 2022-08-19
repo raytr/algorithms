@@ -26,9 +26,5 @@ func removeDuplicates(s string) string {
 		}
 	}
 
-	s = ""
-	for _, c := range stack {
-		s += string(c)
-	}
-	return s
+	return string(stack)
 }
