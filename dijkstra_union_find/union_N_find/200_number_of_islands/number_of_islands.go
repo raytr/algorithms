@@ -21,43 +21,46 @@ problem: https://leetcode.com/problems/number-of-islands/
             count++
             dfs
 */
-var visited [][]bool
-var totalR int
-var totalC int
-var dr = []int{1, 0, -1, 0}
-var dc = []int{0, 1, 0, -1}
+var (
+	visited [][]bool
+	rTotal  int
+	cTotal  int
+	dr      = []int{1, 0, -1, 0}
+	dc      = []int{0, 1, 0, -1}
+)
 
 func numIslands(grid [][]byte) int {
-	totalR = len(grid)
-	totalC = len(grid[0])
+	visited = newVisited(grid)
+	rTotal = len(grid)
+	cTotal = len(grid[0])
 	count := 0
 
-	//create visited
-	visited = make([][]bool, totalR, totalR)
-	for i := 0; i < len(visited); i++ {
-		visited[i] = make([]bool, totalC, totalC)
-	}
-
-	for r := 0; r < totalR; r++ {
-		for c := 0; c < totalC; c++ {
-			if grid[r][c] == byte('1') && !visited[r][c] {
-				visited[r][c] = true
+	for r := 0; r < rTotal; r++ {
+		for c := 0; c < cTotal; c++ {
+			if grid[r][c] == '1' && !visited[r][c] {
 				count++
 				dfs(grid, r, c)
 			}
 		}
 	}
-
 	return count
 }
 
 func dfs(grid [][]byte, r, c int) {
-	for i := 0; i < 4; i++ {
-		u := r + dr[i]
-		v := c + dc[i]
-		if u >= 0 && u < totalR && v >= 0 && v < totalC && !visited[u][v] && grid[u][v] == byte('1') {
+	for k := 0; k < 4; k++ {
+		u := r + dr[k]
+		v := c + dc[k]
+		if u >= 0 && u < rTotal && v >= 0 && v < cTotal && grid[u][v] == '1' && !visited[u][v] {
 			visited[u][v] = true
 			dfs(grid, u, v)
 		}
 	}
+}
+
+func newVisited(grid [][]byte) [][]bool {
+	visited := make([][]bool, 0, len(grid))
+	for i := 0; i < len(grid); i++ {
+		visited = append(visited, make([]bool, len(grid[i]), len(grid[i])))
+	}
+	return visited
 }

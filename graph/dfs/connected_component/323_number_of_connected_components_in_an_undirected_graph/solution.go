@@ -1,4 +1,4 @@
-package number_of_connected_components_in_an_undirected_graph
+package main
 
 /*
 	problem: https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
@@ -23,34 +23,33 @@ package number_of_connected_components_in_an_undirected_graph
 */
 
 func countComponents(n int, edges [][]int) int {
-	adjList := make(map[int][]int)
-
-	for i := 0; i < n; i++ {
-		adjList[i] = make([]int, 0, n)
-	}
-
-	for _, edge := range edges {
-		adjList[edge[0]] = append(adjList[edge[0]], edge[1])
-		adjList[edge[1]] = append(adjList[edge[1]], edge[0])
-	}
-
-	visited := make(map[int]bool)
 	count := 0
+	adjList := newAdjList(edges)
+	visited := make([]bool, n, n)
 
 	for i := 0; i < n; i++ {
-		if visited[i] == false {
+		if !visited[i] {
 			count++
 		}
-		dfs(adjList, i, visited)
+		dfs(i, adjList, visited)
 	}
 	return count
 }
 
-func dfs(adjList map[int][]int, curNode int, visited map[int]bool) {
-	for _, n := range adjList[curNode] {
-		if !visited[n] {
-			visited[n] = true
-			dfs(adjList, n, visited)
+func newAdjList(edges [][]int) map[int][]int {
+	adjList := make(map[int][]int)
+	for _, edge := range edges {
+		adjList[edge[0]] = append(adjList[edge[0]], edge[1])
+		adjList[edge[1]] = append(adjList[edge[1]], edge[0])
+	}
+	return adjList
+}
+
+func dfs(curNode int, adjList map[int][]int, visited []bool) {
+	for _, nextNode := range adjList[curNode] {
+		if !visited[nextNode] {
+			visited[nextNode] = true
+			dfs(nextNode, adjList, visited)
 		}
 	}
 }

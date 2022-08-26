@@ -29,17 +29,16 @@ type Node struct {
 
 func levelOrder(root *Node) [][]int {
 	queue := []*Node{root}
-	res := [][]int{}
+	res := make([][]int, 0)
 
 	if root == nil {
 		return res
 	}
 
 	for len(queue) > 0 {
-		level := []int{}
+		level := make([]int, 0)
 		for _, node := range queue {
-			//pop node
-			queue = queue[1:]
+			queue = queue[1:] //pop node
 			level = append(level, node.Val)
 			queue = append(queue, node.Children...)
 		}

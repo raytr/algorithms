@@ -2,8 +2,9 @@ package n_ary_tree_level_order_traversal
 
 import (
 	"container/heap"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSolution(t *testing.T) {

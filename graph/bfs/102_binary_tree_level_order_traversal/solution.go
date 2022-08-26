@@ -3,23 +3,17 @@ package binary_tree_level_order_traversal
 /*
 	problem: https://leetcode.com/problems/binary-tree-level-order-traversal/
 
-	q[1]
+	what is the range of number of nodes in this binary tree
+	what is the range of nodes value in this tree
 
-	size = 1 =>
-	for 1 time {
-		3 => level = [1]
-		q= [9,20]
-	}
-	push level to result
+	use bfs to solve it
 
-	lenght of queue == 2 =>
-	for 2 time {
-		curNode = q.Front()
-		level.push(curNode.Val)
-		push(left, right,...) to queue
-		q.dequeue()
-	}
-	result.push(level)
+	queue and push root to queue
+	interate all node in queue
+		pop node in queue
+		append this node to level
+		append nodes left and right to queue
+		add level to result
 
 
 	when q.isEmpty => stop while => return result
@@ -36,26 +30,27 @@ type TreeNode struct {
 }
 
 func levelOrder(root *TreeNode) [][]int {
-	result := [][]int{}
-	if root == nil {
-		return result
-	}
 	queue := []*TreeNode{root}
+	res := make([][]int, 0)
+
+	if root == nil {
+		return res
+	}
 
 	for len(queue) > 0 {
-		level := []int{}
+		level := make([]int, 0)
 		for _, node := range queue {
+			queue = queue[1:] //pop node
 			level = append(level, node.Val)
 			if node.Left != nil {
 				queue = append(queue, node.Left)
 			}
+
 			if node.Right != nil {
 				queue = append(queue, node.Right)
 			}
-
-			queue = append([]*TreeNode{}, queue[1:]...)
 		}
-		result = append(result, level)
+		res = append(res, level)
 	}
-	return result
+	return res
 }

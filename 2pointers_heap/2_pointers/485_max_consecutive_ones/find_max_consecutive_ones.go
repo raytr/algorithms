@@ -21,10 +21,10 @@ func findMaxConsecutiveOnes(nums []int) int {
 				j++
 			}
 			if i != j {
-				max = Max(max, j-i+1)
+				max = maxInt(max, j-i+1)
 				i = j
 			} else {
-				max = Max(max, 1)
+				max = maxInt(max, 1)
 			}
 		}
 		i++
@@ -32,7 +32,7 @@ func findMaxConsecutiveOnes(nums []int) int {
 	return max
 }
 
-func Max(a, b int) int {
+func maxInt(a, b int) int {
 	if a > b {
 		return a
 	}
