@@ -31,26 +31,26 @@ func threeSum(nums []int) [][]int {
 	}
 	for i <= n-2 {
 		if i == 0 || nums[i] != nums[i-1] {
-			j := i + 1
-			k := n
-			for j < k {
-				if j <= n-1 && nums[j] == nums[j-1] && j-1 > i {
-					j++
+			l := i + 1
+			r := n
+			for l < r {
+				if l <= n-1 && nums[l] == nums[l-1] && l-1 > i {
+					l++
 					continue
 				}
-				if k+1 <= n && nums[k] == nums[k+1] {
-					k--
+				if r+1 <= n && nums[r] == nums[r+1] {
+					r--
 					continue
 				}
-				sum := nums[i] + nums[j] + nums[k]
+				sum := nums[i] + nums[l] + nums[r]
 				if sum == 0 {
-					res = append(res, []int{nums[i], nums[j], nums[k]})
-					j++
-					k--
+					res = append(res, []int{nums[i], nums[l], nums[r]})
+					l++
+					r--
 				} else if sum > 0 {
-					k--
+					r--
 				} else {
-					j++
+					l++
 				}
 			}
 		}
@@ -62,35 +62,38 @@ func threeSum(nums []int) [][]int {
 func threeSum1(nums []int) [][]int {
 	sort.Ints(nums)
 
+	res := make([][]int, 0, 0)
 	n := len(nums)
-	res := make([][]int, 0)
-	a := 0
-	for a < n-2 {
-		if a == 0 || nums[a] != nums[a-1] {
-			b := a + 1
-			c := n - 1
-			for b < c {
-				if b < n-2 && nums[b] == nums[b-1] && b-1 > a {
-					b++
-					continue
-				}
-				if c+1 < n && nums[c] == nums[c+1] {
-					c--
-					continue
-				}
-				sum := nums[a] + nums[b] + nums[c]
-				if sum == 0 {
-					res = append(res, []int{nums[a], nums[b], nums[c]})
-					b++
-					c--
-				} else if sum < 0 {
-					b++
-				} else {
-					c--
-				}
+	for i := 0; i < n-2; i++ {
+		//avoid duplicate at i index
+		if i > 0 && nums[i] == nums[i-1] {
+			continue
+		}
+
+		l := i + 1
+		r := n - 1
+		for l < r {
+			//avoid duplicate at l & r index
+			if l-1 > i && l < n-1 && nums[l] == nums[l-1] && r > l {
+				l++
+				continue
+			}
+			if r < n-2 && nums[r] == nums[r+1] {
+				r--
+				continue
+			}
+
+			sum := nums[i] + nums[l] + nums[r]
+			if sum == 0 {
+				res = append(res, []int{nums[i], nums[l], nums[r]})
+				l++
+				r--
+			} else if sum < 0 {
+				l++
+			} else {
+				r--
 			}
 		}
-		a++
 	}
 	return res
 }

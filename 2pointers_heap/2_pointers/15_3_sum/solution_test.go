@@ -1,23 +1,29 @@
 package three_sum
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestSolution(t *testing.T) {
-	assert.Equal(t, [][]int{{-1, -1, 2}, {-1, 0, 1}}, threeSum([]int{-1, 0, 1, 2, -1, -4}))
-	assert.Equal(t, [][]int{{0, 0, 0}}, threeSum([]int{0, 0, 0}))
-	assert.Equal(t, [][]int{{-2, 0, 2}, {-2, 1, 1}}, threeSum([]int{-2, 0, 1, 1, 2}))
-	assert.Equal(t, [][]int{}, threeSum([]int{}))
-	assert.Equal(t, [][]int{}, threeSum([]int{0}))
-	assert.Equal(t, [][]int{{-5, 1, 4}, {-4, 0, 4}, {-4, 1, 3}, {-2, -2, 4}, {-2, 1, 1}, {0, 0, 0}}, threeSum([]int{-4, -2, 1, -5, -4, -4, 4, -2, 0, 4, 0, -2, 3, 1, -5, 0}))
+	tests := []struct {
+		name string
+		nums []int
+		want [][]int
+	}{
+		{"[-1, 0, 1, 2, -1, -4]", []int{-1, 0, 1, 2, -1, -4}, [][]int{{-1, -1, 2}, {-1, 0, 1}}},
+		{"[0, 0, 0]", []int{0, 0, 0}, [][]int{{0, 0, 0}}},
+		{"[-2, 0, 1, 1, 2]", []int{-2, 0, 1, 1, 2}, [][]int{{-2, 0, 2}, {-2, 1, 1}}},
+		{"[]", []int{}, [][]int{}},
+		{"[0]", []int{0}, [][]int{}},
+		{"[-4, -2, 1, -5, -4, -4, 4, -2, 0, 4, 0, -2, 3, 1, -5, 0]", []int{-4, -2, 1, -5, -4, -4, 4, -2, 0, 4, 0, -2, 3, 1, -5, 0}, [][]int{{-5, 1, 4}, {-4, 0, 4}, {-4, 1, 3}, {-2, -2, 4}, {-2, 1, 1}, {0, 0, 0}}},
+	}
 
-	assert.Equal(t, [][]int{{-1, -1, 2}, {-1, 0, 1}}, threeSum1([]int{-1, 0, 1, 2, -1, -4}))
-	assert.Equal(t, [][]int{{0, 0, 0}}, threeSum1([]int{0, 0, 0}))
-	assert.Equal(t, [][]int{{-2, 0, 2}, {-2, 1, 1}}, threeSum1([]int{-2, 0, 1, 1, 2}))
-	assert.Equal(t, [][]int{}, threeSum1([]int{}))
-	assert.Equal(t, [][]int{}, threeSum1([]int{0}))
-	assert.Equal(t, [][]int{{-5, 1, 4}, {-4, 0, 4}, {-4, 1, 3}, {-2, -2, 4}, {-2, 1, 1}, {0, 0, 0}}, threeSum1([]int{-4, -2, 1, -5, -4, -4, 4, -2, 0, 4, 0, -2, 3, 1, -5, 0}))
-
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			require.Equal(t, tt.want, threeSum(tt.nums))
+			require.Equal(t, tt.want, threeSum1(tt.nums))
+		})
+	}
 }
