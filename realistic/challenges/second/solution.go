@@ -1,19 +1,10 @@
-package main
+package second
 
 import (
-	"fmt"
 	"strconv"
 )
 
-func main() {
-	fmt.Println(Solution(4268))
-	fmt.Println(Solution(6750))
-	fmt.Println(Solution(-999))
-	fmt.Println(Solution(-394))
-	fmt.Println(Solution(5268))
-}
-
-func Solution(N int) int {
+func TheLargestNumber(N int) int {
 	nStr := strconv.Itoa(N)
 	n := len(nStr)
 	resStr := ""
@@ -37,11 +28,4 @@ func Solution(N int) int {
 
 	res, _ := strconv.Atoi(resStr)
 	return res
-}
-
-func Test() {
-	text := "-394"
-	r := []rune(text)
-	a := append(append(append([]rune{}, r[1:2]...), '5'), r[2:]...)
-	fmt.Println(string(a))
 }

@@ -2,8 +2,6 @@ package main
 
 import "fmt"
 
-//var f []int
-
 func main() {
 	fmt.Println(Solution([]int{0, 1, 1, 0}))
 }

@@ -1,5 +1,7 @@
 package bigger_is_greater
 
+import "fmt"
+
 //time complexity: O(n)
 //space complexity: O(1)
 func biggerIsGreater(w string) string {
@@ -8,6 +10,9 @@ func biggerIsGreater(w string) string {
 	a := uint8(0)
 	aIndex, bIndex := -1, n-1
 	for i := n - 1; i > 0; i-- {
+		b := w[i-1]
+		c := w[i]
+		fmt.Println(b, c)
 		if w[i-1] < w[i] {
 			a = w[i-1]
 			aIndex = i - 1

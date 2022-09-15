@@ -3,7 +3,7 @@ package football_scores
 import "sort"
 
 /*
-use 2 pointer to solv
+use 2 pointer to solve
 sort A and B
 
 aPointer at head of A
