@@ -9,13 +9,13 @@ import (
 problem : https://leetcode.com/problems/lru-cache/
 
 use a hashmap to store key - value
-use a doubly linked list to store other each key in accessed
+use a double linked-list (DLL) to store the order each key is accessed.
 when Put:
-	if HashMap[key] is exist => HashMap[key] = value
+	if HashMap[key] already exists => HashMap[key] = value
 	else
 		- check size of Hashmap
 			if size == capacity
-				=>  pop key at head of DLL and delete it in Hashmap
+				=>  pop the key at the head of DLL and delete it in Hashmap
 
 		- HashMap[key] = value; push back this key to DDL
 
@@ -32,7 +32,7 @@ type LRUCache struct {
 	itemMap  map[int]*list.Element
 }
 
-type keyValue struct {
+type KeyValue struct {
 	key   int
 	value int
 }
@@ -45,6 +45,42 @@ func Constructor(capacity int) LRUCache {
 	}
 }
 
+func (this *LRUCache) Put(key int, value int) {
+
+	//if HashMap[key] already exists => HashMap[key] = value
+	if _, exist := this.itemMap[key]; exist {
+
+		item := this.itemMap[key]
+
+		//update value
+		item.Value = KeyValue{
+			key:   key,
+			value: value,
+		}
+
+		//move the item to back of the DDL
+		this.ddl.MoveToBack(item)
+
+	} else {
+		//	check size of Hashmap:
+		//	if size == capacity
+		//		=>  pop the key at the head of DLL and delete it in Hashmap
+		if len(this.itemMap) == this.capacity {
+			item := this.ddl.Front()
+			this.ddl.Remove(item)
+			delete(this.itemMap, item.Value.(KeyValue).key)
+		}
+
+		//- HashMap[key] = value; push back this key to DDL
+		this.ddl.PushBack(KeyValue{
+			key:   key,
+			value: value,
+		})
+		item := this.ddl.Back()
+		this.itemMap[key] = item
+	}
+}
+
 func (this *LRUCache) Get(key int) int {
 	item, exist := this.itemMap[key]
 	if !exist {
@@ -52,38 +88,8 @@ func (this *LRUCache) Get(key int) int {
 	}
 
 	this.ddl.MoveToBack(item)
-	res := item.Value.(keyValue)
+	res := item.Value.(KeyValue)
 	return res.value
-}
-
-func (this *LRUCache) Put(key int, value int) {
-	if _, exist := this.itemMap[key]; exist {
-		item := this.itemMap[key]
-
-		//update value
-		item.Value = keyValue{
-			key:   key,
-			value: value,
-		}
-
-		//move to back
-		this.ddl.MoveToBack(item)
-	} else {
-		//check capacity
-		if len(this.itemMap) == this.capacity {
-			item := this.ddl.Front()
-			this.ddl.Remove(item)
-			delete(this.itemMap, item.Value.(keyValue).key)
-		}
-
-		//create new item
-		this.ddl.PushBack(keyValue{
-			key:   key,
-			value: value,
-		})
-		item := this.ddl.Back()
-		this.itemMap[key] = item
-	}
 }
 
 /**

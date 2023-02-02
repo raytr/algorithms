@@ -7,6 +7,7 @@ import (
 )
 
 /*
+	https://leetcode.com/problems/reverse-integer/
 
    convert this to string,
    check the first character, if it is "-" => negative == true and remove the first character

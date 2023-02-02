@@ -9,7 +9,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	//go over 2 lists and compute the sum, if sum > 9, remember is true
 	// next node, if remember is true => +1 to sum
 	res := new(ListNode)
-	cur := res
+	clone := res
 	sum := 0
 	for l1 != nil || l2 != nil {
 		if l1 != nil {
@@ -21,15 +21,15 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 			l2 = l2.Next
 		}
 
-		cur.Next = &ListNode{
+		clone.Next = &ListNode{
 			Val: sum % 10,
 		}
-		cur = cur.Next
+		clone = clone.Next
 		sum /= 10
 	}
 
 	if sum > 0 {
-		cur.Next = &ListNode{Val: sum}
+		clone.Next = &ListNode{Val: sum}
 	}
 	return res.Next
 }

@@ -10,7 +10,7 @@ import "container/heap"
 
 func findKthLargest(nums []int, k int) int {
 	//init min heap
-	h := initHeap([]int{})
+	h := initHeap()
 
 	for _, num := range nums { //O(n)
 		heap.Push(h, num) //O(logn)
@@ -23,8 +23,8 @@ func findKthLargest(nums []int, k int) int {
 
 // ------ heap --------
 
-func initHeap(arr []int) *IntHeap {
-	h := IntHeap(arr)
+func initHeap() *IntHeap {
+	h := IntHeap([]int{})
 	heap.Init(&h)
 	return &h
 }

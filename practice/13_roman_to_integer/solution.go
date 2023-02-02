@@ -1,5 +1,7 @@
 package roman_to_integer
 
+import "fmt"
+
 /*
 
 I             1
@@ -34,6 +36,11 @@ func romanToInt(s string) int {
 	sum := 0
 
 	for i := 0; i < len(s); i++ {
+		a := string(s[i])
+		aa := dict[s[i]]
+		b := string(s[i+1])
+		bb := dict[s[i+1]]
+		fmt.Println(a, aa, b, bb)
 		if i != len(s)-1 && dict[s[i]] < dict[s[i+1]] {
 			sum -= dict[(s[i])]
 		} else {

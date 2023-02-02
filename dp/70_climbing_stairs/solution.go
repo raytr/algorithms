@@ -11,8 +11,8 @@ package climbing_stairs
 
 
 	   state:
-	       count[n] ~ number to distinc way to climb to ith step
-	   relation between problem and subproblems:
+	       count[n] ~ number to distinct way to climb to ith step
+	   relation between problem and sub-problems:
 	       count[i] = count[i-1] + count[i-2]
 	   base case:
 	       count[1] = 1

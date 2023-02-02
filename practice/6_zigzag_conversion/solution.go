@@ -4,7 +4,7 @@ package zigzag_conversion
 
 	problem: https://leetcode.com/problems/zigzag-conversion/
 
-	   create 2D array has numRows subarrays
+	   create 2D array has numRows subarray
 	   r, i = 0
 	   while with condition is i < n (n is len of s)
 	       while r < numRows && i < n
@@ -40,7 +40,7 @@ func convert(s string, numRows int) string {
 			r++
 			i++
 		}
-		r -= 2
+		r -= 2 // ex: numRows = 3 => move to center (4 -> 2)
 		for r >= 0 && i < n {
 			rows[r] = append(rows[r], string(s[i]))
 			r--

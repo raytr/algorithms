@@ -1,5 +1,7 @@
 package missing_numbe
 
+import "fmt"
+
 /*
    clarify questions:
    what is the maximum and minimum of length of this array
@@ -34,14 +36,16 @@ func missingNumberBruteForce(nums []int) int {
 }
 
 /*
-	Time complexity : O(n)
-	Space complexity: O(1)
-
+Time complexity : O(n)
+Space complexity: O(1)
 */
 func missingNumberBitManipulation(nums []int) int {
 	n := len(nums)
 	missingNumber := n
 	for i := 0; i < n; i++ {
+		a := nums[i]
+		b := i ^ a
+		fmt.Println(b)
 		missingNumber ^= i ^ nums[i]
 	}
 	return missingNumber
