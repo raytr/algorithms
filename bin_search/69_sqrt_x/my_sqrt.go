@@ -1,6 +1,7 @@
 package sqrt_x
 
 // problem: https://leetcode.com/problems/sqrtx/
+// runtime complexity: O(1)
 
 func mySqrt(x int) int {
 	lo := 0

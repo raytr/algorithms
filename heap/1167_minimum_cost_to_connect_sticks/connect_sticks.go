@@ -20,7 +20,7 @@ func connectSticks(sticks []int) int {
 	return sum
 }
 
-//----------------- Min Heaps -----------------------
+// ----------------- Min Heaps -----------------------
 type IntHeap []int
 
 func InitHeaps(sticks []int) *IntHeap {
@@ -46,3 +46,5 @@ func (h *IntHeap) Pop() interface{} {
 	*h = old[0 : n-1]
 	return x
 }
+
+//2 3 4

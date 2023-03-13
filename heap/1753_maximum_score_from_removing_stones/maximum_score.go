@@ -11,11 +11,12 @@ import (
 	   at this problem, we always get 2 stones in 2 piles has most stones
 
 	   while zeroPiles <= 1
-		   use heap, pop 1 first => 2 rest piles will are 2 piles has most stones
+		   use min heap, pop 1 first => 2 rest piles will are 2 piles has most stones
 		   pop 2 rest piles and with each val we -1 => if val == 0, zeroPiles++
 		   push all val to heap
 
-	complexity: O(logn)
+	time complexity: O(logN)
+	we int min heap => space complexity is: O(n)
 */
 
 func maximumScore(a int, b int, c int) int {
@@ -49,25 +50,25 @@ func maximumScore(a int, b int, c int) int {
 	return score
 }
 
-func initHeap(a, b, c int) *IntHeap {
-	h := IntHeap{a, b, c}
+type IntMinHeap []int
+
+func initHeap(a, b, c int) *IntMinHeap {
+	h := IntMinHeap{a, b, c}
 	heap.Init(&h)
 	return &h
 }
 
-type IntHeap []int
+func (h IntMinHeap) Len() int           { return len(h) }
+func (h IntMinHeap) Less(i, j int) bool { return h[i] < h[j] }
+func (h IntMinHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
 
-func (h IntHeap) Len() int           { return len(h) }
-func (h IntHeap) Less(i, j int) bool { return h[i] < h[j] }
-func (h IntHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
-
-func (h *IntHeap) Push(x interface{}) {
+func (h *IntMinHeap) Push(x interface{}) {
 	// Push and Pop use pointer receivers because they modify the slice's length,
 	// not just its contents.
 	*h = append(*h, x.(int))
 }
 
-func (h *IntHeap) Pop() interface{} {
+func (h *IntMinHeap) Pop() interface{} {
 	old := *h
 	n := len(old)
 	x := old[n-1]

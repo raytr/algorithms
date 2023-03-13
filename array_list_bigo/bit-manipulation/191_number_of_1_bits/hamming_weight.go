@@ -1,8 +1,8 @@
-package num_of_1_bit
+package number_of_1_bits
 
 //https://leetcode.com/problems/number-of-1-bits/
+// Complexity: O(n)
 
-//Complexity: O(n)
 func hammingWeight(num uint32) int {
 	count := 0
 	for num > 0 {

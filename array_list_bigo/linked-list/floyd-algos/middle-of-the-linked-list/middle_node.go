@@ -1,14 +1,14 @@
-package main
+package middle_of_the_linked_list
 
 //problem: https://leetcode.com/problems/middle-of-the-linked-list
 
-//Definition for singly-linked list.
+// Definition for singly-linked list.
 type ListNode struct {
 	Val  int
 	Next *ListNode
 }
 
-//Complexity: O(n)
+// Complexity: O(n)
 func middleNode(head *ListNode) *ListNode {
 	fast := head
 	slow := head
