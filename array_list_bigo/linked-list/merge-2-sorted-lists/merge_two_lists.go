@@ -1,6 +1,6 @@
 package merge_2_sorted_lists
 
-//problem: https://leetcode.com/problems/merge-two-sorted-lists/
+// problem: https://leetcode.com/problems/merge-two-sorted-lists/
 type ListNode struct {
 	Val  int
 	Next *ListNode

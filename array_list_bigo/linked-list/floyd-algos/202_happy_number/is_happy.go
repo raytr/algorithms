@@ -1,17 +1,17 @@
 package happy_number
 
 /*
-	problem: https://leetcode.com/problems/happy-number
+		problem: https://leetcode.com/problems/happy-number
 
-   use floy to solve this projct, if a number isn't happly number
-   slow == fast
+	   use floy to solve this projct, if a number isn't happly number
+	   slow == fast
 
-   while fast == 1 || slow == 1
-       fast = fast.getNext(getNext(fast))
-       slow = slow.getNext(slow)
-       if fast == slow => this number can't change anymore
+	   while fast == 1 || slow == 1
+	       fast = fast.getNext(getNext(fast))
+	       slow = slow.getNext(slow)
+	       if fast == slow => this number can't change anymore
 
-   return val.getNext == 1
+	   return val.getNext == 1
 */
 func isHappy(n int) bool {
 	fast, slow := getNext(getNext(n)), getNext(n)

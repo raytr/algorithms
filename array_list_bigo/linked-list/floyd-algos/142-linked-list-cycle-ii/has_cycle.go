@@ -2,13 +2,13 @@ package main
 
 //problem: https://leetcode.com/problems/linked-list-cycle-ii
 
-//Definition for singly-linked list.
+// Definition for singly-linked list.
 type ListNode struct {
 	Val  int
 	Next *ListNode
 }
 
-//Complexity: O(n)
+// Complexity: O(n)
 func hasCycle(head *ListNode) bool {
 	fast := head
 	slow := head
