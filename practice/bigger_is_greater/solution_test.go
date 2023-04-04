@@ -21,7 +21,7 @@ import (
 //}
 
 func TestSolution(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		name string
 		w    string
 		want string
@@ -39,7 +39,7 @@ func TestSolution(t *testing.T) {
 		{"fedcbabcd", "fedcbabcd", "fedcbabdc"},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			require.Equal(t, tt.want, biggerIsGreater(tt.w))
 		})

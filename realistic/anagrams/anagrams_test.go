@@ -7,7 +7,7 @@ import (
 )
 
 func TestSubAnagrams(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		name  string
 		input []string
 		want  [][]string
@@ -15,7 +15,7 @@ func TestSubAnagrams(t *testing.T) {
 		{"listen, silent, hello", []string{"listen", "silent", "hello"}, [][]string{{"listen", "silent"}, {"hello"}}},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		got := anagrams(tt.input)
 		assert.Equal(t, tt.want, got)
 	}

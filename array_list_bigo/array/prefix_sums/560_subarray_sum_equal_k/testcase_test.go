@@ -7,7 +7,7 @@ import (
 )
 
 func TestSubArraySumEqualK(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		want int
 		arr  []int
 		k    int
@@ -22,7 +22,7 @@ func TestSubArraySumEqualK(t *testing.T) {
 		{2, []int{1, 2, 3}, 3, "wrong at seventh"},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			require.Equal(t, tt.want, subarraySum(tt.arr, tt.k))
 		})

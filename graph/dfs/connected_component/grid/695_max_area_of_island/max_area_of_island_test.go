@@ -27,7 +27,7 @@ var (
 )
 
 func TestNumberOfIsland(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		name string
 		grid [][]int
 		want int
@@ -37,7 +37,7 @@ func TestNumberOfIsland(t *testing.T) {
 		{"grid 3:", grid3, 2},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			require.Equal(t, tt.want, maxAreaOfIsland(tt.grid))
 		})

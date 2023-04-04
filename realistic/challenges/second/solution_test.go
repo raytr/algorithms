@@ -7,7 +7,7 @@ import (
 )
 
 func TestTheLargestNumber(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		name string
 		N    int
 		want int
@@ -19,7 +19,7 @@ func TestTheLargestNumber(t *testing.T) {
 		{"5268", 5268, 55268},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			require.Equal(t, tt.want, TheLargestNumber(tt.N))
 		})

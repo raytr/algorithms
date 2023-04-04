@@ -50,7 +50,7 @@ func newAdjList(isConnected [][]int) map[int][]int {
 	adjList := make(map[int][]int)
 
 	for i := 0; i < n; i++ {
-		adjList[i] = make([]int, 0)
+		adjList[i] = make([]int, 0, len(isConnected[i]))
 		for j := 0; j < len(isConnected[i]); j++ {
 			if i != j && isConnected[i][j] == 1 {
 				adjList[i] = append(adjList[i], j)

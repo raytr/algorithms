@@ -1,8 +1,9 @@
 package find_first_and_last_position_of_element_in_sorted_array
 
 import (
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 //
@@ -14,14 +15,14 @@ import (
 //}
 
 func TestSolution(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		name           string
 		expression     []int
 		expectedResult []int
 	}{
 		{"happy case", searchRange([]int{1, 2, 2}, 2), []int{1, 2}}}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			require.Equal(t, tt.expectedResult, tt.expression, tt.name)
 		})

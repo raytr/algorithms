@@ -1,17 +1,18 @@
 package max_consecutive_ones
 
-// problem: https://leetcode.com/problems/max-consecutive-ones
+/*
+		problem: https://leetcode.com/problems/max-consecutive-ones
 
-func findMaxConsecutiveOnes(nums []int) int {
-	/*
 	   we have 2 pointers, i & j
 	   i run from 0 to end the nums
 	   if nums[i] == 1 => j==i
-	   run j farest as possiple => j-1 < len[nums] && nums[j+1] == 1
+	   run j as far as possible => j-1 < len[nums] && nums[j+1] == 1
 	   max = Max(max, j-i+1)
 
 	   complexity is O(n)
-	*/
+*/
+
+func findMaxConsecutiveOnes(nums []int) int {
 	n := len(nums)
 	max, i := 0, 0
 	for i < n {
@@ -21,10 +22,10 @@ func findMaxConsecutiveOnes(nums []int) int {
 				j++
 			}
 			if i != j {
-				max = maxInt(max, j-i+1)
+				max = getMax(max, j-i+1)
 				i = j
 			} else {
-				max = maxInt(max, 1)
+				max = getMax(max, 1)
 			}
 		}
 		i++
@@ -32,7 +33,7 @@ func findMaxConsecutiveOnes(nums []int) int {
 	return max
 }
 
-func maxInt(a, b int) int {
+func getMax(a, b int) int {
 	if a > b {
 		return a
 	}

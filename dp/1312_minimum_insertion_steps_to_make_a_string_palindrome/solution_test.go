@@ -1,12 +1,13 @@
 package minimum_insertion_steps_to_make_a_string_palindrome
 
 import (
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestSolution(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		name string
 		s    string
 		exp  int
@@ -17,7 +18,7 @@ func TestSolution(t *testing.T) {
 		{"tldjbqjdogipebqsohdypcxjqkrqltpgviqtqz", "tldjbqjdogipebqsohdypcxjqkrqltpgviqtqz", 25},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			require.Equal(t, tt.exp, minInsertions(tt.s))
 		})

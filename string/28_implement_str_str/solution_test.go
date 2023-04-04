@@ -7,7 +7,7 @@ import (
 )
 
 func TestStrStr(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		haystack    string
 		needle      string
 		expectation int
@@ -17,7 +17,7 @@ func TestStrStr(t *testing.T) {
 		{"a", "a", 0},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.haystack, func(t *testing.T) {
 			require.Equal(t, tt.expectation, strStr(tt.haystack, tt.needle))
 		})

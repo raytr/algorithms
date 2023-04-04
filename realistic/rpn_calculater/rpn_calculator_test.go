@@ -8,7 +8,7 @@ import (
 )
 
 func TestValidExpressions(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		name       string
 		expression string
 		wantFloat  float64
@@ -19,7 +19,7 @@ func TestValidExpressions(t *testing.T) {
 		{"68 -26 * ewewnot + -83 ^", "68 -26 * not + -83 ^", 0, errors.New("wrong format")},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := Calculate(tt.expression)
 			if err != nil {

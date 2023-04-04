@@ -7,7 +7,7 @@ import (
 )
 
 func TestGetMaximumEvenSum(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		name string
 		val  []int32
 		want int64
@@ -17,7 +17,7 @@ func TestGetMaximumEvenSum(t *testing.T) {
 		{"[-1, -2, -3, 8, 7]", []int32{-1, -2, -3, 8, 7}, 14},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			require.Equal(t, tt.want, getMaximumEvenSum(tt.val))
 		})

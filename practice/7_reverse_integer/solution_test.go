@@ -7,7 +7,7 @@ import (
 )
 
 func TestSolution(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		name string
 		x    int
 		want int
@@ -17,7 +17,7 @@ func TestSolution(t *testing.T) {
 		{"1534236469", 1534236469, 0},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			require.Equal(t, tt.want, reverse(tt.x))
 		})

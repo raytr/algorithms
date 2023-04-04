@@ -7,7 +7,7 @@ import (
 )
 
 func TestRemoveDuplicates(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		name  string
 		input []int
 		want  int
@@ -16,7 +16,7 @@ func TestRemoveDuplicates(t *testing.T) {
 		{"0,0,1,1,1,2,2,3,3,4", []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}, 5},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			got := removeDuplicates(tt.input)
 			assert.Equal(t, tt.want, got)

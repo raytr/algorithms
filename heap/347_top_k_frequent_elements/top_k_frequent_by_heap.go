@@ -9,8 +9,7 @@ import (
 
 	freqMap map[num]practice
 	iterate nums => freqMap => O(n)
-	iterate to revert freqMap => freqHeap (val, practice) => n*logn
-
+	iterate to revert freqMap => freqHeap (val, practice) => n * logN
 	for freqHeap.len()	> k
 		pop() => k biggest practice  => (n - k)*logn
 
@@ -19,11 +18,14 @@ import (
 
 	complexity: O(nlogn)
 
-
-	iterage nums
 */
 
-func topKFrequent(nums []int, k int) []int {
+type FreqVal struct {
+	freq int
+	val  int
+}
+
+func topKFrequentByHeap(nums []int, k int) []int {
 	//init heap
 	h := initHeap()
 
@@ -57,11 +59,6 @@ func initHeap() *FreqHeap {
 	h := FreqHeap{}
 	heap.Init(&h)
 	return &h
-}
-
-type FreqVal struct {
-	freq int
-	val  int
 }
 
 type FreqHeap []FreqVal

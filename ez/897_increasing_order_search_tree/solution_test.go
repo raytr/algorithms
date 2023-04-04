@@ -1,8 +1,9 @@
 package increasing_order_search_tree
 
 import (
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 var input1 = &TreeNode{
@@ -82,7 +83,7 @@ var output2 = &TreeNode{
 }
 
 func TestSolution(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		name   string
 		input  *TreeNode
 		output *TreeNode
@@ -91,7 +92,7 @@ func TestSolution(t *testing.T) {
 		{"[5,3,6]", input2, output2},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			require.Equal(t, increasingBST(tt.input), tt.output)
 		})

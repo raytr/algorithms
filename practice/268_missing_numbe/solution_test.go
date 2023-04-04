@@ -1,12 +1,13 @@
 package missing_numbe
 
 import (
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestSolutionBruteForce(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		name  string
 		input []int
 		exp   int
@@ -16,7 +17,7 @@ func TestSolutionBruteForce(t *testing.T) {
 		{"9, 6, 4, 2, 3, 5, 7, 0, 1", []int{9, 6, 4, 2, 3, 5, 7, 0, 1}, 8},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			require.Equal(t, tt.exp, missingNumberBruteForce(tt.input))
 		})
@@ -24,7 +25,7 @@ func TestSolutionBruteForce(t *testing.T) {
 }
 
 func TestSolutionBitManipulation(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		name  string
 		input []int
 		exp   int
@@ -34,7 +35,7 @@ func TestSolutionBitManipulation(t *testing.T) {
 		{"9, 6, 4, 2, 3, 5, 7, 0, 1", []int{9, 6, 4, 2, 3, 5, 7, 0, 1}, 8},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			require.Equal(t, tt.exp, missingNumberBitManipulation(tt.input))
 		})

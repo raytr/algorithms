@@ -7,7 +7,7 @@ import (
 )
 
 func TestNumberOfProvinces(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		name        string
 		isConnected [][]int
 		want        int
@@ -16,7 +16,7 @@ func TestNumberOfProvinces(t *testing.T) {
 		{"isConnected = [[1,0,0],[0,1,0],[0,0,1]]", [][]int{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}, 3},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			require.Equal(t, tt.want, findCircleNum(tt.isConnected))
 		})

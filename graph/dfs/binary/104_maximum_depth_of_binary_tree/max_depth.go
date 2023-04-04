@@ -22,10 +22,10 @@ func dfs(node *TreeNode) int {
 	if node == nil {
 		return 0
 	}
-	return max(dfs(node.Left), dfs(node.Right)) + 1
+	return getMax(dfs(node.Left), dfs(node.Right)) + 1
 }
 
-func max(a, b int) int {
+func getMax(a, b int) int {
 	if a > b {
 		return a
 	}

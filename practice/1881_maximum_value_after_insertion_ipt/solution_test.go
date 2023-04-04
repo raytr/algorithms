@@ -1,12 +1,13 @@
 package maximum_value_after_insertion
 
 import (
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestSolution(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		param1      string
 		param2      int
 		expectation string
@@ -20,7 +21,7 @@ func TestSolution(t *testing.T) {
 		{"-3467", 5, "-34567"},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.expectation, func(t *testing.T) {
 			require.Equal(t, tt.expectation, maxValue(tt.param1, tt.param2))
 		})

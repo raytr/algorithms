@@ -1,12 +1,13 @@
 package roman_to_integer
 
 import (
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestSolution(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		name           string
 		expression     string
 		expectedResult int
@@ -16,7 +17,7 @@ func TestSolution(t *testing.T) {
 		{"happy case 3", "MCMXCIV", 1994},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			require.Equal(t, tt.expectedResult, romanToInt(tt.expression), tt.name)
 		})

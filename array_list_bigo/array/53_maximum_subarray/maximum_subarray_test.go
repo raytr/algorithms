@@ -7,7 +7,7 @@ import (
 )
 
 func TestMaximumSubarray(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		name  string
 		input []int
 		want  int
@@ -17,7 +17,7 @@ func TestMaximumSubarray(t *testing.T) {
 		{"[5,4,-1,7,8]", []int{5, 4, -1, 7, 8}, 23},
 	}
 
-	for _, tt := range tests {
+	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			require.Equal(t, tt.want, maxSubArray(tt.input))
 		})
