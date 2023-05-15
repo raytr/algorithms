@@ -1,7 +1,5 @@
 package roman_to_integer
 
-import "fmt"
-
 /*
 
 I             1
@@ -12,21 +10,19 @@ C             100
 D             500
 M             1000
 
-    XIII => 8
-    X => 5 => sum += 5
-    I => 1  => sum += 1
+	XIV -> 14
+	X -> sum = 10
 
-    sum == 8
+	if len == 1 => return dict[s[0]]
 
-    "LVIII"
-    L => 50 => sum+=50
-    V => 5 => sum+=5
-    + 1, + 1. +1 => 58
-    ....
+	if i != len-1 && v[i+1] > v[i] => sum -= v[i]
+	else sum +=
+
+	return sum
+
 
     time complexity is O(1)
     space complexity is O(1)
-
 
 
 */
@@ -36,13 +32,8 @@ func romanToInt(s string) int {
 	sum := 0
 
 	for i := 0; i < len(s); i++ {
-		a := string(s[i])
-		aa := dict[s[i]]
-		b := string(s[i+1])
-		bb := dict[s[i+1]]
-		fmt.Println(a, aa, b, bb)
-		if i != len(s)-1 && dict[s[i]] < dict[s[i+1]] {
-			sum -= dict[(s[i])]
+		if i <= len(s)-2 && dict[s[i]] < dict[s[i+1]] {
+			sum -= dict[s[i]]
 		} else {
 			sum += dict[s[i]]
 		}

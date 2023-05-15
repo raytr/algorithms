@@ -7,10 +7,13 @@ import (
 
 /*
 	problem: https://leetcode.com/problems/network-delay-time/
+
+	to calculate the minimum time it takes for all the n nodes to receive the signal,
+	we need to find the maximum path
 */
 
 func networkDelayTime(times [][]int, n int, k int) int {
-	adjM := buildAdjs(times, n)
+	adjM := buildAdjs(times)
 	visitedMap := make(map[int]bool)
 	visitedMap[k] = true
 	max := 0
@@ -19,12 +22,12 @@ func networkDelayTime(times [][]int, n int, k int) int {
 	priorityQ := initHeap()
 	heap.Push(priorityQ, []int{k, 0})
 
-	//init d
-	d := make(map[int]int)
+	//init table
+	table := make(map[int]int)
 	for i := 1; i <= n; i++ {
-		d[i] = math.MaxInt32
+		table[i] = math.MaxInt32
 	}
-	d[k] = 0
+	table[k] = 0
 
 	for priorityQ.Len() > 0 {
 		u := heap.Pop(priorityQ).([]int)[0]
@@ -33,26 +36,26 @@ func networkDelayTime(times [][]int, n int, k int) int {
 			v := pair[0]
 			w := pair[1]
 			visitedMap[v] = true
-			if d[v] > d[u]+w {
-				d[v] = d[u] + w
-				heap.Push(priorityQ, []int{v, d[v]})
+			if table[v] > table[u]+w {
+				table[v] = table[u] + w
+				heap.Push(priorityQ, []int{v, table[v]})
 			}
 		}
 	}
 
-	//check all of nodes was visted
+	//check the whole of nodes was visited
 	if len(visitedMap) < n {
 		return -1
 	}
 
-	for _, v := range d {
-		max = Max(max, v)
+	for _, v := range table {
+		max = getMax(max, v)
 	}
 
 	return max
 }
 
-func buildAdjs(time [][]int, n int) map[int][][]int {
+func buildAdjs(time [][]int) map[int][][]int {
 	adjM := make(map[int][][]int)
 	for _, t := range time {
 		if _, exist := adjM[t[0]]; !exist {
@@ -64,7 +67,7 @@ func buildAdjs(time [][]int, n int) map[int][][]int {
 	return adjM
 }
 
-func Max(a, b int) int {
+func getMax(a, b int) int {
 	if a > b {
 		return a
 	}

@@ -19,14 +19,11 @@ import (
 */
 
 func maxProbability(n int, edges [][]int, succProb []float64, start int, end int) float64 {
-	//build adj list
-	adjList := buildAdjList(n, edges, succProb)
+	adjList := buildAdjList(n, edges, succProb) //build adj list
 	maxHeap := initMaxHeap()
 	maxTable := make(map[float64]float64)
-	for i := 1; i < n; i++ {
-		maxTable[float64(i)] = 0
-	}
 	maxTable[float64(start)] = 1
+
 	heap.Push(maxHeap, []float64{float64(start), succProb[0]})
 
 	for maxHeap.Len() > 0 {
@@ -49,20 +46,16 @@ func maxProbability(n int, edges [][]int, succProb []float64, start int, end int
 
 func buildAdjList(n int, edges [][]int, succProb []float64) map[int][][]float64 {
 	adjMap := make(map[int][][]float64)
-	for i := 0; i < n; i++ {
-		adjMap[i] = make([][]float64, 0)
-	}
 
-	for i, e := range edges {
-		adjMap[e[0]] = append(adjMap[e[0]], []float64{float64(e[1]), succProb[i]})
-		adjMap[e[1]] = append(adjMap[e[1]], []float64{float64(e[0]), succProb[i]})
+	for i, edge := range edges {
+		adjMap[edge[0]] = append(adjMap[edge[0]], []float64{float64(edge[1]), succProb[i]})
+		adjMap[edge[1]] = append(adjMap[edge[1]], []float64{float64(edge[0]), succProb[i]})
 	}
 
 	return adjMap
 }
 
 // -------- build max heap
-
 type MaxHeap [][]float64
 
 func initMaxHeap() *MaxHeap {

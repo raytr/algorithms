@@ -1,4 +1,4 @@
-package missing_numbe
+package missing_number
 
 import "fmt"
 

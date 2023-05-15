@@ -3,21 +3,22 @@ package n_ary_tree_level_order_traversal
 /*
 	problem: https://leetcode.com/problems/n-ary-tree-level-order-traversal/
 
-q = []node
-result = [][]int
-bfs =>
-loop !q.isEmpty{
-    level is []int
-    for {
-        curNode = q[0]
-        level.push(curNode)
-        dequeue
-        queue.add(node.Children)
-    }
-    result.push(level)
-}
+	q = []node
+	result = [][]int
+	bfs =>
+	loop !q.isEmpty{
+		level is []int
+		for {
+			curNode = q[0]
+			level.push(curNode)
+			dequeue
+			queue.add(node.Children)
+		}
+		result.push(level)
+	}
 
-return result
+	return result
+
 
 
 */
