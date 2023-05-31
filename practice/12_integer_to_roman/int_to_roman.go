@@ -21,9 +21,6 @@ func intToRoman(num int) string {
 		for num >= dict[i].value {
 			reusult += kv.roman //X
 			num -= kv.value     //4
-			//if num < dict[i].value {
-			//	break
-			//}
 		}
 	}
 

@@ -11,8 +11,8 @@ import (
 // what result if 44+1 =>
 
 //
-// s1: remove all space and push
-// s2: separage number: " 42 +1 " => [42,+,1]
+// s1: remove all space
+// s2: convert string to array that include number and sign : " 42 +1 " => [42,+,1]
 // we will separate 2 group is [*, /] and [+, =]
 // loop s 2 time, 1 for [*, /] , 1 for [+, -]
 // if c != * | / | + | - => push => stack
@@ -33,6 +33,7 @@ func calculate(s string) int {
 	arr := make([]string, 0, len(s))
 	temp := ""
 
+	// remove all space and push
 	for _, c := range s {
 		if string(c) == " " {
 			continue
@@ -42,6 +43,7 @@ func calculate(s string) int {
 
 	stack := make([]string, 0, len(arr))
 
+	// convert string to array that include number and sign
 	for i, c := range arr {
 		if string(c) == "+" || string(c) == "-" || string(c) == "*" || string(c) == "/" {
 			if temp != "" {
@@ -49,7 +51,7 @@ func calculate(s string) int {
 				temp = ""
 			}
 			stack = append(stack, c)
-		} else if i == len(arr)-1 {
+		} else if i == len(arr)-1 { // the last character
 			stack = append(stack, temp+c)
 		} else {
 			temp += c

@@ -1,0 +1,26 @@
+package remove_all_adjaction_duplicate_in_string
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
+func TestRemoveDuplicates(t *testing.T) {
+	assert.Equal(t, "azxzy", removeDuplicates("azxxxzy"))
+
+	testCases := []struct {
+		name        string
+		input       string
+		expectation string
+	}{
+		{"s= abbaca", "abbaca", "ca"},
+		{"s= azxxzy", "azxxzy", "ay"},
+	}
+
+	for _, tt := range testCases {
+		t.Run(tt.name, func(t *testing.T) {
+			assert.Equal(t, tt.expectation, removeDuplicates(tt.input))
+		})
+	}
+}
