@@ -9,12 +9,12 @@ queue = []*Node{} => queue.push(root)
 maxSum = sum
 maxLevelVal = 1
 level = 1
-maxSum[1] = root.Val
+maxSum[1] = root.val
 
 while !queue.IsEmpty {
 	sum = 0
 	for node := range of queue {
-		sum += node.Val
+		sum += node.val
 		if left != nul => q.push(left)
 		... right
 		dequeue

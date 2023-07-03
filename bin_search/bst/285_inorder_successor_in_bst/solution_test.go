@@ -1,22 +1,23 @@
 package inorder_successor_in_bst
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSolution(t *testing.T) {
 	//root := &TreeNode{
-	//	Val: 2,
+	//	val: 2,
 	//	Left: &TreeNode{
-	//		Val: 1,
+	//		val: 1,
 	//	},
 	//	Right: &TreeNode{
-	//		Val: 3,
+	//		val: 3,
 	//	},
 	//}
 	//p := &TreeNode{
-	//	Val: 1,
+	//	val: 1,
 	//}
 
 	root2 := &TreeNode{
@@ -38,9 +39,9 @@ func TestSolution(t *testing.T) {
 		},
 	}
 	//p2 := &TreeNode{
-	//	Val: 2,
+	//	val: 2,
 	//	Left: &TreeNode{
-	//		Val: 1,
+	//		val: 1,
 	//	},
 	//}
 	p2 := &TreeNode{
@@ -48,13 +49,13 @@ func TestSolution(t *testing.T) {
 	}
 	//res2 := nil
 	//res2 := &TreeNode{
-	//	Val: 3,
+	//	val: 3,
 	//	Left: &TreeNode{
-	//		Val: 2,
-	//		Left: &TreeNode{Val: 1,},
+	//		val: 2,
+	//		Left: &TreeNode{val: 1,},
 	//	},
 	//	Right: &TreeNode{
-	//		Val: 4,
+	//		val: 4,
 	//	},
 	//}
 	//[5,3,6,2,4,null,null,1]

@@ -40,7 +40,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 //	cur := output
 //
 //	for l1 == nil {
-//		sum := l1.Val + l2.Val + remember
+//		sum := l1.val + l2.val + remember
 //		if sum > 9 {
 //			remember = 1
 //		} else {
@@ -48,11 +48,11 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 //		}
 //
 //		cur = &ListNode{
-//			Val: sum % 10,
+//			val: sum % 10,
 //		}
-//		l1 = l1.Next
-//		l2 = l2.Next
-//		cur = cur.Next
+//		l1 = l1.next
+//		l2 = l2.next
+//		cur = cur.next
 //	}
 //	return output
 //}

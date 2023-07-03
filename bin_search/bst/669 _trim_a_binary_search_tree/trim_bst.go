@@ -10,10 +10,10 @@ type TreeNode struct {
 		Problem: https://leetcode.com/problems/trim-a-binary-search-tree/
 	  	with each node
 
-		if node.Val == nil => return nil
+		if node.val == nil => return nil
 		because binary tree trait is : left child < val < right child, so:
-			if node.Val > high => return left (call again this func) trimBST(node.Left)
-			if node.Val < low => return right (call again this func) trimBST(node.Right)
+			if node.val > high => return left (call again this func) trimBST(node.Left)
+			if node.val < low => return right (call again this func) trimBST(node.Right)
 
 		with left => check left => left = trimBST(node.Left)
 		with right => check right => right = trimBST(node.Right)

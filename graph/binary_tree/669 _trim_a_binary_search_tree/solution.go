@@ -6,18 +6,18 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-/* Problem: https://leetcode.com/problems/trim-a-binary-search-tree/
-  with each node
+/*
+	 Problem: https://leetcode.com/problems/trim-a-binary-search-tree/
+	  with each node
 
-	if node.Val == nil => return nil
-	because binary tree trait is : left child < val < right child, so:
-		if node.Val > high => return left (call again this func) trimBST(node.Left)
-		if node.Val < low => return right (call again this func) trimBST(node.Right)
+		if node.val == nil => return nil
+		because binary tree trait is : left child < val < right child, so:
+			if node.val > high => return left (call again this func) trimBST(node.Left)
+			if node.val < low => return right (call again this func) trimBST(node.Right)
 
-	with left => check left => left = trimBST(node.Left)
-	with right => check right => right = trimBST(node.Right)
-	return current node
-
+		with left => check left => left = trimBST(node.Left)
+		with right => check right => right = trimBST(node.Right)
+		return current node
 */
 func trimBST(root *TreeNode, low int, high int) *TreeNode {
 	if root == nil {

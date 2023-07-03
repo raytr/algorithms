@@ -9,8 +9,8 @@ import "fmt"
    1 - 1 - 1- 1 - 2
    cur = head
    while cur != nil
-       while cur.Val == nextNode.Val
-           nextNode.Val == cur.Val => cur.Next = nextNode.Next
+       while cur.val == nextNode.val
+           nextNode.val == cur.val => cur.next = nextNode.next
        cur = nextNode
 
    return

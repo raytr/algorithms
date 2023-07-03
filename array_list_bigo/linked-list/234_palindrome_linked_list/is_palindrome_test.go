@@ -1,20 +1,21 @@
 package palindrome_linked_list
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 //var input1 = &ListNode{
-//	Val: 1,
-//	Next: &ListNode{
-//		Val: 2,
-//		Next: &ListNode{
-//			Val: 3,
-//			Next: &ListNode{
-//				Val: 2,
-//				Next: &ListNode{
-//					Val: 1,
+//	val: 1,
+//	next: &ListNode{
+//		val: 2,
+//		next: &ListNode{
+//			val: 3,
+//			next: &ListNode{
+//				val: 2,
+//				next: &ListNode{
+//					val: 1,
 //				},
 //			},
 //		},

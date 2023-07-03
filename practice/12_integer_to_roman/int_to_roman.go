@@ -7,6 +7,9 @@ package integer_to_roman
 	40   10  9    5   4    1
 
 		 13           3
+
+	n is the maximum langth of num
+	time complexity: O(1)
 */
 
 type KeyValue struct {
@@ -17,10 +20,10 @@ type KeyValue struct {
 func intToRoman(num int) string {
 	dict := buildDict()
 	reusult := ""
-	for i, kv := range dict {
+	for i, keyValue := range dict {
 		for num >= dict[i].value {
-			reusult += kv.roman //X
-			num -= kv.value     //4
+			reusult += keyValue.roman //X
+			num -= keyValue.value     //4
 		}
 	}
 

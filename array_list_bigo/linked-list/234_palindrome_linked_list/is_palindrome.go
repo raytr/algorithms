@@ -13,7 +13,7 @@ package palindrome_linked_list
 
     step 1: find the center node
         use 2 pointers, fast and slow
-        when fast move 2 note, slow move 1 node. => when fast.Next  == nil => centre node is slow
+        when fast move 2 note, slow move 1 node. => when fast.next  == nil => centre node is slow
 
    step 2: revert ll half behind
    step 3: compare util meet a centre node

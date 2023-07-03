@@ -12,7 +12,7 @@ type TreeNode struct {
 	we have minDepth(root *TreeNode) int
 	parent's height = getMin(left child's height, getMin child's height) + 1
 	=> define dfs:
-		- node.Val == nil return +oo
+		- node.val == nil return +oo
 		- node.Left == nil & node.Right == nil => return 1
 		- getMin(dfs(node.left), dfs(node.right)) + 1
 

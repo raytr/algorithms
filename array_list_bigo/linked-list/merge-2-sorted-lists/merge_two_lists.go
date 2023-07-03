@@ -28,38 +28,38 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 }
 
 //// create a first node for new LL
-//if  l1.Val <=  l2.Val {
+//if  l1.val <=  l2.val {
 //result = &ListNode{
-//Val:  l1.Val,
+//val:  l1.val,
 //}
-//l1 =  l1.Next
+//l1 =  l1.next
 //}else {
 //result = &ListNode{
-//Val:  l1.Val,
+//val:  l1.val,
 //}
-//l2 =  l2.Next
+//l2 =  l2.next
 //}
 //
 //for  l1 == nil ||  l2 == nil {
-//if  l1.Val <=  l2.Val {
-//result.Next =  l1.Val
-//l1 =  l1.Next
+//if  l1.val <=  l2.val {
+//result.next =  l1.val
+//l1 =  l1.next
 //} else {
-//result.Next =  l2.Val
-//l2 =  l2.Next
+//result.next =  l2.val
+//l2 =  l2.next
 //}
-//result = result.Next
+//result = result.next
 //}
 //
 ////create node by the rest of l or r linked list
 //for  l1 != nil {
-//result.Next =  l1.Val
-//l1 =  l1.Next
-//result = result.Next
+//result.next =  l1.val
+//l1 =  l1.next
+//result = result.next
 //}
 //for  l2 != nil {
-//result.Next =  l2.Val
-//l2 =  l2.Next
-//result = result.Next
+//result.next =  l2.val
+//l2 =  l2.next
+//result = result.next
 //}
 //return result

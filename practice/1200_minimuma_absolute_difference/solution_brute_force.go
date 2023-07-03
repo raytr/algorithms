@@ -1,33 +1,38 @@
 package minimuma_absolute_difference
 
-import "math"
+import (
+	"sort"
+)
 
 /*
-   set min is max int
-   we iterate every possible pair in the array
-   if abs(a,b) == min appent it to result
-   else if abs(a,b) < min => clear all element in res and append pair of a,b
-
-   time complexity is O(n^2)
-
 	problem: https://leetcode.com/problems/minimum-absolute-difference/
+
+
+	sort arr first
+	integrate all element in arr to check i with i+1, if arr[i+1] - a[i] < min
+	   - make this result empty
+	   - update min
+   else if arr[i] == arr[i+1] => add to result
+
+	run time complexity O(nLogn)
 */
 
-func minimumAbsDifferenceBruteForce(arr []int) [][]int {
+func minimumAbsDifferenceSortingFirst(arr []int) [][]int {
 	n := len(arr)
-	min := math.Inf(1)
-	res := make([][]int, 0, n)
+	min := 100000
+	result := make([][]int, 0, n)
+
+	sort.Ints(arr)
+
 	for i := 0; i < n-1; i++ {
-		for j := i + 1; j < n; j++ {
-			absValue := math.Abs(float64(arr[i] - arr[j]))
-			if absValue < min {
-				min = absValue
-				res = make([][]int, 0, n)
-				res = append(res, []int{arr[i], arr[j]})
-			} else if absValue == min {
-				res = append(res, []int{arr[i], arr[j]})
-			}
+		diff := (arr[i+1] - arr[i]) * (arr[i+1] - arr[i]) / (arr[i+1] - arr[i])
+		if diff < min {
+			result = make([][]int, 0, n)
+			result = append(result, []int{arr[i], arr[i+1]})
+			min = diff
+		} else if diff == min {
+			result = append(result, []int{arr[i], arr[i+1]})
 		}
 	}
-	return res
+	return result
 }

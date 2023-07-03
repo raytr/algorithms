@@ -19,35 +19,40 @@ package number_of_provinces
 
 */
 
+var (
+	adjList map[int][]int
+	visited []bool
+)
+
 func findCircleNum(isConnected [][]int) int {
-	adjList := newAdjList(isConnected)
+	adjList = newAdjList(isConnected)
 	n := len(isConnected)
 	count := 0
-	visited := make([]bool, n, n)
+	visited = make([]bool, n, n)
 
 	for i := 0; i < n; i++ {
 		if visited[i] == false {
 			visited[i] = true
 			count++
-			dfs(i, adjList, visited)
+			dfs(i)
 		}
 	}
 
 	return count
 }
 
-func dfs(curNode int, adjList map[int][]int, visited []bool) {
+func dfs(curNode int) {
 	for _, nextNode := range adjList[curNode] {
 		if visited[nextNode] == false {
 			visited[nextNode] = true
-			dfs(nextNode, adjList, visited)
+			dfs(nextNode)
 		}
 	}
 }
 
 func newAdjList(isConnected [][]int) map[int][]int {
 	n := len(isConnected)
-	adjList := make(map[int][]int)
+	adjList = make(map[int][]int)
 
 	for i := 0; i < n; i++ {
 		adjList[i] = make([]int, 0, len(isConnected[i]))
