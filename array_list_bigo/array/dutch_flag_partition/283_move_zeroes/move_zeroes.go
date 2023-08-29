@@ -1,14 +1,6 @@
-package main
+package move_zeroes
 
-import "fmt"
-
-func main() {
-	args := []int{0, 1, 0, 3, 12}
-	moveZeroes(args)
-	fmt.Println(args)
-}
-
-func moveZeroes(nums []int) {
+func moveZeroes(nums []int) []int {
 	boundary := 0
 	pivot := 0
 
@@ -18,4 +10,6 @@ func moveZeroes(nums []int) {
 			boundary++
 		}
 	}
+
+	return nums
 }

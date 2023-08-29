@@ -1,15 +1,13 @@
-package main
+package sort_colors
 
 //problem: https://leetcode.com/problems/sort-colors/
-
-import "fmt"
 
 func main() {
 	nums := []int{2, 0, 2, 1, 1, 0}
 	sortColors(nums)
 }
 
-func sortColors(nums []int) {
+func sortColors(nums []int) []int {
 	boundary := 0
 	pivot := 1
 	for i := 0; i < len(nums); i++ {
@@ -27,5 +25,5 @@ func sortColors(nums []int) {
 		}
 	}
 
-	fmt.Println(nums)
+	return nums
 }

@@ -1,4 +1,4 @@
-package range_sum_query_immutable
+package _03_range_sum_query_immutable
 
 //describe: https://leetcode.com/problems/range-sum-query-immutable/
 
@@ -6,7 +6,7 @@ type NumArray struct {
 	nums []int
 }
 
-//Complexity: O(n)
+// Complexity: O(n)
 func Constructor(nums []int) NumArray {
 	numArray := NumArray{nums: []int{}}
 	numArray.nums = append(numArray.nums, nums[0])

@@ -13,9 +13,9 @@ func intersection(nums1 []int, nums2 []int) []int {
 		nums1Map[n] = true //4 ,9 ,5
 	}
 
-	for _, n := range nums2 {
-		if _, ok := nums1Map[n]; ok {
-			resultMap[n] = true // 9, 4,
+	for _, num := range nums2 {
+		if _, ok := nums1Map[num]; ok {
+			resultMap[num] = true // 9, 4,
 		}
 	}
 

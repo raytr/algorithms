@@ -6,8 +6,22 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestSolution(t *testing.T) {
-	assert.Equal(t, 3, totalFruit([]int{1, 2, 1}))
-	assert.Equal(t, 5, totalFruit([]int{3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4}))
-	assert.Equal(t, 1, totalFruit([]int{1}))
+func TestTotalFruit(t *testing.T) {
+	testCases := []struct {
+		name        string
+		fruits      []int
+		expectation int
+	}{
+		{"fruits = [1,2,1]", []int{1, 2, 1}, 3},
+		{"fruits = [0, 1, 2, 1, 2, 0, 1, 2]", []int{0, 1, 2, 1, 2, 0, 1, 2}, 4},
+		{"fruits = [0,1,2,2]", []int{0, 1, 2, 2}, 3},
+		{"fruits = [1,1,2,3,2,3,2,3,2,3]", []int{1, 1, 2, 3, 2, 3, 2, 3, 2, 3}, 8},
+		{"fruits = [1,2,3,2,2]", []int{1, 2, 3, 2, 2}, 4},
+	}
+
+	for _, tt := range testCases {
+		t.Run(tt.name, func(t *testing.T) {
+			assert.Equal(t, tt.expectation, totalFruit(tt.fruits))
+		})
+	}
 }
