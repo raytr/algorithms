@@ -1,4 +1,4 @@
-package main
+package number_of_connected_components_in_an_undirected_graph
 
 /*
 	problem: https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
