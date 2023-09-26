@@ -1,6 +1,7 @@
-package main
+package common
 
 import (
+	"errors"
 	"strconv"
 	"strings"
 )
@@ -16,13 +17,20 @@ func constructTree(arr []*int, i int) *TreeNode {
 	if i < len(arr) && arr[i] != nil {
 		node := &TreeNode{Val: *arr[i]}
 		node.Left = constructTree(arr, 2*i+1)
+		//if node.Left == nil {
+		//	node.Right = constructTree(arr, 2*i+1)
+		//} else {
 		node.Right = constructTree(arr, 2*i+2)
+		//}
 		return node
 	}
 	return nil
 }
 
 func IntegerStringToTreeNode(arrStr string) (*TreeNode, error) {
+	if arrStr == "" || arrStr[0] != '[' || arrStr[len(arrStr)-1] != ']' {
+		return nil, errors.New("wrong format")
+	}
 	arrStr = arrStr[1 : len(arrStr)-1]
 
 	arr := make([]*int, 0)
