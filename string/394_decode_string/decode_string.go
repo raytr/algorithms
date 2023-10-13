@@ -1,6 +1,8 @@
 package decode_string
 
-import "strconv"
+import (
+	"strconv"
+)
 
 /*
 https://leetcode.com/problems/decode-string/
@@ -26,7 +28,6 @@ func decodeString(s string) string {
 	decodedString := ""
 	isValid := false
 	for _, c := range s {
-
 		if c >= 'a' && c <= 'z' {
 			isValid = true
 		}

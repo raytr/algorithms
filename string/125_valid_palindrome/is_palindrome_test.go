@@ -13,7 +13,7 @@ func TestIsPalindrome(t *testing.T) {
 		expectation bool
 	}{
 		{"A man, a plan, a canal: Panama", "A man, a plan, a canal: Panama", true},
-		{"race a car", "race a car", true},
+		{"race a car", "race a car", false},
 		{"0P", "0P", false},
 		{"\",M 9y\\\"yj\\\"j9 M,\"", "\",M 9y\\\"yj\\\"j9 M,\"", false},
 	}
