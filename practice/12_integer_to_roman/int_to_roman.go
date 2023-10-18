@@ -8,10 +8,11 @@ package integer_to_roman
 
 		 13           3
 
-	n is the maximum langth of num
+	n is the maximum length of num
 	time complexity: O(1)
 */
 
+// KeyValue instead of map to guarantee ordering
 type KeyValue struct {
 	value int
 	roman string
@@ -19,15 +20,15 @@ type KeyValue struct {
 
 func intToRoman(num int) string {
 	dict := buildDict()
-	reusult := ""
+	result := ""
 	for i, keyValue := range dict {
 		for num >= dict[i].value {
-			reusult += keyValue.roman //X
-			num -= keyValue.value     //4
+			result += keyValue.roman //X
+			num -= keyValue.value    //4
 		}
 	}
 
-	return reusult
+	return result
 }
 
 func buildDict() []*KeyValue {

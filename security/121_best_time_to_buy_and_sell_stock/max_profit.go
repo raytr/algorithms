@@ -6,7 +6,7 @@ package best_time_to_buy_and_sell_stock
    minP = prices[0]
    sellPrice = prices[1]
 
-   let sellPrice pointer travesal the whole of prices
+   let sellPrice pointer traversal the whole of prices
    minP = getMin(minP, sellPrice)
    max = getMax(max, sellPrice - minP)
 
@@ -16,12 +16,12 @@ package best_time_to_buy_and_sell_stock
 */
 
 func maxProfit(prices []int) int {
-	minP, maxProfit := prices[0], 0
+	minPrice, maxProfit := prices[0], 0
 
 	for i := 1; i < len(prices); i++ {
 		sellPrice := prices[i]
-		minP = getMin(minP, sellPrice)
-		maxProfit = getMax(maxProfit, sellPrice-minP)
+		minPrice = getMin(minPrice, sellPrice)
+		maxProfit = getMax(maxProfit, sellPrice-minPrice)
 	}
 
 	return maxProfit
