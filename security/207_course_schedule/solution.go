@@ -16,12 +16,12 @@ package course_schedule
 
 */
 
-//var viseted []bool
+//var visited []bool
 
 //func canFinish(numCourses int, prerequisites [][]int) bool {
 //
 //	adjList := buildAdjs(numCourses, prerequisites)
-//	viseted = make([]bool, numCourses, numCourses)
+//	visited = make([]bool, numCourses, numCourses)
 //
 //	for i := 0; i < numCourses; i++ {
 //		if dfsIsCycle(adjList, i) {
@@ -32,34 +32,34 @@ package course_schedule
 //}
 //
 //func dfsIsCycle(adjs map[int][]int, curNode int) bool {
-//	viseted[curNode] = true
+//	visited[curNode] = true
 //	if len(adjs[curNode]) == 0 {
 //		return false
 //	}
 //	for _, node := range adjs[curNode] {
-//		if viseted[node] {
+//		if visited[node] {
 //			return true
 //		}
 //		if !dfsIsCycle(adjs, node) {
 //			delete(adjs, node)
-//			viseted[node] = false
+//			visited[node] = false
 //		}
 //	}
 //	return false
 //}
 
-var viseted []bool
+var visited []bool
 
 func canFinish(numCourses int, prerequisites [][]int) bool {
 
-	//viseted = make([]bool, numCourses, numCourses)
+	//visited = make([]bool, numCourses, numCourses)
 	adjList := buildAdjs(numCourses, prerequisites)
 
 	for i := 0; i < numCourses; i++ {
 		//renew visited
-		viseted = make([]bool, numCourses, numCourses)
+		visited = make([]bool, numCourses, numCourses)
 		//for i := 0; i < numCourses; i++ {
-		//	viseted[i] = make([]bool, numCourses, numCourses)
+		//	visited[i] = make([]bool, numCourses, numCourses)
 		//}
 		if !dfs(adjList, i) {
 			return false
@@ -69,14 +69,14 @@ func canFinish(numCourses int, prerequisites [][]int) bool {
 }
 
 func dfs(adjs map[int][]int, curNode int) bool {
-	viseted[curNode] = true
+	visited[curNode] = true
 	for _, n := range adjs[curNode] {
-		if !viseted[n] {
-			viseted[n] = true
+		if !visited[n] {
+			visited[n] = true
 			if !dfs(adjs, n) {
 				return false
 			}
-			viseted[n] = false //to refresh result, we just check 1 round to find cycle
+			visited[n] = false //to refresh result, we just check 1 round to find cycle
 		} else {
 			return false
 		}
