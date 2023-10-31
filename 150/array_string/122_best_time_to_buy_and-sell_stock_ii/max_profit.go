@@ -4,10 +4,6 @@ package best_time_to_buy_and_sell_stock_ii
 	problem: https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
 
 	time complexity: O(N), N is the length of prices
-
-
-	[7, 1, 5, 7, 3, 6, 7]
-  	[1, 2, 3, 4, 5]
 */
 
 func maxProfit(prices []int) int {
