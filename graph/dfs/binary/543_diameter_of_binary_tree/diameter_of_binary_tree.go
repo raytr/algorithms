@@ -33,13 +33,13 @@ func diameterOfBinaryTree(root *TreeNode) int {
 	return max
 }
 
-func longestPathDfs(node *TreeNode) int {
-	if node == nil {
+func longestPathDfs(root *TreeNode) int {
+	if root == nil {
 		return 0
 	}
 
-	left := longestPathDfs(node.Left)
-	right := longestPathDfs(node.Right)
+	left := longestPathDfs(root.Left)
+	right := longestPathDfs(root.Right)
 
 	max = getMax(max, left+right)
 	return getMax(left, right) + 1 //get longest of this branch

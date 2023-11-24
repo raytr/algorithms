@@ -2,8 +2,9 @@ package bubble_sort
 
 import (
 	"fmt"
-	"github.com/bmizerany/assert"
 	"testing"
+
+	"github.com/bmizerany/assert"
 )
 
 var lst = []int{8, 22, 7, 9, 31, 19, 5, 13}

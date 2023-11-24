@@ -1,8 +1,9 @@
 package kth_largest_element_in_an_array
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestQuickSelect(t *testing.T) {

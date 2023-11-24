@@ -15,15 +15,23 @@ M             1000
 
 	if len == 1 => return dict[s[0]]
 
-	if i != len-1 && v[i+1] > v[i] => sum -= v[i]
-	else sum +=
+	integrate all characters in s
+		if i != len-1 && v[i+1] > v[i] => sum -= v[i]
+		else sum +=
 
 	return sum
 
 
+	for example:
+
+		  L    V   I   I   I
+	sum = 50 + 5 + 1 + 1 + 1
+
+			X  I  V
+	sum = 10 - 1 + 5
+
     time complexity is O(1)
     space complexity is O(1)
-
 
 */
 
@@ -32,7 +40,7 @@ func romanToInt(s string) int {
 	sum := 0
 
 	for i := 0; i < len(s); i++ {
-		if i <= len(s)-2 && dict[s[i]] < dict[s[i+1]] {
+		if i <= len(s)-2 && dict[s[i]] < dict[s[i+1]] { // len(s)-2: because we check i and i+1
 			sum -= dict[s[i]]
 		} else {
 			sum += dict[s[i]]

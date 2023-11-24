@@ -2,8 +2,9 @@ package selection_sort
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 var lst1 = []int{1, 9, 3, 2, 6, 5, 8, 7, 4}

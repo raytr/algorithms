@@ -25,7 +25,7 @@ func summaryRanges(nums []int) []string {
 
 	for i := 0; i < n; {
 		firstIndex := i
-		if i == n-1 {
+		if i == n-1 { // final index
 			result = append(result, fmt.Sprintf("%v", nums[i]))
 			return result
 		}

@@ -1,8 +1,9 @@
 package merge_sort
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestMergeSort(t *testing.T) {

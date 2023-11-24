@@ -39,11 +39,13 @@ func levelOrder(root *Node) [][]int {
 	for len(queue) > 0 {
 		level := make([]int, 0)
 		for _, node := range queue {
-			queue = queue[1:] //pop node
+			//pop the last node
+			queue = queue[1:]
 			level = append(level, node.Val)
 			queue = append(queue, node.Children...)
 		}
 		res = append(res, level)
 	}
+
 	return res
 }

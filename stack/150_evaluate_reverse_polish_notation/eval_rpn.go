@@ -5,9 +5,15 @@ import (
 	"strconv"
 )
 
-//create stack
-// if meet +|-|*|/, take number and operate them, and drop those 2
-// [2,1,+] => [2+1==3] => [3]
+/*
+	problem: https://leetcode.com/problems/evaluate-reverse-polish-notation/
+
+	create stack
+	 if meet +|-|*|/, take number and operate them, and drop those 2
+	 [2,1,+] => [2+1==3] => [3]
+
+	time complexity: O(N), N is the length of tokens
+*/
 
 func evalRPN(tokens []string) int {
 	stack := make([]string, 0, len(tokens))

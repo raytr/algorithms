@@ -28,11 +28,12 @@ func countComponents(n int, edges [][]int) int {
 	visited := make([]bool, n, n)
 
 	for i := 0; i < n; i++ {
-		if !visited[i] {
+		if visited[i] == false {
+			dfs(i, adjList, visited)
 			count++
 		}
-		dfs(i, adjList, visited)
 	}
+
 	return count
 }
 
@@ -47,7 +48,7 @@ func newAdjList(edges [][]int) map[int][]int {
 
 func dfs(curNode int, adjList map[int][]int, visited []bool) {
 	for _, nextNode := range adjList[curNode] {
-		if !visited[nextNode] {
+		if visited[nextNode] == false {
 			visited[nextNode] = true
 			dfs(nextNode, adjList, visited)
 		}

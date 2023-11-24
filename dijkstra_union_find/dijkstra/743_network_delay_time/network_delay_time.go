@@ -10,6 +10,17 @@ import (
 
 	to calculate the minimum time it takes for all the n nodes to receive the signal,
 	we need to find the maximum path
+
+
+	n is number of node
+	m is number of edge
+	heap size == n
+
+	we extract N times => O(nlogn)
+	we insert M times => O(mlogn)
+
+	Total: O(nlogn+mlogn)
+
 */
 
 func networkDelayTime(times [][]int, n int, k int) int {
@@ -18,9 +29,9 @@ func networkDelayTime(times [][]int, n int, k int) int {
 	visitedMap[k] = true
 	max := 0
 
-	//init queue
-	priorityQ := initHeap()
-	heap.Push(priorityQ, []int{k, 0})
+	//init queue that is min heap, each element in heap is a pair (d[v], v)
+	priorityQueue := initHeap()
+	heap.Push(priorityQueue, []int{k, 0})
 
 	//init table
 	table := make(map[int]int)
@@ -29,16 +40,16 @@ func networkDelayTime(times [][]int, n int, k int) int {
 	}
 	table[k] = 0
 
-	for priorityQ.Len() > 0 {
-		u := heap.Pop(priorityQ).([]int)[0]
+	for priorityQueue.Len() > 0 {
+		sour := heap.Pop(priorityQueue).([]int)[0]
 
-		for _, pair := range adjM[u] {
-			v := pair[0]
-			w := pair[1]
-			visitedMap[v] = true
-			if table[v] > table[u]+w {
-				table[v] = table[u] + w
-				heap.Push(priorityQ, []int{v, table[v]})
+		for _, pair := range adjM[sour] {
+			dest := pair[0]
+			weight := pair[1]
+			visitedMap[dest] = true
+			if table[dest] > table[sour]+weight {
+				table[dest] = table[sour] + weight
+				heap.Push(priorityQueue, []int{dest, table[dest]})
 			}
 		}
 	}
@@ -55,6 +66,7 @@ func networkDelayTime(times [][]int, n int, k int) int {
 	return max
 }
 
+// build adj is a Map with key is source, first value is destination, second value is weight
 func buildAdjs(time [][]int) map[int][][]int {
 	adjM := make(map[int][][]int)
 	for _, t := range time {

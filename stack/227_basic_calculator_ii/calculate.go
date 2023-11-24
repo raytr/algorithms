@@ -5,40 +5,47 @@ import (
 	"strconv"
 )
 
-// can s empty
-// how about length of string
-// what is your expectation about complexity
-// what result if 44+1 =>
+/*
 
-//
-// s1: remove all space
-// s2: convert string to array that include number and sign : " 42 +1 " => [42,+,1]
-// we will separate 2 group is [*, /] and [+, =]
-// loop s 2 time, 1 for [*, /] , 1 for [+, -]
-// if c != * | / | + | - => push => stack
-// if c == * | / => result = c[i-1] *|/ c[i+1]
-// similarity for + | -
-// after all we have result
-// complexity : O(2 length of s)
+	problem: https://leetcode.com/problems/basic-calculator/description/
 
-//calculate("3+2*2")
-//calculate(" 3/2 ")
-//calculate(" 3+5 / 2 ")
-//calculate("42")
-//calculate("0")
-//calculate("1+1+1")
+	 can s empty
+	 how about length of string
+	 what is your expectation about complexity
+	 what result if 44+1 =>
+
+
+	 step 1: remove all space
+	 step 2: convert string to array that include numbers and operators : " 42 +1 " => ["42", "+", "1"]
+	 step 3: separate 2 group is [*, /] and [+, =]
+	 		loop s 2 time, 1 for [*, /] , 1 for [+, -]
+			 if c != * | / | + | - => push => stack
+			 if c == * | / => result = c[i-1] *|/ c[i+1]
+			 similarity for + | -
+			 after all we have result
+	 complexity : O(2 length of s)
+
+	calculate("3+2*2")
+	calculate(" 3/2 ")
+	calculate(" 3+5 / 2 ")
+	calculate("42")
+	calculate("0")
+	calculate("1+1+1")
+
+
+*/
 
 func calculate(s string) int {
 
 	arr := make([]string, 0, len(s))
-	temp := ""
+	temporary := ""
 
 	// remove all space and push
 	for _, c := range s {
 		if string(c) == " " {
 			continue
 		}
-		arr = append(arr, temp+string(c))
+		arr = append(arr, temporary+string(c))
 	}
 
 	stack := make([]string, 0, len(arr))
@@ -46,15 +53,15 @@ func calculate(s string) int {
 	// convert string to array that include number and sign
 	for i, c := range arr {
 		if string(c) == "+" || string(c) == "-" || string(c) == "*" || string(c) == "/" {
-			if temp != "" {
-				stack = append(stack, temp)
-				temp = ""
+			if temporary != "" {
+				stack = append(stack, temporary)
+				temporary = ""
 			}
 			stack = append(stack, c)
 		} else if i == len(arr)-1 { // the last character
-			stack = append(stack, temp+c)
+			stack = append(stack, temporary+c)
 		} else {
-			temp += c
+			temporary += c
 		}
 	}
 

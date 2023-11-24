@@ -2,7 +2,7 @@ package k_smallest_element_in_an_array
 
 //problem: give and array, find k smallest elements
 
-//complexity O(len(nums))
+// complexity O(len(nums))
 func FindKNumsSmallest(nums []int, k int) []int {
 	result := make([]int, 0, k)
 	kthNum := findTheKthSmallest(nums, k)
