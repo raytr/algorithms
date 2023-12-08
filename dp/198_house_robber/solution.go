@@ -1,5 +1,7 @@
 package house_robber
 
+import "fmt"
+
 /*
 	problem: https://leetcode.com/problems/house-robber/
 
@@ -9,13 +11,14 @@ Define state:
 
 Find relation
 	considering house i:
-		if rob house i: f[i] = f[i-2] + money[i]
-		if not rob house i: f[i] = f[i-1]
-	so f[i] = max(f[i-1], f[i-2] + money[i])
+		if rob house i: -> robHouse = f[i] = f[i-2] + money[i]
+		if not rob house i: -> noRobHouse f[i] = f[i-1]
+	so f[i] = max(robHouse, noRobHouse)
 Base case:
 	f[0] = money[0]
 	f[1] = max(money[0], money[1])
 
+Time complexity: O(N)
 */
 
 var f map[int]int
@@ -30,6 +33,8 @@ func rob(nums []int) int {
 
 	f[0] = 0
 	f[1] = nums[0]
+	a := f
+	fmt.Println(a)
 	return call(nums, len(nums))
 }
 
@@ -37,17 +42,17 @@ func call(nums []int, i int) int {
 	if f[i-2] == -1 {
 		f[i-2] = call(nums, i-2)
 	}
-	rob := f[i-2] + nums[i-1]
+	robHouse := f[i-2] + nums[i-1]
 
 	if f[i-1] == -1 {
 		f[i-1] = call(nums, i-1)
 	}
-	noRob := f[i-1]
+	noRobHouse := f[i-1]
 
-	return Max(rob, noRob)
+	return getMax(robHouse, noRobHouse)
 }
 
-func Max(a, b int) int {
+func getMax(a, b int) int {
 	if a > b {
 		return a
 	}

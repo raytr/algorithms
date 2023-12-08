@@ -21,13 +21,13 @@ package maximum_subarray
 func maxSubArray(nums []int) int {
 	curSum, max := nums[0], nums[0]
 	for i := 1; i < len(nums); i++ {
-		curSum = maxInt(nums[i], curSum+nums[i])
-		max = maxInt(max, curSum)
+		curSum = getMax(nums[i], curSum+nums[i])
+		max = getMax(max, curSum)
 	}
 	return max
 }
 
-func maxInt(a, b int) int {
+func getMax(a, b int) int {
 	if a > b {
 		return a
 	}

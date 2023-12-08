@@ -8,8 +8,8 @@ import (
 
 problem : https://leetcode.com/problems/lru-cache/
 
-use a hashmap to store key - value
-use a double linked-list (DLL) to store the order each key is accessed.
+use a hashmap to store key/value
+use a doubly linked-list (DLL) to store the order each key is accessed.
 when Put:
 	if HashMap[key] already exists => HashMap[key] = value
 	else

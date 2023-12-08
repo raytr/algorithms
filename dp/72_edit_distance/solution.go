@@ -18,11 +18,11 @@ import (
                         word2[1...j] = RO
                 D[i][j] = ?: the edit between HOR and RO
                 D[i - 1][j] = 1: the edit between HO and RO
-                D[i][j-1] = 2: the edit wetween HOR and R
+                D[i][j-1] = 2: the edit between HOR and R
                 D[i-1][j-1] = 2: the edit between HO and R
 
 
-        relatition between subproblems and problem:
+        relation between sub-problems and problem:
             D[i][j]=1+min(D[i−1][j], D[i][j−1], D[i−1][j−1]); since R != 0
 
 

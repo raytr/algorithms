@@ -1,11 +1,24 @@
 package house_robber
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestSolution(t *testing.T) {
-	assert.Equal(t, 4, rob([]int{1, 2, 3, 1}))
-	assert.Equal(t, 12, rob([]int{2, 7, 9, 3, 1}))
+	testcases := []struct {
+		description string
+		nums        []int
+		expectation int
+	}{
+		{"nums = [1,2,3,1]", []int{1, 2, 3, 1}, 4},
+		{"nums = [2,7,9,3,1]", []int{2, 7, 9, 3, 1}, 12},
+	}
+
+	for _, tc := range testcases {
+		t.Run(tc.description, func(t *testing.T) {
+			require.Equal(t, tc.expectation, rob(tc.nums))
+		})
+	}
 }
