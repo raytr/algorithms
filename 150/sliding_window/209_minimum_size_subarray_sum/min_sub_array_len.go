@@ -1,34 +1,34 @@
 package minimum_size_subarray_sum
 
-import (
-	"math"
-)
+import "math"
 
 /*
 	problem: https://leetcode.com/problems/minimum-size-subarray-sum
 	time complexity: because we go thought all number twise => O(N)
- */
+*/
 
 func minSubArrayLen(target int, nums []int) int {
 	n := len(nums)
-	ans := math.MaxInt32
 	left := 0
 	sum := 0
-	for i := 0; i < n; i++ {
-		sum += nums[i]
+	minRange := math.MaxInt32
+
+	for right := 0; right < n; right++ {
+		sum += nums[right]
 		for sum >= target {
-			ans = min(ans, i+1-left)
+			minRange = getMin(minRange, right-left+1)
 			sum -= nums[left]
 			left++
 		}
 	}
-	if ans != math.MaxInt32  {
-		return ans
+
+	if minRange != math.MaxInt32 {
+		return minRange
 	}
 	return 0
 }
 
-func min(a, b int) int {
+func getMin(a, b int) int {
 	if a < b {
 		return a
 	}
