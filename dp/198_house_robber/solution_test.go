@@ -10,7 +10,7 @@ func TestSolution(t *testing.T) {
 	testcases := []struct {
 		description string
 		nums        []int
-		expectation int
+		want        int
 	}{
 		{"nums = [1,2,3,1]", []int{1, 2, 3, 1}, 4},
 		{"nums = [2,7,9,3,1]", []int{2, 7, 9, 3, 1}, 12},
@@ -18,7 +18,7 @@ func TestSolution(t *testing.T) {
 
 	for _, tc := range testcases {
 		t.Run(tc.description, func(t *testing.T) {
-			require.Equal(t, tc.expectation, rob(tc.nums))
+			require.Equal(t, tc.want, rob(tc.nums))
 		})
 	}
 }

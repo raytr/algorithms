@@ -8,9 +8,9 @@ import (
 
 func TestSumOf1DayArray(t *testing.T) {
 	testCases := []struct {
-		name        string
-		nums        []int
-		expectation []int
+		name string
+		nums []int
+		want []int
 	}{
 		{"nums = [1,2,3,4]", []int{1, 2, 3, 4}, []int{1, 3, 6, 10}},
 		{"nums = [1, 1, 1, 1, 1]", []int{1, 1, 1, 1, 1}, []int{1, 2, 3, 4, 5}},
@@ -20,7 +20,7 @@ func TestSumOf1DayArray(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			require.Equal(t, tt.expectation, runningSum(tt.nums))
+			require.Equal(t, tt.want, runningSum(tt.nums))
 		})
 	}
 

@@ -8,9 +8,9 @@ import (
 
 func TestFindShortestSubArray(t *testing.T) {
 	testCases := []struct {
-		name        string
-		nums        []int
-		expectation int
+		name string
+		nums []int
+		want int
 	}{
 		{"nums = [1,2,2,3,1]", []int{1, 2, 2, 3, 1}, 2},
 		{"nums = [1,2,2,3,1,4,2]", []int{1, 2, 2, 3, 1, 4, 2}, 6},
@@ -21,8 +21,8 @@ func TestFindShortestSubArray(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, findShortestSubArray1(tt.nums))
-			assert.Equal(t, tt.expectation, findShortestSubArray2(tt.nums))
+			assert.Equal(t, tt.want, findShortestSubArray1(tt.nums))
+			assert.Equal(t, tt.want, findShortestSubArray2(tt.nums))
 		})
 	}
 }

@@ -8,9 +8,9 @@ import (
 
 func TestIsPowerOfThree(t *testing.T) {
 	testCases := []struct {
-		name        string
-		n           int
-		expectation bool
+		name string
+		n    int
+		want bool
 	}{
 		{"n = 27", 27, true},
 		{"n = 0", 0, false},
@@ -20,7 +20,7 @@ func TestIsPowerOfThree(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			require.Equal(t, tt.expectation, isPowerOfThree(tt.n))
+			require.Equal(t, tt.want, isPowerOfThree(tt.n))
 		})
 	}
 }

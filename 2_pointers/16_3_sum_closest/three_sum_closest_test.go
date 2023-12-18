@@ -8,10 +8,10 @@ import (
 
 func TestThreeSumClosest(t *testing.T) {
 	testCases := []struct {
-		name        string
-		nums        []int
-		target      int
-		expectation int
+		name   string
+		nums   []int
+		target int
+		want   int
 	}{
 		{"nums = [-1,2,1,-4], target = 1", []int{-1, 2, 1, -4}, 1, 2},
 		{"nums = [0,0,0], target = 1", []int{0, 0, 0}, 1, 0},
@@ -21,7 +21,7 @@ func TestThreeSumClosest(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			require.Equal(t, tt.expectation, threeSumClosest(tt.nums, tt.target))
+			require.Equal(t, tt.want, threeSumClosest(tt.nums, tt.target))
 		})
 	}
 }

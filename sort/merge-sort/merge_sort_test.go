@@ -8,8 +8,8 @@ import (
 
 func TestMergeSort(t *testing.T) {
 	testCases := []struct {
-		Input       *ListNode
-		Expectation *ListNode
+		Input *ListNode
+		want  *ListNode
 	}{
 		//first test case
 		{
@@ -81,6 +81,6 @@ func TestMergeSort(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.Expectation, sortList(tc.Input))
+		assert.Equal(t, tc.want, sortList(tc.Input))
 	}
 }

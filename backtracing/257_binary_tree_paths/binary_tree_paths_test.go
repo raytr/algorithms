@@ -41,7 +41,7 @@ func TestBinaryTreePaths(t *testing.T) {
 	testcases := []struct {
 		description string
 		root        *TreeNode
-		expectation []string
+		want        []string
 	}{
 		{"root = [1,2,3,null,5]", root1, []string{"1->2->5", "1->3"}},
 		{"root = [1]", root2, []string{"1"}},
@@ -50,7 +50,7 @@ func TestBinaryTreePaths(t *testing.T) {
 
 	for _, testcase := range testcases {
 		t.Run(testcase.description, func(t *testing.T) {
-			require.ElementsMatch(t, testcase.expectation, binaryTreePaths(testcase.root))
+			require.ElementsMatch(t, testcase.want, binaryTreePaths(testcase.root))
 		})
 	}
 }

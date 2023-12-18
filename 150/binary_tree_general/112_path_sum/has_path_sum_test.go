@@ -51,7 +51,7 @@ func TestHasPathSum(t *testing.T) {
 		description string
 		root        *TreeNode
 		targetSum   int
-		expectation bool
+		want        bool
 	}{
 		{"root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22", input1, 22, true},
 		{"root = [1,2,3], targetSum = 5", input2, 5, false},
@@ -59,7 +59,7 @@ func TestHasPathSum(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.description, func(t *testing.T) {
-			require.Equal(t, tt.expectation, hasPathSum(tt.root, tt.targetSum))
+			require.Equal(t, tt.want, hasPathSum(tt.root, tt.targetSum))
 		})
 	}
 }

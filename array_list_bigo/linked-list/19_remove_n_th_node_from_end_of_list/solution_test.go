@@ -63,10 +63,10 @@ var (
 
 func TestRemoveNthFromEnd(t *testing.T) {
 	testCases := []struct {
-		name        string
-		input       *listNode
-		n           int
-		expectation *listNode
+		name  string
+		input *listNode
+		n     int
+		want  *listNode
 	}{
 		{"head = [1,2,3,4,5], n = 2", input1, 2, output1},
 		{"head = [1], n = 1", input2, 1, nil},
@@ -76,7 +76,7 @@ func TestRemoveNthFromEnd(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, removeNthFromEnd(tt.input, tt.n))
+			assert.Equal(t, tt.want, removeNthFromEnd(tt.input, tt.n))
 		})
 	}
 }

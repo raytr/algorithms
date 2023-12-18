@@ -8,9 +8,9 @@ import (
 
 func TestDecodeString(t *testing.T) {
 	testCases := []struct {
-		name        string
-		input       string
-		expectation string
+		name  string
+		input string
+		want  string
 	}{
 		{"3[a]2[bc]", "3[a]2[bc]", "aaabcbc"},
 		{"3[a2[c]]", "3[a2[c]]", "accaccacc"},
@@ -24,7 +24,7 @@ func TestDecodeString(t *testing.T) {
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			got := decodeString(tt.input)
-			require.Equal(t, tt.expectation, got)
+			require.Equal(t, tt.want, got)
 		})
 	}
 }

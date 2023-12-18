@@ -5,8 +5,10 @@ package climbing_stairs
 
 	   to climb to the top has n steps, step[n] = step[n-1] + 1
 
-	   step[1] = 1
-	   step[2] = 2
+	   step[1] = 1 (we have 1 way to reach the top)
+	   step[2] = 2 (we have 2 ways to reach the top. That are:
+					- 2 times with each step is 1
+					- 1 times with each step is 2 step)
 	   step[3] = step[1] + step[2] = 3
 
 

@@ -9,9 +9,9 @@ import (
 func TestMaxArea(t *testing.T) {
 
 	testCases := []struct {
-		name        string
-		height      []int
-		expectation int
+		name   string
+		height []int
+		want   int
 	}{
 		{"[1,8,6,2,5,4,8,3,7]", []int{1, 8, 6, 2, 5, 4, 8, 3, 7}, 49},
 		{"[1,1]", []int{1, 1}, 1},
@@ -20,7 +20,7 @@ func TestMaxArea(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			require.Equal(t, tt.expectation, maxArea(tt.height))
+			require.Equal(t, tt.want, maxArea(tt.height))
 		})
 	}
 

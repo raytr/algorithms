@@ -10,7 +10,7 @@ func TestEvalRPN(t *testing.T) {
 	testCases := []struct {
 		description string
 		tokens      []string
-		expectation int
+		want        int
 	}{
 		{"tokens = [\"2\",\"1\",\"+\",\"3\",\"*\"]", []string{"2", "1", "+", "3", "*"}, 9},
 		{"tokens = [\"4\",\"13\",\"5\",\"/\",\"+\"]", []string{"4", "13", "5", "/", "+"}, 6},
@@ -19,7 +19,7 @@ func TestEvalRPN(t *testing.T) {
 
 	for _, testCase := range testCases {
 		t.Run(testCase.description, func(t *testing.T) {
-			require.Equal(t, testCase.expectation, evalRPN(testCase.tokens))
+			require.Equal(t, testCase.want, evalRPN(testCase.tokens))
 		})
 	}
 }

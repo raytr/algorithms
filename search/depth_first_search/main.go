@@ -29,7 +29,7 @@ func main() {
 	graph.Children[0].Children[1].AddChildren("I").AddChildren("J")
 	graph.Children[2].Children[0].AddChildren("K")
 	output := graph.DepthFirstSearch([]string{})
-	expectation := []string{"A", "B", "E", "F", "I", "J", "C", "D", "G", "K", "H"}
+	want := []string{"A", "B", "E", "F", "I", "J", "C", "D", "G", "K", "H"}
 
 	fmt.Println(output)
 	fmt.Println(expectation)

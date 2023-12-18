@@ -8,9 +8,9 @@ import (
 
 func TestMaxLength(t *testing.T) {
 	testCases := []struct {
-		name        string
-		input       []string
-		expectation int
+		name  string
+		input []string
+		want  int
 	}{
 		{"arr = [\"un\",\"iq\",\"ue\"]", []string{"un", "iq", "ue"}, 4},
 		{"arr = [\"uu\",\"ii\",\"oe\"]", []string{"uu", "ii", "oe"}, 2},
@@ -23,7 +23,7 @@ func TestMaxLength(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, maxLength(tt.input))
+			assert.Equal(t, tt.want, maxLength(tt.input))
 		})
 	}
 }

@@ -8,13 +8,13 @@ import (
 
 func TestMaxProbability(t *testing.T) {
 	tests := []struct {
-		name        string
-		n           int
-		edges       [][]int
-		succProb    []float64
-		start       int
-		end         int
-		expectation float64
+		name     string
+		n        int
+		edges    [][]int
+		succProb []float64
+		start    int
+		end      int
+		want     float64
 	}{
 		{"Input: n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2", 3, [][]int{{0, 1}, {1, 2}, {0, 2}}, []float64{0.5, 0.5, 0.2}, 0, 2, 0.25},
 		{"Input: n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.3], start = 0, end = 2", 3, [][]int{{0, 1}, {1, 2}, {0, 2}}, []float64{0.5, 0.5, 0.3}, 0, 2, 0.3},
@@ -24,7 +24,7 @@ func TestMaxProbability(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, maxProbability(tt.n, tt.edges, tt.succProb, tt.start, tt.end))
+			assert.Equal(t, tt.want, maxProbability(tt.n, tt.edges, tt.succProb, tt.start, tt.end))
 		})
 	}
 }

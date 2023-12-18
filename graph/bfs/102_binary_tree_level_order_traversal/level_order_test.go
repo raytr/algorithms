@@ -28,9 +28,9 @@ var (
 
 func TestLevelOrder(t *testing.T) {
 	tests := []struct {
-		name        string
-		root        *TreeNode
-		expectation [][]int
+		name string
+		root *TreeNode
+		want [][]int
 	}{
 		{"root = [3,9,20,null,null,15,7]", root1, [][]int{{3}, {9, 20}, {15, 7}}},
 		{"root = [1]", root2, [][]int{{1}}},
@@ -39,7 +39,7 @@ func TestLevelOrder(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, levelOrder1(tt.root))
+			assert.Equal(t, tt.want, levelOrder1(tt.root))
 		})
 	}
 }

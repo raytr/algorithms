@@ -24,16 +24,16 @@ var (
 
 func TestIsSymmetric(t *testing.T) {
 	testCases := []struct {
-		name        string
-		root        *TreeNode
-		expectation bool
+		name string
+		root *TreeNode
+		want bool
 	}{
 		{"root = [1,2,2,3,4,4,3]", input1, true},
 	}
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			require.Equal(t, tt.expectation, isSymmetric(tt.root))
+			require.Equal(t, tt.want, isSymmetric(tt.root))
 		})
 	}
 }

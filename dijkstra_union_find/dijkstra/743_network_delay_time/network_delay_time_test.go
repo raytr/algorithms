@@ -8,11 +8,11 @@ import (
 
 func TestNetworkDelayTime(t *testing.T) {
 	tests := []struct {
-		name        string
-		times       [][]int
-		n           int
-		k           int
-		expectation int
+		name  string
+		times [][]int
+		n     int
+		k     int
+		want  int
 	}{
 		{"times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2", [][]int{{2, 1, 1}, {2, 3, 1}, {3, 4, 1}}, 4, 2, 2},
 		{"times = [[1,2,1]], n = 2, k = 1", [][]int{{1, 2, 1}}, 2, 1, 1},
@@ -25,7 +25,7 @@ func TestNetworkDelayTime(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, networkDelayTime(tt.times, tt.n, tt.k))
+			assert.Equal(t, tt.want, networkDelayTime(tt.times, tt.n, tt.k))
 		})
 	}
 }

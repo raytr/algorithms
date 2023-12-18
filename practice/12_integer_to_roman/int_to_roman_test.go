@@ -8,9 +8,9 @@ import (
 
 func TestIntToRoman(t *testing.T) {
 	testCases := []struct {
-		name        string
-		num         int
-		expectation string
+		name string
+		num  int
+		want string
 	}{
 		{"num = 3", 3, "III"},
 		{"num = 58", 58, "LVIII"},
@@ -19,7 +19,7 @@ func TestIntToRoman(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, intToRoman(tt.num))
+			assert.Equal(t, tt.want, intToRoman(tt.num))
 		})
 	}
 

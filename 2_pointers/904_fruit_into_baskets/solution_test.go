@@ -8,9 +8,9 @@ import (
 
 func TestTotalFruit(t *testing.T) {
 	testCases := []struct {
-		name        string
-		fruits      []int
-		expectation int
+		name   string
+		fruits []int
+		want   int
 	}{
 		{"fruits = [1,2,1]", []int{1, 2, 1}, 3},
 		{"fruits = [0, 1, 2, 1, 2, 0, 1, 2]", []int{0, 1, 2, 1, 2, 0, 1, 2}, 4},
@@ -21,7 +21,7 @@ func TestTotalFruit(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, totalFruit(tt.fruits))
+			assert.Equal(t, tt.want, totalFruit(tt.fruits))
 		})
 	}
 }

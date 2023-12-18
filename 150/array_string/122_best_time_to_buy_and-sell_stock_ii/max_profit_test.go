@@ -10,7 +10,7 @@ func TestMaxProfit(t *testing.T) {
 	testCases := []struct {
 		description string
 		prices      []int
-		expectation int
+		want        int
 	}{
 		{"prices = [7,1,5,3,6,4]", []int{7, 1, 5, 3, 6, 4}, 7},
 		{"prices = [1,2,3,4,5]", []int{1, 2, 3, 4, 5}, 4},
@@ -19,7 +19,7 @@ func TestMaxProfit(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.description, func(t *testing.T) {
-			require.Equal(t, tt.expectation, maxProfit(tt.prices))
+			require.Equal(t, tt.want, maxProfit(tt.prices))
 		})
 	}
 }

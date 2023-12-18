@@ -8,15 +8,15 @@ import (
 
 func TestSolution(t *testing.T) {
 	testCases := []struct {
-		input       string
-		expectation int
+		input string
+		want  int
 	}{
 		{"01001001101", 2},
 	}
 
 	for _, tt := range testCases {
 		t.Run("case 1", func(t *testing.T) {
-			require.Equal(t, tt.expectation, minFlips(tt.input))
+			require.Equal(t, tt.want, minFlips(tt.input))
 		})
 	}
 }

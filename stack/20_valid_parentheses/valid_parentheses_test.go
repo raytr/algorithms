@@ -8,9 +8,9 @@ import (
 
 func TestValidParentheses(t *testing.T) {
 	testCases := []struct {
-		name        string
-		input       string
-		expectation bool
+		name  string
+		input string
+		want  bool
 	}{
 		{"s = ()", "()", true},
 		{"s = ()[]{}", "()[]{}", true},
@@ -19,7 +19,7 @@ func TestValidParentheses(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, isValid(tt.input))
+			assert.Equal(t, tt.want, isValid(tt.input))
 		})
 	}
 }

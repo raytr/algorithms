@@ -8,10 +8,10 @@ import (
 
 func TestAddBinary(t *testing.T) {
 	testCases := []struct {
-		name        string
-		a           string
-		b           string
-		expectation string
+		name string
+		a    string
+		b    string
+		want string
 	}{
 		{"Input: a = \"11\", b = \"1\"", "11", "1", "100"},
 		{"a = \"1010\", b = \"1011\"", "1010", "1011", "10101"},
@@ -24,7 +24,7 @@ func TestAddBinary(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, addBinary(tt.a, tt.b))
+			assert.Equal(t, tt.want, addBinary(tt.a, tt.b))
 		})
 	}
 }

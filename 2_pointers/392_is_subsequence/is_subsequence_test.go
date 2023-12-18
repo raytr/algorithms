@@ -8,10 +8,10 @@ import (
 
 func TestIsSubsequence(t *testing.T) {
 	testCases := []struct {
-		name        string
-		s           string
-		t           string
-		expectation bool
+		name string
+		s    string
+		t    string
+		want bool
 	}{
 		{"s = abc, t = ahbgdc", "abc", "ahbgdc", true},
 		{"s = axc, t = ahbgdc", "axc", "ahbgdc", false},
@@ -19,7 +19,7 @@ func TestIsSubsequence(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			require.Equal(t, tc.expectation, isSubsequence(tc.s, tc.t))
+			require.Equal(t, tc.want, isSubsequence(tc.s, tc.t))
 		})
 	}
 }

@@ -8,9 +8,9 @@ import (
 
 func TestIsPalindrome(t *testing.T) {
 	testCases := []struct {
-		name        string
-		s           string
-		expectation bool
+		name string
+		s    string
+		want bool
 	}{
 		{"A man, a plan, a canal: Panama", "A man, a plan, a canal: Panama", true},
 		{"race a car", "race a car", false},
@@ -20,7 +20,7 @@ func TestIsPalindrome(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			require.Equal(t, tt.expectation, isPalindrome(tt.s))
+			require.Equal(t, tt.want, isPalindrome(tt.s))
 		})
 	}
 }

@@ -64,10 +64,10 @@ var (
 
 func TestIsSameTree(t *testing.T) {
 	tests := []struct {
-		name        string
-		p           *TreeNode
-		q           *TreeNode
-		expectation bool
+		name string
+		p    *TreeNode
+		q    *TreeNode
+		want bool
 	}{
 		{"p = [1,2,3], q = [1,2,3]", p1, q1, true},
 		{"p = [1,2], q = [1,null,2]", p2, q2, false},
@@ -76,8 +76,8 @@ func TestIsSameTree(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, isSameTreeRecursion(tt.p, tt.q))
-			assert.Equal(t, tt.expectation, isSameTreeIteration(tt.p, tt.q))
+			assert.Equal(t, tt.want, isSameTreeRecursion(tt.p, tt.q))
+			assert.Equal(t, tt.want, isSameTreeIteration(tt.p, tt.q))
 		})
 	}
 }

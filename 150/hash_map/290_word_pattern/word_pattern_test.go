@@ -11,7 +11,7 @@ func TestWordPattern(t *testing.T) {
 		description string
 		pattern     string
 		s           string
-		expectation bool
+		want        bool
 	}{
 		{"pattern = abba, s = dog cat cat dog", "abba", "dog cat cat dog", true},
 		{"pattern = abba, s = dog cat cat fish", "abba", "dog cat cat fish", false},
@@ -22,7 +22,7 @@ func TestWordPattern(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.description, func(t *testing.T) {
-			require.Equal(t, tt.expectation, wordPattern(tt.pattern, tt.s))
+			require.Equal(t, tt.want, wordPattern(tt.pattern, tt.s))
 		})
 	}
 }

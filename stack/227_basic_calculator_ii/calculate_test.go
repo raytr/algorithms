@@ -10,7 +10,7 @@ func TestCalculate(t *testing.T) {
 	testCases := []struct {
 		description string
 		s           string
-		expectation int
+		want        int
 	}{
 		{"s=3+2*2", "3+2*2", 7},
 		{"s= 3/2", " 3/2", 1},
@@ -19,7 +19,7 @@ func TestCalculate(t *testing.T) {
 
 	for _, testCase := range testCases {
 		t.Run(testCase.description, func(t *testing.T) {
-			require.Equal(t, testCase.expectation, calculate(testCase.s))
+			require.Equal(t, testCase.want, calculate(testCase.s))
 		})
 	}
 }

@@ -8,9 +8,9 @@ import (
 
 func TestName(t *testing.T) {
 	testCases := []struct {
-		name        string
-		time        []int
-		expectation int
+		name string
+		time []int
+		want int
 	}{
 		{"time = [30,20,150,100,40]", []int{30, 20, 150, 100, 40}, 3},
 		{"time = [60,60,60]", []int{60, 60, 60}, 3},
@@ -20,7 +20,7 @@ func TestName(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, numPairsDivisibleBy60(tt.time))
+			assert.Equal(t, tt.want, numPairsDivisibleBy60(tt.time))
 		})
 	}
 }

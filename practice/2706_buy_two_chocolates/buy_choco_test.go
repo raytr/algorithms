@@ -8,10 +8,10 @@ import (
 
 func TestBuyChoco(t *testing.T) {
 	testCases := []struct {
-		name        string
-		prices      []int
-		money       int
-		expectation int
+		name   string
+		prices []int
+		money  int
+		want   int
 	}{
 		{"prices = [1,2,2], money = 3", []int{1, 2, 2}, 3, 0},
 		{"prices = [1,1], money = 1", []int{1, 1}, 1, 1},
@@ -24,7 +24,7 @@ func TestBuyChoco(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, buyChoco(tt.prices, tt.money))
+			assert.Equal(t, tt.want, buyChoco(tt.prices, tt.money))
 		})
 	}
 }

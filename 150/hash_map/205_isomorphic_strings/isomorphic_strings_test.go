@@ -8,10 +8,10 @@ import (
 
 func TestIsIsomorphic(t *testing.T) {
 	testCases := []struct {
-		name        string
-		s           string
-		t           string
-		expectation bool
+		name string
+		s    string
+		t    string
+		want bool
 	}{
 		{"s = egg, t = add", "egg", "add", true},
 		{"s = foo, t = bar", "foo", "bar", false},
@@ -21,7 +21,7 @@ func TestIsIsomorphic(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			require.Equal(t, tt.expectation, isIsomorphic(tt.s, tt.t))
+			require.Equal(t, tt.want, isIsomorphic(tt.s, tt.t))
 		})
 	}
 }

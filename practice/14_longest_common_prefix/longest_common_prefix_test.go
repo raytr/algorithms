@@ -8,9 +8,9 @@ import (
 
 func TestLongestCommonPrefix(t *testing.T) {
 	testCases := []struct {
-		name        string
-		strs        []string
-		expectation string
+		name string
+		strs []string
+		want string
 	}{
 		{"strs = [\"flower\",\"flow\",\"flight\"]", []string{"flower", "flow", "flight"}, "fl"},
 		{"strs = [\"dog\",\"racecar\",\"car\"]", []string{"dog", "racecar", "car"}, ""},
@@ -18,7 +18,7 @@ func TestLongestCommonPrefix(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, longestCommonPrefixBruteForce(tt.strs))
+			assert.Equal(t, tt.want, longestCommonPrefixBruteForce(tt.strs))
 		})
 	}
 }

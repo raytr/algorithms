@@ -8,9 +8,9 @@ import (
 
 func TestSolution(t *testing.T) {
 	testCases := []struct {
-		param1      string
-		param2      int
-		expectation string
+		param1 string
+		param2 int
+		want   string
 	}{
 		{"0", 5, "50"},
 		{"7643", 5, "76543"},
@@ -22,8 +22,8 @@ func TestSolution(t *testing.T) {
 	}
 
 	for _, tt := range testCases {
-		t.Run(tt.expectation, func(t *testing.T) {
-			require.Equal(t, tt.expectation, maxValue(tt.param1, tt.param2))
+		t.Run(tt.want, func(t *testing.T) {
+			require.Equal(t, tt.want, maxValue(tt.param1, tt.param2))
 		})
 	}
 }

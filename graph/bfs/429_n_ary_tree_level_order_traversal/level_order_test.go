@@ -92,9 +92,9 @@ var (
 func TestLevelOrder(t *testing.T) {
 
 	testCases := []struct {
-		name        string
-		root        *Node
-		expectation [][]int
+		name string
+		root *Node
+		want [][]int
 	}{
 		{"root = [1,null,3,2,4,null,5,6]", root1, [][]int{{1}, {3, 2, 4}, {5, 6}}},
 		{"root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]", root2, [][]int{{1}, {2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13}, {14}}},
@@ -102,7 +102,7 @@ func TestLevelOrder(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, levelOrder(tt.root))
+			assert.Equal(t, tt.want, levelOrder(tt.root))
 		})
 	}
 }

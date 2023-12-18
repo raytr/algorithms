@@ -11,7 +11,7 @@ import (
 
 	 can s empty
 	 how about length of string
-	 what is your expectation about complexity
+	 what is your want about complexity
 	 what result if 44+1 =>
 
 

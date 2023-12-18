@@ -10,7 +10,7 @@ func TestName(t *testing.T) {
 		description string
 		nums        []int
 		target      int
-		expectation int
+		want        int
 	}{
 		{"target = 7, nums = [2,3,1,2,4,3]", []int{2, 3, 1, 2, 4, 3}, 7, 2},
 		{"target = 4, nums = [1,4,4]", []int{1, 4, 4}, 4, 1},
@@ -19,7 +19,7 @@ func TestName(t *testing.T) {
 
 	for _, tc := range testcases {
 		t.Run(tc.description, func(t *testing.T) {
-			assert.Equal(t, tc.expectation, minSubArrayLen(tc.target, tc.nums))
+			assert.Equal(t, tc.want, minSubArrayLen(tc.target, tc.nums))
 		})
 	}
 }

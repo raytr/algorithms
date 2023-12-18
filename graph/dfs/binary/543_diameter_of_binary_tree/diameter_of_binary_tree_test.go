@@ -55,9 +55,9 @@ var (
 func TestSolution(t *testing.T) {
 
 	tests := []struct {
-		name        string
-		root        *TreeNode
-		expectation int
+		name string
+		root *TreeNode
+		want int
 	}{
 		{"[1,2,3,4,5]", root1, 3},
 		{"[1,2]", root2, 1},
@@ -67,7 +67,7 @@ func TestSolution(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, diameterOfBinaryTree(tt.root))
+			assert.Equal(t, tt.want, diameterOfBinaryTree(tt.root))
 		})
 	}
 }

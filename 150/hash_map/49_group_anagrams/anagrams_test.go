@@ -9,9 +9,9 @@ import (
 
 func TestGroupAnagrams(t *testing.T) {
 	testCases := []struct {
-		name        string
-		strs        []string
-		expectation [][]string
+		name string
+		strs []string
+		want [][]string
 	}{
 		{"strs = [eat,tea,tan,ate,nat,bat]", []string{"eat", "tea", "tan", "ate", "nat", "bat"}, [][]string{{"bat"}, {"nat", "tan"}, {"ate", "eat", "tea"}}},
 		{"strs = []", []string{""}, [][]string{{""}}},
@@ -20,7 +20,7 @@ func TestGroupAnagrams(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			got := reflect.DeepEqual(groupAnagrams(tt.strs), tt.expectation)
+			got := reflect.DeepEqual(groupAnagrams(tt.strs), tt.want)
 			assert.Equal(t, true, got)
 		})
 	}

@@ -8,9 +8,9 @@ import (
 
 func TestMaxProfit(t *testing.T) {
 	testCases := []struct {
-		name        string
-		prices      []int
-		expectation int
+		name   string
+		prices []int
+		want   int
 	}{
 		{"prices = [7,1,5,3,6,4]", []int{7, 1, 5, 3, 6, 4}, 5},
 		{"prices = [7,6,4,3,1]", []int{7, 6, 4, 3, 1}, 0},
@@ -19,7 +19,7 @@ func TestMaxProfit(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			require.Equal(t, tt.expectation, maxProfit(tt.prices))
+			require.Equal(t, tt.want, maxProfit(tt.prices))
 		})
 	}
 }

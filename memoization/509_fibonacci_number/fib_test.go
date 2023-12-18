@@ -14,7 +14,7 @@ func TestFib(t *testing.T) {
 	testcases := []struct {
 		description string
 		n           int
-		expectation int
+		want        int
 	}{
 		{"n = 2", 2, 1},
 		{"n = 3", 3, 2},
@@ -25,7 +25,7 @@ func TestFib(t *testing.T) {
 
 	for _, tc := range testcases {
 		t.Run(tc.description, func(t *testing.T) {
-			require.Equal(t, tc.expectation, fib(tc.n))
+			require.Equal(t, tc.want, fib(tc.n))
 		})
 	}
 }

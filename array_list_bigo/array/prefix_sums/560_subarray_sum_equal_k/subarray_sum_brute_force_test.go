@@ -8,10 +8,10 @@ import (
 
 func TestSubArraySumEqualK(t *testing.T) {
 	testCases := []struct {
-		name        string
-		nums        []int
-		k           int
-		expectation int
+		name string
+		nums []int
+		k    int
+		want int
 	}{
 		{"nums = [1, 1, 1], k = 2", []int{1, 1, 1}, 2, 2},
 		{"nums = [1, 2, 1, 2, 1], k = 3", []int{1, 2, 1, 2, 1}, 3, 4},
@@ -24,7 +24,7 @@ func TestSubArraySumEqualK(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			require.Equal(t, tt.expectation, subarraySum(tt.nums, tt.k))
+			require.Equal(t, tt.want, subarraySum(tt.nums, tt.k))
 		})
 	}
 }

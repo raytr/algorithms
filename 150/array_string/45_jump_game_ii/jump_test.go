@@ -10,7 +10,7 @@ func TestCanJump(t *testing.T) {
 	testCases := []struct {
 		description string
 		nums        []int
-		expectation int
+		want        int
 	}{
 		{"nums = [2,3,1,1,4]", []int{2, 3, 1, 1, 4}, 2},
 		// Jump 1 step from index 0 to 1, then 3 steps to the last index.
@@ -26,7 +26,7 @@ func TestCanJump(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.description, func(t *testing.T) {
-			require.Equal(t, tt.expectation, jump(tt.nums))
+			require.Equal(t, tt.want, jump(tt.nums))
 		})
 	}
 }

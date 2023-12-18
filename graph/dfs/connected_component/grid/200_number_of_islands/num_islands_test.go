@@ -37,7 +37,7 @@ func TestSolution(t *testing.T) {
 	testcases := []struct {
 		description string
 		grid        [][]byte
-		expectation int
+		want        int
 	}{
 		{"Input: grid = [[1, 1, 1, 1, 0  " +
 			"[1, 1, 0, 1, 0  " +
@@ -59,7 +59,7 @@ func TestSolution(t *testing.T) {
 
 	for _, testcase := range testcases {
 		t.Run(testcase.description, func(t *testing.T) {
-			require.Equal(t, testcase.expectation, numIslands(testcase.grid))
+			require.Equal(t, testcase.want, numIslands(testcase.grid))
 		})
 	}
 }

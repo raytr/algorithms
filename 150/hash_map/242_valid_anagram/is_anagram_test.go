@@ -10,7 +10,7 @@ func TestIsAnagram(t *testing.T) {
 		description string
 		s           string
 		t           string
-		expectation bool
+		want        bool
 	}{
 		{"s = \"anagram\", t = \"nagaram\"", "anagram", "nagaram", true},
 		{"s = \"rat\", t = \"car\"", "rat", "car", false},
@@ -18,7 +18,7 @@ func TestIsAnagram(t *testing.T) {
 
 	for _, tc := range testcases {
 		t.Run(tc.description, func(t *testing.T) {
-			assert.Equal(t, tc.expectation, isAnagram(tc.s, tc.t))
+			assert.Equal(t, tc.want, isAnagram(tc.s, tc.t))
 		})
 	}
 }

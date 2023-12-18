@@ -57,9 +57,9 @@ var expectation2 = &ListNode{
 
 func TestRemoveZeroSumSublists(t *testing.T) {
 	tests := []struct {
-		name        string
-		head        *ListNode
-		expectation *ListNode
+		name string
+		head *ListNode
+		want *ListNode
 	}{
 		{"head = [1,2,-3,3,1]", head1, expectation1},
 		{"head = [1,2,3,-3,4]", head2, expectation2},
@@ -67,7 +67,7 @@ func TestRemoveZeroSumSublists(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, removeZeroSumSublists(tt.head))
+			assert.Equal(t, tt.want, removeZeroSumSublists(tt.head))
 		})
 	}
 }

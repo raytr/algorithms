@@ -8,9 +8,9 @@ import (
 
 func TestUniqueOccurrences(t *testing.T) {
 	testCases := []struct {
-		name        string
-		arr         []int
-		expectation bool
+		name string
+		arr  []int
+		want bool
 	}{
 		{"arr = [1,2,2,1,1,3]", []int{1, 2, 2, 1, 1, 3}, true},
 		{"arr = [1,2]", []int{1, 2}, false},
@@ -19,7 +19,7 @@ func TestUniqueOccurrences(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, uniqueOccurrences(tt.arr))
+			assert.Equal(t, tt.want, uniqueOccurrences(tt.arr))
 		})
 	}
 }

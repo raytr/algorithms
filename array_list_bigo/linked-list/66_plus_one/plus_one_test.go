@@ -8,9 +8,9 @@ import (
 
 func TestPlusOne(t *testing.T) {
 	testCases := []struct {
-		name        string
-		digits      []int
-		expectation []int
+		name   string
+		digits []int
+		want   []int
 	}{
 		{"digits = [1,2,3]", []int{1, 2, 3}, []int{1, 2, 4}},
 		{"digits = [4,3,2,1]", []int{4, 3, 2, 1}, []int{4, 3, 2, 2}},
@@ -20,7 +20,7 @@ func TestPlusOne(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, plusOne(tt.digits))
+			assert.Equal(t, tt.want, plusOne(tt.digits))
 		})
 	}
 }

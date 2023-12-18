@@ -8,9 +8,9 @@ import (
 
 func TestMaxPower(t *testing.T) {
 	tests := []struct {
-		name        string
-		s           string
-		expectation int
+		name string
+		s    string
+		want int
 	}{
 		{"s = leetcode", "leetcode", 2},
 		{"s = abbcccddddeeeeedcba", "abbcccddddeeeeedcba", 5},
@@ -18,7 +18,7 @@ func TestMaxPower(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, maxPower(tt.s))
+			assert.Equal(t, tt.want, maxPower(tt.s))
 		})
 	}
 }

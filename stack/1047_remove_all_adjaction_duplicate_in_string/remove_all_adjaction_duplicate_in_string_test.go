@@ -10,9 +10,9 @@ func TestRemoveDuplicates(t *testing.T) {
 	assert.Equal(t, "azxzy", removeDuplicates("azxxxzy"))
 
 	testCases := []struct {
-		name        string
-		input       string
-		expectation string
+		name  string
+		input string
+		want  string
 	}{
 		{"s= abbaca", "abbaca", "ca"},
 		{"s= azxxzy", "azxxzy", "ay"},
@@ -20,7 +20,7 @@ func TestRemoveDuplicates(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, removeDuplicates(tt.input))
+			assert.Equal(t, tt.want, removeDuplicates(tt.input))
 		})
 	}
 }

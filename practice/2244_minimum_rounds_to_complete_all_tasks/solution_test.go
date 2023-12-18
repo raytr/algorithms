@@ -8,9 +8,9 @@ import (
 
 func TestMinimumRounds(t *testing.T) {
 	testCases := []struct {
-		name        string
-		tasks       []int
-		expectation int
+		name  string
+		tasks []int
+		want  int
 	}{
 		{"tasks = [2,2,3,3,2,4,4,4,4,4]", []int{2, 2, 3, 3, 2, 4, 4, 4, 4, 4}, 4},
 		{"tasks = [2,3,3]", []int{2, 3, 3}, -1},
@@ -21,7 +21,7 @@ func TestMinimumRounds(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, minimumRounds(tt.tasks))
+			assert.Equal(t, tt.want, minimumRounds(tt.tasks))
 		})
 	}
 }

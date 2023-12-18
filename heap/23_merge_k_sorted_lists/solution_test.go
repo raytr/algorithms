@@ -31,7 +31,7 @@ var ll3 = &ListNode{
 	},
 }
 
-var expectation = &ListNode{
+var want = &ListNode{
 	Val: 1,
 	Next: &ListNode{
 		Val: 1,

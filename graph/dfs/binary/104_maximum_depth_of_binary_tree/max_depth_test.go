@@ -37,9 +37,9 @@ var (
 
 func TestMaxDepth(t *testing.T) {
 	testCases := []struct {
-		name        string
-		root        *TreeNode
-		expectation int
+		name string
+		root *TreeNode
+		want int
 	}{
 		{"[3,9,20,null,null,15,7]", root1, 3},
 		{"[1,null,2]", root2, 2},
@@ -48,7 +48,7 @@ func TestMaxDepth(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expectation, maxDepth(tt.root))
+			assert.Equal(t, tt.want, maxDepth(tt.root))
 		})
 	}
 }
