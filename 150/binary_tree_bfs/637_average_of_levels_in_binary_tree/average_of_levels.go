@@ -11,32 +11,31 @@ type TreeNode struct {
 }
 
 func averageOfLevels(root *TreeNode) []float64 {
+	res := make([]float64, 0)
 	queue := []*TreeNode{root}
-	res := []float64{float64(root.Val)}
 
 	for len(queue) > 0 {
-		sum := 0
-		count := 0
+		temp := make([]*TreeNode, 0)
+		sum, count := 0, 0
 
 		for len(queue) > 0 {
-			n := len(queue)
-			// pop the node
-			cur := queue[n-1]
-			queue = queue[:n-1]
+			//pop a node
+			curNode := queue[0]
+			queue = queue[1:]
+			sum += curNode.Val
+			count++
 
-			if cur.Left != nil {
-				sum += cur.Left.Val
-				count++
-				queue = append(queue, cur.Left)
+			//push children to temp
+			if curNode.Left != nil {
+				temp = append(temp, curNode.Left)
 			}
 
-			if cur.Right != nil {
-				sum += cur.Right.Val
-				count++
-				queue = append(queue, cur.Right)
+			if curNode.Right != nil {
+				temp = append(temp, curNode.Right)
 			}
 		}
 
+		queue = temp
 		res = append(res, float64(sum)/float64(count))
 	}
 
