@@ -18,8 +18,8 @@ func calcEquation(equations [][]string, values []float64, queries [][]string) []
 	res := make([]float64, 0)
 
 	for _, query := range queries {
-		src := query[0]
-		if !dict[src] {
+		start := query[0]
+		if !dict[start] {
 			res = append(res, -1)
 			continue
 		}
@@ -30,24 +30,29 @@ func calcEquation(equations [][]string, values []float64, queries [][]string) []
 		}
 
 		visited := make(map[string]bool)
-		visited[src] = true
-		res = append(res, dfs(adjList, visited, src, dest, 120))
+		visited[start] = true
+		res = append(res, dfs(adjList, visited, start, dest, 1))
 	}
 
 	return res
 }
 
-func dfs(adjList map[string][]location, visited map[string]bool, curNode, dest string, curWeight float64) float64 {
-	if curNode == dest {
+func dfs(adjList map[string][]location, visited map[string]bool, start, end string, curWeight float64) float64 {
+	if start == end {
 		return curWeight
 	}
 
-	for _, next := range adjList[curNode] {
+	for _, next := range adjList[start] {
 		if !visited[next.dest] {
 			visited[next.dest] = true
-			return dfs(adjList, visited, next.dest, dest, curWeight*next.weight)
+			result := dfs(adjList, visited, next.dest, end, curWeight*next.weight)
+			if result != -1.0 {
+				return result
+			}
 		}
 	}
+
+	delete(visited, start)
 
 	return -1
 }
