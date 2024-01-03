@@ -1,4 +1,4 @@
-package run_sum_of_1day_array
+package _480_run_sum_of_1_day_array
 
 import (
 	"testing"
