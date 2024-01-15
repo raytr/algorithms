@@ -1,3 +1,4 @@
 *.xml
 coms/*
 reading.md
+/vendor/

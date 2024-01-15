@@ -1,4 +1,4 @@
-package _480_run_sum_of_1_day_array
+package run_sum_of_1_day_array
 
 /*
 problem: https://leetcode.com/problems/running-sum-of-1d-array/
