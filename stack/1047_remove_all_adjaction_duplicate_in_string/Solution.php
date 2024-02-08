@@ -41,7 +41,7 @@ class Solution
     }
 }
 
-$solution = new Solution();
+$solution = new ValidPalindromeSolution();
 $input1 = "abbaca";
 //$expected1 = "ca";
 echo $solution->removeDuplicates($input1);

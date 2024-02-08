@@ -23,7 +23,7 @@ class Solution
     }
 }
 
-$solution = new Solution();
+$solution = new ValidPalindromeSolution();
 echo $solution->containsNearbyDuplicate([1, 2, 3, 1], 3) . "\n";
 echo $solution->containsNearbyDuplicate([1, 0, 1, 1], 1) . "\n";
 echo $solution->containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2) . "\n";

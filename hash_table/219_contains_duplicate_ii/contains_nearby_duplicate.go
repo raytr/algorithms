@@ -10,9 +10,7 @@ package contains_duplicate_ii
 func containsNearbyDuplicate(nums []int, k int) bool {
 	appearsAt := make(map[int]int)
 	for i, v := range nums {
-		a := i - appearsAt[v]
-		b := a <= k
-		if _, exist := appearsAt[v]; exist && b {
+		if _, exist := appearsAt[v]; exist && (i - appearsAt[v]) <= k {
 			return true
 		}
 		appearsAt[v] = i

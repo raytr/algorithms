@@ -1,49 +1,75 @@
 package valid_palindrome
 
-import (
-	"strings"
-)
+import "strings"
 
 /*
 	problem: https://leetcode.com/problems/valid-palindrome/
 */
 
+//func isPalindrome(s string) bool {
+//	/*
+//	   dic -> 24leters
+//	   result (string),
+//
+//
+//	   left, right ->
+//
+//
+//	   a  b. b. a
+//	      l  r
+//	*/
+//
+//	dic := newAlphabetDic()
+//	ns := make([]int32, 0)
+//	s = strings.ToLower(s)
+//	for _, c := range s {
+//		if _, exist := dic[c]; exist {
+//			ns = append(ns, c)
+//		}
+//	}
+//
+//	left, right := 0, len(ns)-1
+//	for left < right {
+//		if ns[left] != ns[right] {
+//			return false
+//		}
+//		left++
+//		right--
+//	}
+//
+//	return true
+//}
+
 func isPalindrome(s string) bool {
-	/*
-	   dic -> 24leters
-	   result (string),
-
-
-	   left, right ->
-
-
-	   a  b. b. a
-	      l  r
-	*/
-
-	dic := newAlphabetDic()
-	ns := make([]int32, 0)
+	dict := newAlphabetDic()
 	s = strings.ToLower(s)
-	for _, c := range s {
-		if _, exist := dic[c]; exist {
-			ns = append(ns, c)
-		}
-	}
+	l, r := uint8(0), uint8(len(s)-1)
 
-	left, right := 0, len(ns)-1
-	for left < right {
-		if ns[left] != ns[right] {
+	for l < r {
+		for {
+			if _, exist := dict[s[l]]; exist {
+				break
+			}
+			l++
+		}
+		for {
+			if _, exist := dict[s[r]]; exist {
+				break
+			}
+			r--
+		}
+
+		if s[l] != s[r] {
 			return false
 		}
-		left++
-		right--
+		l++
+		r--
 	}
-
 	return true
 }
 
-func newAlphabetDic() map[int32]int {
-	dic := make(map[int32]int)
+func newAlphabetDic() map[uint8]int {
+	dic := make(map[uint8]int)
 	dic['a']++
 	dic['b']++
 	dic['c']++
